@@ -1,6 +1,6 @@
 # Grupo 4 - Cursos
 
-Este proyecto se trata de **[una red social | un ecommerce | un juego ]** orientado a personas interesadas ***completar cual seria el perfil de usuarios interesados en este sitio*** Cuando comenzamos a planificar este proyecto nos propusimos lograr que ***completar explicando cual era la idea inicial***. En esta aplicacion los usuarios registros pueden ***completar describiendo que servicios y/o productos ofrece la aplicacion que la distinguen del resto de sus competidores***. En el futuro queremos expandir este desarrollo y lograr ***completar con objetivos a futuro***.
+Este proyecto es sobre un **ecommerce** orientado a personas interesadas en aprender y **desarrollarse profesionalmente** de manera remota, sin limites de edad y conocimiento. Cuando comenzamos a planificarlo nos propusimos lograr que la población logre capacitarse de forma remota gracias a las herramientas que brinda internet. En esta aplicación los usuarios registrados pueden capacitarse en distintas áreas. En el futuro queremos expandir este desarrollo y lograr brindar cursos certificados por el ministerio de educación y desarrollo.
 
 
 
