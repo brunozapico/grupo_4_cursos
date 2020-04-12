@@ -6,8 +6,8 @@ Este proyecto es sobre un **ecommerce** orientado a personas interesadas en apre
 
 ## Participantes
 
-###### Homero Simpson
-Padre de familia, 3 hijos, trabajo muy duro como un esclavo en la planta nuclear de Springfield. Hace 20 años funde Compumundo Hiper Mega Red, pero finalmente fuimos comprados por Microsoft. Mis habilidades son comer hasta 10 rosquillas a la vez.
+###### Rodriguez Martin
+Tengo 25 años, estudiante de "Programacion web FullStack" en Diguital House, Fanatico del futbol.
 
 
 ###### Lucas Castro
