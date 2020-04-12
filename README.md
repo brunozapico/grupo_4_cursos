@@ -29,21 +29,26 @@ Ingresar a ```http://localhost/proyecto/index.html```
 #### Herramientas
 
 - HTML, CSS, JS
-- NodeJS, NPM
-- [Zoom para reuniones grupales](https://zoom.us/)
-- [Trello para la gestion de las tareas](https://trello.com)
+- NodeJS, NPM, Express
+- Adobe Illustraitor 2020
+- Typora para edición del README
+- [LogoMaker](https://logomaker.thehoth.com/) para la creación del logo.
+- [Zoom](https://zoom.us/) para reuniones grupales.
 - Workbench
 - XAMPP, servidor local de PHP y MySQL
 
 
 
-#### Guias
+#### Guías
 
-- [Buenas practicas de GIT](https://blog.usejournal.com/git-tips-for-everyday-use-48f10b4d4525)
-- [Como escribir Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links)
+- [Udemy como modelo de formulario de registro](https://www.udemy.com/es/)
+- [Coursera como modelo de pagina de cursos](https://www.coursera.org/)
+- [Digital House como modelo de pagina de cursos](https://www.digitalhouse.com/ar) 
+- [Mercadolibre como modelo de carrito de compras](https://www.mercadolibre.com.ar/)
+- [Como escribir Markdown](https://https://www.markdown.es/)
 
 
 ## Agradecimientos
 
-- [A mi Perro Poochie](https://vignette.wikia.nocookie.net/lossimpson/images/9/9c/Poochie.png/revision/latest?cb=20090819011823&path-prefix=es) por habernos dejado justo 3 dias antes de terminar
+- [A mi Perro Poochie](https://vignette.wikia.nocookie.net/lossimpson/images/9/9c/Poochie.png/revision/latest?cb=20090819011823&path-prefix=es) por habernos dejado justo 3 días antes de terminar
 - [Y como olvidarnos del Niño Rata...](hhttps://zoom.us/ttps://miro.medium.com/max/2139/1*wVf0oHfP9iaU61YodjtAqQ.jpeg)
