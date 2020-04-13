@@ -1,17 +1,27 @@
 # Grupo 4 - Cursos
 
-Este proyecto es sobre un **ecommerce** orientado a personas interesadas en aprender y **desarrollarse profesionalmente** de manera remota, sin limites de edad y conocimiento. Cuando comenzamos a planificarlo nos propusimos lograr que la población logre capacitarse de forma remota gracias a las herramientas que brinda internet. En esta aplicación los usuarios registrados pueden capacitarse en distintas áreas. En el futuro queremos expandir este desarrollo y lograr brindar cursos certificados por el ministerio de educación y desarrollo.
+  El proyecto se basa en una plataforma de  **ecommerce de cursos en línea** orientado a personas interesadas en aprender y **desarrollarse profesionalmente** de forma remota, sin límites de edad y conocimiento.
+
+  Cuando comenzamos a planificarlo nos propusimos lograr que la población sea capaz de **capacitarse de forma remota** gracias a las herramientas que brinda internet. Mediante esta plataforma los usuarios registrados pueden adquirir nuevos conocimientos en distintas áreas de interés.
+
+  En el futuro pretendemos expandir este desarrollo y lograr brindar cursos certificados por el Ministerio de Educación, y distintas instituciones educativas de prestigio internacional.
 
 
 
 ## Participantes
 
-###### Rodriguez Martin
-Tengo 25 años, estudiante de "Programacion web FullStack" en Diguital House, Fanatico del futbol.
+##### Castro Lucas
+Tengo 34 años, papá de Ramón de 3 años, hincha de River Plate, y estudiante de "Programación Web Full Stack" en Digital House. ¡Futuro programador!
 
+##### Meza Martina
+.
 
-###### Lucas Castro
-Tengo 34 años, papá de Ramón de 3 años, hincha de River Plate, y estudiante de "Programacion Web FullStack" en Digital House. Futuro programador!
+##### Rodríguez Martin
+Tengo 25 años, estudiante de "Programación Web Full Stack" en Digital House, fanático del fútbol.
+
+##### Zapico Bruno Ezequiel
+Tengo 23 años y entre mis mayores intereses se encuentran las finanzas, la economía y el deporte. Actualmente soy estudiante de Programación Web Full Stack en Digital House.
+
 
 
 ## Instalación
@@ -19,36 +29,30 @@ Tengo 34 años, papá de Ramón de 3 años, hincha de River Plate, y estudiante 
 ```https://github.com/brunozapico/grupo_4_cursos.git```
 
 
+
 ## Utilización
 
 Ingresar a ```http://localhost/proyecto/index.html``` 
+
 
 
 ## Recursos
 
 #### Herramientas
 
-- HTML, CSS, JS
-- NodeJS, NPM, Express
-- Adobe Illustraitor 2020
-- Typora para edición del README
+- [Adobe Illustrator 2020](https://www.adobe.com/la/) para el desarrollo del Wireframe.
+- HTML, CSS, JS.
 - [LogoMaker](https://logomaker.thehoth.com/) para la creación del logo.
+- NodeJS, NPM, Express.
+- [Typora](https://typora.io/) para edición del README.
+- Workbench.
+- XAMPP, servidor local de PHP y MySQL.
 - [Zoom](https://zoom.us/) para reuniones grupales.
-- Workbench
-- XAMPP, servidor local de PHP y MySQL
-
-
 
 #### Guías
 
-- [Udemy como modelo de formulario de registro](https://www.udemy.com/es/)
-- [Coursera como modelo de pagina de cursos](https://www.coursera.org/)
-- [Digital House como modelo de pagina de cursos](https://www.digitalhouse.com/ar) 
-- [Mercadolibre como modelo de carrito de compras](https://www.mercadolibre.com.ar/)
-- [Como escribir Markdown](https://https://www.markdown.es/)
-
-
-## Agradecimientos
-
-- [A mi Perro Poochie](https://vignette.wikia.nocookie.net/lossimpson/images/9/9c/Poochie.png/revision/latest?cb=20090819011823&path-prefix=es) por habernos dejado justo 3 días antes de terminar
-- [Y como olvidarnos del Niño Rata...](hhttps://zoom.us/ttps://miro.medium.com/max/2139/1*wVf0oHfP9iaU61YodjtAqQ.jpeg)
+- [Coursera](https://www.coursera.org/) como modelo de pagina de cursos.
+- [Digital House](https://www.digitalhouse.com/ar) como modelo de pagina de cursos.
+- [Markdown.es](https://www.markdown.es/) para escribir Markdown.
+- [Mercadolibre](https://www.mercadolibre.com.ar/) como modelo de carrito de compras.
+- [Udemy](https://www.udemy.com/es/) como modelo de formulario de registro.
