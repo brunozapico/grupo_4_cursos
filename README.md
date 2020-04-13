@@ -14,7 +14,7 @@
 Tengo 34 años, papá de Ramón de 3 años, hincha de River Plate, y estudiante de "Programación Web Full Stack" en Digital House. ¡Futuro programador!
 
 ##### Meza Martina
-.
+Tengo 19 años, estudio Diseño Industrial y "Programación Web Full Stack".
 
 ##### Rodríguez Martin
 Tengo 25 años, estudiante de "Programación Web Full Stack" en Digital House, fanático del fútbol.
