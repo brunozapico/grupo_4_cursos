@@ -48,6 +48,7 @@ Ingresar a ```http://localhost/proyecto/index.html```
 - Workbench.
 - XAMPP, servidor local de PHP y MySQL.
 - [Zoom](https://zoom.us/) para reuniones grupales.
+- [Trello](https://trello.com/b/BGfRL22W/desarrollo-web) Tablero de trabajo
 
 #### Guías
 
