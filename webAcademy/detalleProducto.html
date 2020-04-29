@@ -9,9 +9,51 @@
     <title>WEB ACADEMY</title>
 </head>
 <body>
-    <header class="header">
-       <h1>HEADER</h1>
-        <!-- REEMPLAZAR POR HEADER -->
+    <header>
+        <div class="header-left-menu">
+            <div class="header-logo">
+                <img src="./img/placeholder2.png" alt="WA Logo">
+            </div>
+            
+            
+            <div class="cat-dropdown-menu">
+                <h6>CATEGORIAS</h6> <!--DIV-->
+                <div class="menu">
+                    <ul class="dropdown-nav">
+                        <li><i class="fas fa-bars"></i>
+                            <ul class="dropdown">
+                                <li><a href="">Arte</a></li>
+                                <li><a href="">Finanzas</a>
+                                    <ul class="dropdown-fin">
+                                        <li><a href="">Mercado de Capitales</a></li>
+                                        <li><a href="">Finanzas Personales</a></li>
+                                        <li><a href="">Finanzas Corporativas</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Desarrollo</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
+            
+            <div class="header-searchbar">
+                <input type="text" placeholder="¿Qué querés aprender hoy?" id="searchbar">
+                <i class="fas fa-search" id="search-logo"></i>
+            </div>
+        </div>
+        
+        <div class="header-right-menu">
+            <div class="header-cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            
+            <div class="header-user">
+                <button class="header-user-btn">LOG IN</button>
+                <button class="header-user-btn">SIGN UP</button>
+            </div> 
+        </div>         
+        
     </header>
     <main class="main-container">
         <div class="course-container">
