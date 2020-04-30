@@ -63,7 +63,7 @@ header {
     border-radius: 5px;
     padding: 10px;
     border: 2px solid black;
-}
+} 
 .button-categorie{
     display: inline;
 }
@@ -74,13 +74,20 @@ header {
 .second-container{
     width: 80%;
     margin: auto;
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .course-description{
     padding: 15px;
-    width: 70%;
+    width: 65%;
     background-color: rgb(236, 213, 169);
     border: 1px solid black;
+}
+.buttons-container{
+    border: 1px solid black;
+    width: 30%;
+    height: 100px; /*solo para prueba*/
 }
 .footer{
     background-color: rgb(236, 213, 169);
