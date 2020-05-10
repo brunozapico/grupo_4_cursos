@@ -1,0 +1,581 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Raleway', sans-serif; }
+
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    background-color: white;
+}
+
+.header-left-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    width: 70%;
+}
+
+.header-right-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: center;
+    width: 30%;
+}
+
+/* LOGO */
+
+.header-logo img {
+    width: 70px;
+    border-radius: 50%;
+}
+
+.cat-dropdown-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: center;
+    margin: auto 100px;
+    height: 100%;
+}
+
+.cat-dropdown-menu h6, .fa-bars {
+    font-size: 20px;
+    align-self: center;
+    margin: auto 0;
+}
+
+/* DROPDOWN MENU */
+
+.menu {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: auto 0;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.fa-bars {
+    display: inline-block;
+    margin: 2px 0 0 10px;
+    font-size: 24px;
+}
+
+.menu a:hover, .fa-bars:hover {
+    background-color: rgb(222, 184, 135);
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    margin: auto 0;
+}
+
+.menu ul li {
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.dropdown {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown li {
+    position: relative;
+    display: none;
+}
+
+.menu li:hover .dropdown > li {
+    display: block;
+}
+
+.dropdown li:hover .dropdown-fin li {
+    display: block;
+}
+
+.dropdown-fin li {
+    display: none;
+}
+
+.dropdown-fin {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
+/* SEARCH BAR */
+
+.header-searchbar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    margin: auto 0;
+    width: 40%;
+}
+
+.header-searchbar input{
+    width: 90%;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.fa-search {
+    display: inline-block;
+    margin: auto 0;
+    font-size: 24px;
+    text-align: center;
+    padding: 6px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+/* HOVER SEARCHBAR */
+
+.header-searchbar .fa-search:hover {
+    background-color: rgb(54, 139, 251);
+    color: white;
+    cursor: pointer;
+}
+
+/* SHOPPING CART */
+
+.header-cart {
+    margin: auto 20px;
+}
+
+.fa-shopping-cart {
+    font-size: 26px;
+}
+
+/* HOVER SHOPPING CART */
+
+.fa-shopping-cart:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);
+}
+
+/* USER BUTTONS */
+
+.header-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-user-btn {
+    padding: 5px 15px;
+    background-color: rgb(180, 180, 180);
+    border: 1px solid black;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* HOVER USER BUTTONS */
+
+.header-user-btn:hover {
+    color: white;
+    background-color: black;
+    border-color: white;
+    box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);
+}
+
+/* ------------------------------------------------- */
+
+/* SLIDER */
+
+.slider img {
+    height: 350px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* ------------------------------------------------- */
+
+/* MAIN */
+
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* COURSES */
+
+.top-courses-section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    margin-bottom: 50px;
+}
+
+.top-courses-sec-title {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.top-courses-sec-title > h4 {
+    font-weight: 700;
+    text-shadow: 1px 1px 10px lightgray;
+}
+
+.top-courses-sec-courses {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.top-courses-sec-courses .course {
+    width: 23%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0px 2px 3px rgba(177, 177, 177, 0.7);
+    transition: box-shadow 0.5s;
+    position: relative;
+}
+
+.top-courses-sec-courses .course img {
+    width: 100%;
+}
+
+.top-courses-sec-courses .course h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.top-courses-sec-courses .course p {
+    font-size: 1em;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.hidden-course-info {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: 300;
+    background-color: white;
+    transform: translate3d(0px, 285%, 0px);
+    z-index: 10000;
+}
+
+.hidden-course-info-title {
+    font-weight: 700;
+}
+
+.hidden-course-info > button {
+    margin-bottom: 10px;
+    width: 20%;
+    position: relative;
+    left: 80%;
+    background-color: lightgray;
+    border-top-color: rgb(224, 224, 224);
+    border-left-color: rgb(224, 224, 224);
+    border-right-color: black;
+    border-bottom-color: black;
+    color: black;
+}
+
+.hidden-course-info > button > i{
+    font-size: 16px;
+}
+
+
+/* HOVER COURSES */
+
+.top-courses-sec-courses .course:hover {
+    /* cursor: pointer; */
+    box-shadow: 0px -10px 60px -7px rgba(177, 177, 177);
+    transition: box-shadow 0.5s;
+}
+
+.top-courses-sec-courses .course:hover .hidden-course-info {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 10px 60px -7px  rgba(177, 177, 177);
+    transition: box-shadow 0.5s;
+}
+
+.hidden-course-info > button:hover {
+    background-color: gray;
+}
+
+/* CATEGORIES */
+
+.categories-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    margin-bottom: 50px;
+}
+
+.categories-sec-title {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.categories-sec-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.categories-sec-title > h4 {
+    font-weight: 700;
+    text-shadow: 1px 1px 10px lightgray;
+}
+
+.category {
+    width: 24%;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    background-color: white;
+    box-shadow: 0px 2px 3px rgba(177, 177, 177, 0.7);
+    transition: box-shadow 0.5s;
+    padding: 10px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.5s;
+}
+
+.category-logo {
+    width: 20%;
+}
+
+.category-logo > img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.category-title {
+    width: 70%;
+    margin: auto 0 auto 10px;
+}
+
+.category-title > h4 {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin: auto 0;
+}
+
+/* HOVER CATEGORIES */
+
+.category:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 20px rgba(177, 177, 177);
+    transition: box-shadow 0.5s;
+}
+
+/* TIPS */
+
+.tips-section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: space-between;
+    margin-bottom: 50px;
+}
+
+.tips-sec-title {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.tips-sec-title > h4 {
+    font-weight: 700;
+    text-shadow: 1px 1px 10px lightgray;
+}
+
+.tips-sec-tips {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tip {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(177, 177, 177, 0.7);
+}
+
+.tip-info {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding-top: 15px;
+}
+
+.tip-info > h4 {
+    font-weight: 600;
+}
+
+.tip-info > p {
+    font-weight: 300;
+}
+
+.tip-logo {
+    width: 30%;
+}
+
+.tip-logo img {
+    width: 60%;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+/* HOVER TIPS */
+
+/* .tip:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 20px rgba(177, 177, 177);
+} */
+
+/* ------------------------------------------------- */
+
+/* FOOTER */
+
+.f-top-border {
+    border-top: 1px solid rgb(165, 165, 165);
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+
+footer .wa-info {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}
+
+footer .wa-info img {
+    width: 8%;
+    border-radius: 50%;
+}
+
+footer .wa-info h4 {
+    margin-left: 14px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+footer .social-network {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer .social-network ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    list-style: none;
+}
+
+footer .social-network ul li {
+    margin: 0 2px;
+    padding: 8px 5px;
+}
+
+footer .social-network ul li i {
+    color: black;
+    font-size: 25px;
+    display: flex;
+}
+
+.fa-linkedin, .fa-facebook-square, .fa-twitter, .fa-instagram {
+    padding: 0 4px;
+}
+
+/* HOVER SNs */
+
+/* LINKEDIN */
+footer .social-network ul .linkedin-f-logo:hover {
+    background-color: #0e76a8;
+    cursor: pointer;
+    box-shadow: 1px 1px 20px gray;
+    border-radius: 20%;
+}
+
+footer .social-network ul .linkedin-f-logo:hover > i { color: white; }
+
+/* FACEBOOK */
+
+footer .social-network ul .facebook-f-logo:hover {
+    background-color: #3b5998;
+    cursor: pointer;
+    box-shadow: 1px 1px 20px gray;
+    border-radius: 20%;
+}
+
+footer .social-network ul .facebook-f-logo:hover > i { color: white; }
+
+/* TWITTER */
+
+footer .social-network ul .twitter-f-logo:hover {
+    background-color: #00acee;
+    cursor: pointer;
+    box-shadow: 1px 1px 20px gray;
+    border-radius: 20%;
+}
+
+footer .social-network ul .twitter-f-logo:hover > i { color: white; }
+
+/* INSTAGRAM */
+
+footer .social-network ul .instagram-f-logo:hover {
+    background: linear-gradient(45deg, #fccc63, #e95950, #bc2a8d, #8a3ab9);
+    cursor: pointer;
+    box-shadow: 1px 1px 20px gray;
+    border-radius: 20%;
+}
+
+footer .social-network ul .instagram-f-logo:hover > i { color: white; }
