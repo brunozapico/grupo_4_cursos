@@ -300,7 +300,6 @@ header {
     font-size: 1rem;
 }
 .course-container{
-    width: 80%;
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
@@ -308,7 +307,6 @@ header {
 }
 .course{
     background-color: white;
-    width: 30%;
     border-radius: .25rem;
     padding: 15px;
     box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);  
@@ -326,7 +324,6 @@ header {
     display: inline;
 }
 .course-img{
-    width: 65%;
     border-radius: .25rem;
     box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);;
 }
@@ -334,7 +331,6 @@ header {
     width: 100%;
 }
 .second-container{
-    width: 80%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -343,7 +339,6 @@ header {
 }
 .course-description{
     padding: 15px;
-    width: 65%;
     background-color: white;
     border-radius: .25rem;
     box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);
@@ -504,7 +499,12 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 /* TABLET 768px */
 
 @media (max-width: 768px) {
-    
+    .course{
+        margin-bottom: 1rem;
+    }
+    .course-description{
+        margin-bottom: 1rem;
+    }
     #h-sm-logo {
         display: flex;
     }
@@ -536,7 +536,18 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
     .header-user-btn {
         padding: 5px 5px;
     }
-    
+    footer{
+        display: inline;
+    }
+    footer .wa-logo, footer .wa-info, footer .social-network {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+
+    }
+    footer .social-network ul{
+        justify-content: center;
+    }
     footer .social-network ul li i {
         font-size: 18px;
     }
