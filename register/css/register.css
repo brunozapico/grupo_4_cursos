@@ -1,0 +1,148 @@
+.container {
+    width: 80%;
+    max-width: 380px;
+    margin: 50px auto 300px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 5px rgba(177, 177, 177, 0.7);
+    border-radius: 10px;
+}
+
+/* TITLE */
+
+.register-title {
+    margin: 0 auto 30px auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.register-title h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+/* INPUTS */
+
+.register-input-row {
+    margin: auto;
+}
+
+.register-input {
+    padding: 0;
+    height: 45px;
+}
+
+.input-group-text {
+    color: gray;
+    background-color: white;
+    border-color: lightgray;
+    border-right: none;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.form-control:active > .fas {
+    color: black;
+}
+
+.form-control {
+    background-color: white;
+    border-color: lightgray;
+    border-left: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-left: 0;
+
+}
+
+.form-control:focus {
+    outline:none;
+    outline-width: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: lightgray;
+}
+
+/* BUTTON */
+
+.register-btn-col {
+    /* background-color: chocolate; */
+    margin: 20px auto;
+    padding: 0;
+}
+
+.register-btn-col button {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    background-color: #00679A;
+    color: white;
+    border: 1px solid #00679A;
+    border-radius: 2px;
+}
+
+.register-btn-col button:hover {
+    text-decoration: none;
+    background-color: rgb(0, 78, 117);
+    border-color: rgb(0, 78, 117);
+    border: 1px solid rgb(0, 78, 117);
+    box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.2);
+}
+
+.register-btn-col button:focus {
+    outline:none;
+    outline-width: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.register-btn-col button:active {
+    background-color: rgb(0, 78, 117);
+    border-color: rgb(0, 78, 117);
+    transform: scale(0.95);
+}
+
+/* TERMS */
+
+.register-terms {
+    margin: 20px auto;
+    padding: 0;
+}
+
+.register-terms h6 {
+    font-size: 9px;
+}
+
+.register-terms h6 a {
+    color: #00679A;
+}
+
+.register-terms h6 a:hover {
+    text-shadow: 0px 0px 20px lightgray;
+}
+
+/* LOGIN */
+
+.register-login {
+    margin: auto;
+    padding: 0;
+}
+
+.register-login h4 {
+    font-size: 16px;
+    text-align: center;
+}
+
+.register-login h4 a {
+    color: #00679A;
+    font-weight: 700;
+}
+
+.register-login h4 a:hover {
+    text-shadow: 0px 0px 20px lightgray;
+}
