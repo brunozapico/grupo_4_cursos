@@ -3,16 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <title>Webacademy</title>
     <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../HOME/css/home.css">
     <link rel="stylesheet" href="./css/formulario.css">
     
 </head>
 <body>
     <header>
+        <div class="header-left-menu">
+            <div class="header-logo">
+                <img src="img/logo/lgo-wa-derecha.png" alt="WA Logo" id="h-lg-logo">
+                <img src="img/logo/logo-wa-abajo.png" alt="WA Logo" id="h-sm-logo">
+                <img src="img/logo/logo-wa.png" alt="WA Logo" id="h-xs-logo">
+            </div>
+            
+            
+            <div class="cat-dropdown-menu">
+                <h6>Categorías</h6> <!--DIV-->
+                <div class="menu">
+                    <ul class="dropdown-nav">
+                        <li><i class="fas fa-bars"></i>
+                            <ul class="dropdown">
+                                <li><a href="">Arte</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Instrumetnos</a></li>
+                                        <li><a href="">Música</a></li>
+                                        <li><a href="">Producción</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Desarrollo</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Apps Móviles</a></li>
+                                        <li><a href="">Base de Datos</a></li>
+                                        <li><a href="">Desarrollo Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Desarrollo Personal</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Influencia</a></li>
+                                        <li><a href="">Liderazgo</a></li>
+                                        <li><a href="">Productividad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Diseño</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">3D y animación</a></li>
+                                        <li><a href="">Diseño Gráfico</a></li>
+                                        <li><a href="">Diseño Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Fotografía</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Diseño de Videos</a></li>
+                                        <li><a href="">Fundamentos de Fotografía</a></li>
+                                        <li><a href="">Retratos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Informática</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Hardware</a></li>
+                                        <li><a href="">Redes y Seguridad</a></li>
+                                        <li><a href="">Sistemas Operativos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Marketing</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Fundamentos de Marketing</a></li>
+                                        <li><a href="">Marketing Digital</a></li>
+                                        <li><a href="">Publicidad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Negocios</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Finanzas Personales</a></li>
+                                        <li><a href="">Finanzas Corporativas</a></li>
+                                        <li><a href="">Mercado de Capitales</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
+            
+            <div class="header-searchbar">
+                <input type="text" placeholder="¿Qué querés aprender hoy?" id="searchbar">
+                <i class="fas fa-search" id="search-logo"></i>
+            </div>
+        </div>
+        
+        <div class="header-right-menu">
+            <div class="header-cart">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            
+            <div class="header-user">
+                <button class="header-user-btn" id="btn-login">Iniciar sesión</button>
+                <button class="header-user-btn" id="btn-signup">Registrarse</button>
+                <i class="fas fa-user"></i>
+            </div> 
+        </div>
     </header>
     <!--Main-->
     <main>
@@ -23,7 +116,7 @@
                 </div>
                 <form action="" method="POST" class="center">
                     <div class="row center">
-                        <div class="col-md-6">
+                        <div class="col-md-6 border">
                             <!--Categorias-->
                             <label for="option">Categorias</label>
                             <select name="" id="option">
@@ -39,19 +132,19 @@
                             <option value="">Educacion</option>
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 border">
                             <!--Nombre del curso-->
-                            <label for="">Nombre Del Curso:</label>
+                            <label for="">Nombre Del Curso</label>
                             <input type="text" name="NCurso" id="" placeholder="Nombre del Curso">
                         </div>
                     </div>
                     <div class="row"><!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="Description" id="" cols="82%" rows="10" placeholder="Descripción"></textarea>
+                            <textarea name="Description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"></textarea>
                         </div>
                     </div>
                     <div class="row center"><!--Calendario --> 
-                        <div class="col-md-6">
+                        <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
                                 <input type="date" name="inicio" id="dateInicio" min="">
@@ -61,14 +154,16 @@
                                 <input type="date" name="fin" id="dateFin" min="">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 border space">
                             <div>
                                 <label for="">Dias de Cursada</label>
-                                <input type="checkbox" name="days" value="Mon">Lun
-                                <input type="checkbox" name="days" value="Tues">Mar
-                                <input type="checkbox" name="days" value="Wedn">Mier
-                                <input type="checkbox" name="days" value="Thur">Jue
-                                <input type="checkbox" name="days" value="Fri">Vier
+                                <div class="dias">
+                                    <input type="checkbox" name="days" value="Mon">Lun
+                                    <input type="checkbox" name="days" value="Tues">Mar
+                                    <input type="checkbox" name="days" value="Wedn">Mier
+                                    <input type="checkbox" name="days" value="Thur">Jue
+                                    <input type="checkbox" name="days" value="Fri">Vier
+                                </div>
                             </div>
                             <div>
                                 <label for="">Horarios</label>
@@ -79,32 +174,32 @@
                         </div>
                     </div>
                     <div class="row center">
-                        <div class="col-md-6">
+                        <div class="col-md-6 border space">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
                             <input type="number" min="0">                        
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 border space">
                             <!--Precio -->
                             <label for="">Precio U$D</label>
                             <input type="number" min="0">
                         </div>
                     </div>
                     <div class="row center"><!--Multimedia -->
-                            <div class="col-md-12">
+                            <div class="col-md-12 border space tamaño">
                                 <label for="">Multimedia</label>
                                 <input type="file" name="multimedia">
                                 <p class="help-block">Hasta 120 MB</p>
                             </div>
                     </div>
-                    <div class="row center"><!--Logo -->
+                    <div class="row center border space tamaño"><!--Logo -->
                         <div class="col-md-12">
                             <label for="">Logo</label>
                             <input type="file" name="Logo" id="">
                         </div>
                     </div>
                     <div class="row center"><!--Boton de envio -->
-                        <div class="col-md-12">
+                        <div class="col-md-12 space">
                             <button type="submit" class="button">Agregar Curso</button>
                         </div>
                     </div>
@@ -114,6 +209,18 @@
     </main>
     <!-- footer -->
     <footer>
+        <div class="wa-info f-top-border">
+            <img src="./img/logo/logo-wa-abajo.png" alt="">
+            <h4>2020 Web Academy. Todos los derechos reservados.</h4>
+        </div>
+        <div class="social-network f-top-border">
+            <ul>
+                <li class="linkedin-f-logo"><i class="fab fa-linkedin"></i></li>
+                <li class="facebook-f-logo"><i class="fab fa-facebook-square"></i></li>
+                <li class="twitter-f-logo"><i class="fab fa-twitter"></i></li>
+                <li class="instagram-f-logo"><i class="fab fa-instagram"></i></li>
+            </ul>
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
