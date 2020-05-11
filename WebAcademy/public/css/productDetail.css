@@ -2,7 +2,11 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway';
+}
+
+body {
+    font-family: 'Raleway';
 }
 header {
     width: 100%;
@@ -12,6 +16,10 @@ header {
     padding: 10px;
     border-bottom: 0.5px solid rgb(207, 207, 207);
     background-color: white;
+}
+
+.intro {
+    margin-top: 10px;
 }
 
 .header-left-menu {
@@ -296,7 +304,6 @@ header {
     background-color: rgb(245, 245, 245);
     width: 100%;
     padding: 20px 0;
-    font-weight: bold;
     font-size: 1rem;
 }
 .course-container{
@@ -326,6 +333,7 @@ header {
 .course-img{
     border-radius: .25rem;
     box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);;
+    padding: 5px;
 }
 .course-img img{
     width: 100%;
@@ -345,125 +353,11 @@ header {
 }
 .store-card li{
     font-weight: normal;
-
-}
-/* FOOTER */
-
-.f-top-border {
-    border-top: 1px solid rgb(165, 165, 165);
 }
 
-footer {
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
+.card {
+    padding: 5px;
 }
-
-footer .wa-logo {
-    width: 30%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
-}
-footer img{
-    width: 25%;
-}
-footer .wa-info {
-    width: 61%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-footer .wa-info img {
-    width: 8%;
-}
-
-footer .wa-info h4 {
-    margin-left: 14px;
-    font-size: 16px;
-    font-weight: 300;
-}
-
-footer .social-network {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-footer .social-network ul {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px;
-    list-style: none;
-}
-
-footer .social-network ul li {
-    margin: 0 2px;
-    padding: 8px 5px;
-}
-
-footer .social-network ul li i {
-    color: black;
-    font-size: 25px;
-    display: flex;
-}
-
-.fa-linkedin, .fa-facebook-square, .fa-twitter, .fa-instagram {
-    padding: 0 4px;
-}
-
-/* HOVER SNs */
-
-/* LINKEDIN */
-footer .social-network ul .linkedin-f-logo:hover {
-    background-color: #0e76a8;
-    cursor: pointer;
-    box-shadow: 1px 1px 20px gray;
-    border-radius: 20%;
-}
-
-footer .social-network ul .linkedin-f-logo:hover > i { color: white; }
-
-/* FACEBOOK */
-
-footer .social-network ul .facebook-f-logo:hover {
-    background-color: #3b5998;
-    cursor: pointer;
-    box-shadow: 1px 1px 20px gray;
-    border-radius: 20%;
-}
-
-footer .social-network ul .facebook-f-logo:hover > i { color: white; }
-
-/* TWITTER */
-
-footer .social-network ul .twitter-f-logo:hover {
-    background-color: #00acee;
-    cursor: pointer;
-    box-shadow: 1px 1px 20px gray;
-    border-radius: 20%;
-}
-
-footer .social-network ul .twitter-f-logo:hover > i { color: white; }
-
-/* INSTAGRAM */
-
-footer .social-network ul .instagram-f-logo:hover {
-    background: linear-gradient(45deg, #fccc63, #e95950, #bc2a8d, #8a3ab9);
-    cursor: pointer;
-    box-shadow: 1px 1px 20px gray;
-    border-radius: 20%;
-}
-
-footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 
 @media (max-width: 1024px) {
     
@@ -536,29 +430,7 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
     .header-user-btn {
         padding: 5px 5px;
     }
-    footer{
-        display: inline;
-    }
-    footer .wa-logo, footer .wa-info, footer .social-network {
-        display: inline-block;
-        text-align: center;
-        width: 100%;
 
-    }
-    footer .social-network ul{
-        justify-content: center;
-    }
-    footer .social-network ul li i {
-        font-size: 18px;
-    }
-    
-    footer .wa-info h4 {
-        font-size: 12px;
-    }
-    
-    footer .wa-info img {
-        width: 10%;
-    }
 }
 
 /* 577px */
@@ -604,10 +476,6 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
         width: 70%;
     }
     
-    footer .wa-info img {
-        width: 15%;
-    }
-    
 }
 
 /* 490px */
@@ -624,13 +492,5 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
     
     .header-searchbar input {
         font-size: 12px;
-    }
-}
-
-/* MOBILE L 425px */
-
-@media (max-width: 425px) {
-    footer .wa-info img {
-        width: 25%;
     }
 }

@@ -3,33 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a0c0bb4f74.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/detalleProducto.css">
-    <title>WEB ACADEMY</title>
+    <link rel="stylesheet" href="../public/css/index.css">
+    <link rel="stylesheet" href="../public/css/productDetail.css">
+    <title>Detalle de Producto</title>
 </head>
 <body>
     <header>
         <div class="header-left-menu">
             <div class="header-logo">
-                <img src="img/logo/lgo-wa-derecha.png" alt="WA Logo">
+                <img src="../public/img/logo/lgo-wa-derecha.png" alt="WA Logo" id="h-lg-logo">
+                <img src="../public/img/logo/logo-wa-abajo.png" alt="WA Logo" id="h-sm-logo">
+                <img src="../public/img/logo/logo-wa.png" alt="WA Logo" id="h-xs-logo">
             </div>
+            
+            
             <div class="cat-dropdown-menu">
-                <h6>CATEGORIAS</h6> <!--DIV-->
+                <h6>Categorías</h6> <!--DIV-->
                 <div class="menu">
                     <ul class="dropdown-nav">
                         <li><i class="fas fa-bars"></i>
                             <ul class="dropdown">
-                                <li><a href="">Arte</a></li>
-                                <li><a href="">Finanzas</a>
-                                    <ul class="dropdown-fin">
-                                        <li><a href="">Mercado de Capitales</a></li>
-                                        <li><a href="">Finanzas Personales</a></li>
-                                        <li><a href="">Finanzas Corporativas</a></li>
+                                <li><a href="">Arte</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Instrumetnos</a></li>
+                                        <li><a href="">Música</a></li>
+                                        <li><a href="">Producción</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Desarrollo</a></li>
+                                <li><a href="">Desarrollo</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Apps Móviles</a></li>
+                                        <li><a href="">Base de Datos</a></li>
+                                        <li><a href="">Desarrollo Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Desarrollo Personal</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Influencia</a></li>
+                                        <li><a href="">Liderazgo</a></li>
+                                        <li><a href="">Productividad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Diseño</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">3D y animación</a></li>
+                                        <li><a href="">Diseño Gráfico</a></li>
+                                        <li><a href="">Diseño Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Fotografía</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Diseño de Videos</a></li>
+                                        <li><a href="">Fundamentos de Fotografía</a></li>
+                                        <li><a href="">Retratos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Informática</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Hardware</a></li>
+                                        <li><a href="">Redes y Seguridad</a></li>
+                                        <li><a href="">Sistemas Operativos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Marketing</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Fundamentos de Marketing</a></li>
+                                        <li><a href="">Marketing Digital</a></li>
+                                        <li><a href="">Publicidad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Negocios</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="">Finanzas Personales</a></li>
+                                        <li><a href="">Finanzas Corporativas</a></li>
+                                        <li><a href="">Mercado de Capitales</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -48,12 +100,14 @@
             </div>
             
             <div class="header-user">
-                <button class="header-user-btn">LOG IN</button>
-                <button class="header-user-btn">SIGN UP</button>
+                <button class="header-user-btn" id="btn-login">Iniciar sesión</button>
+                <button class="header-user-btn" id="btn-signup">Registrarse</button>
+                <i class="fas fa-user"></i>
             </div> 
         </div>         
         
     </header>
+
     <main class="main-container">
         <div class="row course-container col-12">
             <div class="course col-lg-4 col-md-12 col-sm-12">
@@ -71,13 +125,15 @@
                 </div>
                 <div class="button-vacancy"></div><!-- no me convence que haya vacantes en un curso online -->
             </div>
-            <div class="course-img col-lg-7 col-md-12 col-sm-12"><img src="https://placeimg.com/698/500/tech" alt=""></div>
+            <div class="course-img col-lg-7 col-md-12 col-sm-12">
+                <!-- <img src="https://placeimg.com/698/500/tech" alt=""></div> -->
+                <img src="../public/img/placeholder2.png" alt=""></div>
         </div>
         <div class="second-container col-12">
             <div class="course-description col-lg-8 col-md-12 col-sm-12">
                 <h2 class="bkgn-white-mrgn-black mgn-btm-15px">Curso de Diseño Web: HTML y CSS desde cero hasta avanzado.</h2>
                 <div class="bkgn-white-mrgn-black mgn-btm-15px">El curso se divide en varias secciones, en las cúales podrás aprender los fundamentos de estas dos tecnologías. A continuación puedes ver una breve descripción de los contenidos de cada bloque:
-                    <h3>Introducción</h3>
+                    <h3 class="intro">Introducción</h3>
                     <p>Aquí veremos la presentación del curso, y luego procederemos a descargar e instalar en nuestro computador las herramientas necesarias para desarrollar un proyecto web, por ejemplo, navegadores y editores de códigos.</p>
                     <h3>HTML</h3>
                     <p>En esta sección entraremos en materia y conoceremos en profundidad todo lo relacionado al lenguaje HTML.</p>
@@ -105,8 +161,9 @@
                 </ul>
             </div>
         </div>
-            <div class="store-card card col-lg-3 col-md-12 col-sm-12" style="width: 18rem;">
-                <img src="https://placeimg.com/400/300/tech" class="card-img-top" alt="...">
+            <div class="store-card card col-lg-3 col-md-12 col-sm-12">
+                <!-- <img src="https://placeimg.com/400/300/tech" class="card-img-top" alt="..."> -->
+                <img src="../public/img/placeholder2.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Comer naranjas</h5>
                   <p class="card-text">Este curso incluye</p>
@@ -124,11 +181,10 @@
               </div>
         </div>
     </main>
+
     <footer>
-        <div class="wa-logo f-top-border">
-            <img src="./img/logo/logo-wa-abajo.png" alt="">
-        </div>
         <div class="wa-info f-top-border">
+            <img src="../public/img/logo/logo-wa-abajo.png" alt="">
             <h4>2020 Web Academy. Todos los derechos reservados.</h4>
         </div>
         <div class="social-network f-top-border">
@@ -139,11 +195,8 @@
                 <li class="instagram-f-logo"><i class="fab fa-instagram"></i></li>
             </ul>
         </div>
-    <!-- TAMBIEN MIRARON LOS SIGUIENTES CURSOS -->
-    <div>
-
-    </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
