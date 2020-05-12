@@ -280,6 +280,7 @@ header {
     background-color: #00679A;
     border-color: #00679A;
     box-shadow: 1px 1px 10px rgba(177, 177, 177, 0.7);
+    text-decoration: none;
 }
 
 .header-user-btn:focus {
