@@ -1,0 +1,256 @@
+* {
+    color: rgb(17, 30, 35);
+}
+
+.container-fluid {
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
+
+/* TITULO */
+
+.cart-title {
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+    width: 80%;
+    margin: 0 auto 10px auto;
+}
+
+.cart-title-h1-h2 {
+    padding: 0;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.quantity {
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.quantity .q-number {
+    font-size: 22px;
+}
+
+/* INFO */
+
+.cart-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid lightgray;
+    box-shadow: 0px 0px 5px rgba(177, 177, 177, 0.7);
+}
+
+.cart-course-logo {
+    padding-left: 0;
+    margin: 0;
+}
+
+.cart-course-logo img {
+    width: 100%;
+}
+
+.cart-info-general {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.cart-info-general-right {
+    display: flex;
+    flex-direction: row;
+}
+
+.cart-course-info, .cart-course-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-course-info h4 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cart-course-info p {
+    font-size: 1em;
+    font-weight: 300;
+    margin: 0;
+}
+
+.cart-course-options {
+    padding: 0;
+}
+
+.cart-course-options ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0;
+}
+
+.cart-course-options ul li {
+    list-style-type: none;
+}
+
+.cart-course-options ul li a {
+    text-align: right;
+    color: rgb(17, 30, 35);
+    font-weight: 300;
+    font-size: 0.7em;
+}
+
+.cart-course-options ul li a:hover {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cart-course-price {
+    text-align: right;
+    padding: 0;
+}
+
+.cart-course-price span {
+    font-weight: 600;
+    font-size: 1.3em;
+}
+
+/* PRICE */
+
+.final-price {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.final-price-col {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.final-price-col h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.final-price-col span {
+    font-size: 1.4em;
+    font-weight: 800;
+}
+
+/* PAYMENT*/
+
+.payment {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment-btn-col {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.cart-payment-btn {
+    text-align: center;
+    font-weight: 700;
+    width: 100%;
+    padding: 7px 10px;
+    background-color: #00679A;
+    color: white;
+    border: 1px solid #00679A;
+    border-radius: 2px;
+}
+
+/* PAYMENT BTN HOVER */
+
+.cart-payment-btn:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(0, 78, 117);
+    border-color: rgb(0, 78, 117);
+    border: 1px solid rgb(0, 78, 117);
+    box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.2);
+}
+
+.cart-payment-btn:focus {
+    outline:none;
+    outline-width: 0;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.cart-payment-btn:active {
+    background-color: rgb(0, 78, 117);
+    border-color: rgb(0, 78, 117);
+    transform: scale(0.95);
+}
+
+/* PAYMENT METHODS */
+
+.payment-methods {
+    margin-left: 2%;
+    padding: 0;
+}
+
+.payment-methods ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.payment-methods ul li {
+    list-style-type: none;
+}
+
+.payment-methods ul li i {
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 36px;
+}
+
+.visa {
+    color: #172274;
+}
+
+.mastercard{
+    font-size: 40px;      
+    background:-moz-linear-gradient(90deg, rgb(235, 0, 27) 5%, rgb(255, 95, 0) 5%, rgb(247, 158, 27) 5%); 
+    background: -webkit-linear-gradient(90deg, rgb(235, 0, 27) 5%, rgb(255, 95, 0) 5%, rgb(247, 158, 27) 5%);
+    background: linear-gradient(90deg, rgb(235, 0, 27) 20%, rgb(255, 95, 0) 40%, rgb(247, 158, 27) 50%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 577px) {
+
+    .cart-course-logo {
+        display: none;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+}

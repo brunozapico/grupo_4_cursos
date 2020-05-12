@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="../public/css/index.css">
+    <link rel="stylesheet" href="../public/css/shoppingCart.css">
+</head>
+<body>
+    <header>
+        <div class="header-left-menu">
+            <div class="header-logo">
+                <img src="../public/img/logo/lgo-wa-derecha.png" alt="WA Logo" id="h-lg-logo">
+                <img src="../public/img/logo/logo-wa-abajo.png" alt="WA Logo" id="h-sm-logo">
+                <img src="../public/img/logo/logo-wa.png" alt="WA Logo" id="h-xs-logo">
+            </div>
+            
+            
+            <div class="cat-dropdown-menu">
+                <h6>Categorías</h6> <!--DIV-->
+                <div class="menu">
+                    <ul class="dropdown-nav">
+                        <li><i class="fas fa-bars"></i>
+                            <ul class="dropdown">
+                                <li><a href="productDetail.html">Arte</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Instrumetnos</a></li>
+                                        <li><a href="productDetail.html">Música</a></li>
+                                        <li><a href="productDetail.html">Producción</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Desarrollo</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Apps Móviles</a></li>
+                                        <li><a href="productDetail.html">Base de Datos</a></li>
+                                        <li><a href="productDetail.html">Desarrollo Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Desarrollo Personal</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Influencia</a></li>
+                                        <li><a href="productDetail.html">Liderazgo</a></li>
+                                        <li><a href="productDetail.html">Productividad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Diseño</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">3D y animación</a></li>
+                                        <li><a href="productDetail.html">Diseño Gráfico</a></li>
+                                        <li><a href="productDetail.html">Diseño Web</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Fotografía</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Diseño de Videos</a></li>
+                                        <li><a href="productDetail.html">Fundamentos de Fotografía</a></li>
+                                        <li><a href="productDetail.html">Retratos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Informática</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Hardware</a></li>
+                                        <li><a href="productDetail.html">Redes y Seguridad</a></li>
+                                        <li><a href="productDetail.html">Sistemas Operativos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Marketing</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Fundamentos de Marketing</a></li>
+                                        <li><a href="productDetail.html">Marketing Digital</a></li>
+                                        <li><a href="productDetail.html">Publicidad</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="productDetail.html">Negocios</a>
+                                    <ul class="dropdown-cat">
+                                        <li><a href="productDetail.html">Finanzas Personales</a></li>
+                                        <li><a href="productDetail.html">Finanzas Corporativas</a></li>
+                                        <li><a href="productDetail.html">Mercado de Capitales</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
+            
+            <div class="header-searchbar">
+                <input type="text" placeholder="¿Qué querés aprender hoy?" id="searchbar">
+                <i class="fas fa-search" id="search-logo"></i>
+            </div>
+        </div>
+        
+        <div class="header-right-menu">
+            <div class="header-cart">
+                <a href="shoppingCart.html" class="fas fa-shopping-cart"></a>
+            </div>
+            
+            <div class="header-user">
+                <a class="header-user-btn" id="btn-login" href="register.html" role="button">Iniciar sesión</a>
+                <a class="header-user-btn" id="btn-signup" href="register.html" role="buttom">Registrarse</a>
+                <a class="fas fa-user" href="register.html"></a>
+            </div> 
+        </div>         
+        
+    </header>
+    
+    <main>
+        <div class="container-fluid">
+            <div class="row cart-title">
+                <div class="col-12 cart-title-h1-h2">
+                    <h1 class="title">
+                        CARRITO DE COMPRAS
+                    </h1>
+                    <h2 class="quantity">
+                        <span class="q-number">2</span> cursos en el carrito
+                    </h2>
+                </div>
+            </div>
+            <div class="row cart-info">
+                <div class="col-2 cart-course-logo">
+                    <img src="../public/img/placeholder2.png" alt="">
+                </div>
+                <div class="col-10 col-md-5 cart-course-info">
+                    <h4>Curso X</h4>
+                    <p>01/01/2000 - 01/01-2000</p>
+                </div>
+                <div class="col-6 col-md-3 cart-course-options">
+                    <ul>
+                        <li><a href="">Eliminar</a></li>
+                        <li><a href="">Guardar para después</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2 cart-course-price">
+                    <span>US$ 9,99</span>
+                </div>
+            </div>
+            <div class="row cart-info">
+                <div class="col-2 cart-course-logo">
+                    <img src="../public/img/placeholder2.png" alt="">
+                </div>
+                <div class="col-10 col-md-5 cart-course-info">
+                    <h4>Curso X</h4>
+                    <p>01/01/2000 - 01/01-2000</p>
+                </div>
+                <div class="col-6 col-md-3 cart-course-options">
+                    <ul>
+                        <li><a href="">Eliminar</a></li>
+                        <li><a href="">Guardar para después</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-2 cart-course-price">
+                    <span>US$ 9,99</span>
+                </div>
+            </div>
+            <div class="row final-price">
+                <div class="col-12 final-price-col">
+                    <h4>Total: <span>US$ 19,98</span> </h4>
+                </div>
+            </div>
+            <div class="row payment">
+                <div class="col-4 payment-methods">
+                    <ul>
+                        <li><i class="fab fa-cc-visa visa"></i></li>
+                        <li><i class="fab fa-cc-mastercard mastercard"></i></li>
+                    </ul>
+                </div>
+                <div class="col-4 payment-btn-col">
+                    <a class="cart-payment-btn" href="index.html" role="button">Pagar</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="wa-info f-top-border">
+            <img src="../public/img/logo/logo-wa-abajo.png" alt="">
+            <h4>2020 Web Academy. Todos los derechos reservados.</h4>
+        </div>
+        <div class="social-network f-top-border">
+            <ul>
+                <li class="linkedin-f-logo"><i class="fab fa-linkedin"></i></li>
+                <li class="facebook-f-logo"><i class="fab fa-facebook-square"></i></li>
+                <li class="twitter-f-logo"><i class="fab fa-twitter"></i></li>
+                <li class="instagram-f-logo"><i class="fab fa-instagram"></i></li>
+            </ul>
+        </div>
+    </footer>
+    
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
