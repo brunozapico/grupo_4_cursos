@@ -224,6 +224,7 @@ header {
 
 .header-cart > .fa-shopping-cart:hover {
     cursor: pointer;
+    text-decoration: none;
 }
 
 .header-cart > .fa-shopping-cart:active {
@@ -390,6 +391,7 @@ main {
 }
 
 .hidden-course-info > a {
+    text-align: center;
     margin-bottom: 10px;
     width: 20%;
     position: relative;
@@ -419,14 +421,6 @@ main {
     background-color: rgb(0, 78, 117);
     border-color: rgb(0, 78, 117);
     transform: scale(0.95);
-}
-
-.hidden-course-info > a{
-    font-size: 16px;
-    display: block;
-    text-align: center;
-    background-color: white;
-    border: none;
 }
 
 
