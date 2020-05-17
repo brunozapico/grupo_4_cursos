@@ -81,118 +81,57 @@
                 </article>
                 
                 <article class="categories-sec-categories">
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Desarrollo</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Negocios</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Informática</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-crop-alt"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Diseño</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="far fa-lightbulb"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Marketing</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Desarrollo Personal</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Fotografía</h4>
-                        </div>
-                    </article>
-                    <article class="category">
-                        <div class="category-logo">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <div class="category-title">
-                            <h4>Arte</h4>
-                        </div>
-                    </article>
+                    <% categories.forEach(category => { %>
+                        <%- include('partials/indexCategory', {category}) %> 
+                        <% }) %>
                 </article>
             </section>
-            
-            <section class="tips-section">
-                <article class="tips-sec-title">
-                    <h4>Algunos tips</h4>
-                </article>
                 
-                <article class="tips-sec-tips"> 
-                    <article class="tip">
-                        <div class="tip-logo">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="tip-info">
-                            <h4>TITULO DEL TIP</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
-                        </div>
+                <section class="tips-section">
+                    <article class="tips-sec-title">
+                        <h4>Algunos tips</h4>
                     </article>
-                    <article class="tip">
-                        <div class="tip-logo">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="tip-info">
-                            <h4>TITULO DEL TIP</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
-                        </div>
+                    
+                    <article class="tips-sec-tips"> 
+                        <article class="tip">
+                            <div class="tip-logo">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="tip-info">
+                                <h4>TITULO DEL TIP</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
+                            </div>
+                        </article>
+                        <article class="tip">
+                            <div class="tip-logo">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="tip-info">
+                                <h4>TITULO DEL TIP</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
+                            </div>
+                        </article>
+                        <article class="tip">
+                            <div class="tip-logo">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="tip-info">
+                                <h4>TITULO DEL TIP</h4>
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
+                            </div>
+                        </article>
                     </article>
-                    <article class="tip">
-                        <div class="tip-logo">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <div class="tip-info">
-                            <h4>TITULO DEL TIP</h4>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?</p>
-                        </div>
-                    </article>
-                </article>
+                    
+                </section>
                 
-            </section>
+            </main>
             
-        </main>
-        
-        <footer>
-            <%- include('partials/footer') %> 
-        </footer>
-        
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
-    </html>
+            <footer>
+                <%- include('partials/footer') %> 
+            </footer>
+            
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        </body>
+        </html>
