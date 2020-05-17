@@ -1,0 +1,15 @@
+[
+    {
+        "class": "fas fa-clipboard-check",
+        "title": "HOLA",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?"
+    }, {
+        "class": "fas fa-clipboard-check",
+        "title": "TIP 2",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?"
+    }, {
+        "class": "fas fa-clipboard-check",
+        "title": "CHAU",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?"
+    }
+]

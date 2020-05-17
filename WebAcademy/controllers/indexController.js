@@ -1,11 +1,9 @@
-const fs = require('fs')
-const categories = require('../data/categoriesDataBase.json')
-
-// console.log(categories)
+const categories = require('../data/categoriesDataBase.json');
+const tips = require('../data/tipsDataBase.json');
 
 const indexController = {
     index: function(req, res, next) {
-        res.render('index', {categories});
+        res.render('index', {categories, tips});
     }
 }
 
