@@ -1,5 +1,4 @@
-const fs = require('fs');
-const courses = JSON.parse(fs.readFileSync(__dirname + '../data/courses.json', 'utf-8'));
+const courses = require('../data/courses.json');
 
 module.exports = {
     detail: (req, res) => {
