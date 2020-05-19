@@ -7,7 +7,11 @@ const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+<<<<<<< HEAD
 const productFormRouter = require('./routes/productForm');
+=======
+const productDetailRouter = require('./routes/productDetail');
+>>>>>>> 00dafcd748b56ed30257ac2408121743651e8b92
 
 const app = express();
 
@@ -25,7 +29,11 @@ app.use(methodOverride('_method'));
 // routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+<<<<<<< HEAD
 app.use('/productForm', productFormRouter);
+=======
+app.use('/productDetail', productDetailRouter);
+>>>>>>> 00dafcd748b56ed30257ac2408121743651e8b92
 
 // locals
 app.locals.webacademy = 'Web Academy';

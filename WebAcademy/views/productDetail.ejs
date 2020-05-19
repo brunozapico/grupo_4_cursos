@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('partials/head') %> 
-    <link rel="stylesheet" href="../public/css/productDetail.css">
+    <link rel="stylesheet" href="/css/productDetail.css">
 </head>
 <body>
     <header>
@@ -14,71 +14,46 @@
         <div class="row course-container col-12">
             <div class="course col-lg-4 col-md-12 col-sm-12">
                 <div class="title-container mgn-btm-15px">
-                    <h2 class="course-title bkgn-white-mrgn-black mgn-btm-15px">Curso de Diseño Web: HTML y CSS desde cero hasta avanzado.</h2>
+                    <h2 class="course-title bkgn-white-mrgn-black mgn-btm-15px"><%= course.name %> </h2>
                 </div>
                 <div class="button-categories-container mgn-btm-15px">
                     <div class="button-categorie bkgn-white-mrgn-black">TURNO X</div>
-                    <div class="button-categorie bkgn-white-mrgn-black">CATEG X</div>
+                    <div class="button-categorie bkgn-white-mrgn-black"><%= course.category %></div>
                 </div>
-                <div class="course-small-description mgn-btm-15px bkgn-white-mrgn-black"><p>Aprende paso a paso las técnicas para diseñar páginas web profesionales. Crea 3 proyectos del mundo real.</p></div>
+                <div class="course-small-description mgn-btm-15px bkgn-white-mrgn-black"><p><%= course.smallDescription%></p></div>
                 <div class="course-schedule">
-                    <div class="schedule mgn-btm-15px bkgn-white-mrgn-black">HORARIO DE 14:30 xx a 19:00 hs</div>
-                    <div class="days mgn-btm-15px bkgn-white-mrgn-black">LUNES-MARTES-JUEVES</div>
+                    <div class="schedule mgn-btm-15px bkgn-white-mrgn-black"><%= course.schedule%></div>
+                    <div class="days mgn-btm-15px bkgn-white-mrgn-black"><%= course.days %> </div>
                 </div>
                 <div class="button-vacancy"></div><!-- no me convence que haya vacantes en un curso online -->
             </div>
             <div class="course-img col-lg-7 col-md-12 col-sm-12">
                 <!-- <img src="https://placeimg.com/698/500/tech" alt=""></div> -->
-                <img src="../public/img/placeholder2.png" alt=""></div>
+                <img src="/img/placeholder2.png" alt="courseImage"></div>
         </div>
         <div class="second-container col-12">
-            <div class="course-description col-lg-8 col-md-12 col-sm-12">
-                <h2 class="bkgn-white-mrgn-black mgn-btm-15px">Curso de Diseño Web: HTML y CSS desde cero hasta avanzado.</h2>
-                <div class="bkgn-white-mrgn-black mgn-btm-15px">El curso se divide en varias secciones, en las cúales podrás aprender los fundamentos de estas dos tecnologías. A continuación puedes ver una breve descripción de los contenidos de cada bloque:
-                    <h3 class="intro">Introducción</h3>
-                    <p>Aquí veremos la presentación del curso, y luego procederemos a descargar e instalar en nuestro computador las herramientas necesarias para desarrollar un proyecto web, por ejemplo, navegadores y editores de códigos.</p>
-                    <h3>HTML</h3>
-                    <p>En esta sección entraremos en materia y conoceremos en profundidad todo lo relacionado al lenguaje HTML.</p>
-                    <h3>CSS</h3>
-                    <p>Este es un bloque extenso en el que aprenderemos a utilizar hojas de estilos para definir el aspecto visual de los contenidos de una página web.</p>
-                    <h3>Proyectos finales</h3>
-                    <p>Aquí pondremos en práctica todo lo aprendido en los bloques anteriores, y en ese sentido diseñaremos 3 proyectos web del mundo real:</p>
-                    <ol>
-                        <li>Crearemos un landing page o página de aterrizaje para una empresa que imparte un curso de marketing digital.</li>
-                        <li>Después, diseñaremos un sitio multipáginas para una oficina de abogados.</li>
-                        <li>Por último, crearemos un one page site o sitio web de una sóla página para una empresa de servicios de catering.</li>
-                    </ol>
-                
-                <h3 class="bkgn-white-mrgn-black mgn-btm-15px">Requisitos</h3>
-                <p class="bkgn-white-mrgn-black mgn-btm-15px">Para este curso vas a necesitar contar con una computadora</p>
-                <p class="bkgn-white-mrgn-black mgn-btm-15px">Para este curso vas a necesitar...</p>
-                <p class="bkgn-white-mrgn-black mgn-btm-15px">No necesitas conocimiento previo</p>
-                <h3 class="bkgn-white-mrgn-black mgn-btm-15px">¿Para quien es este curso</h3>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Personas interesadas en iniciar una carrera en el mundo del diseño y desarrollo web.</li>
-                    <li class="list-group-item">Diseñadores y desarrolladores web que desean actualizar sus conocimientos.</li>
-                    <li class="list-group-item">Diseñadores gráficos.</li>
-                    <li class="list-group-item">Profesionales que trabajan con diseñadores y desarrolladores web, y desean comunicarse correctamente con el equipo técnico.</li>
-                    <li class="list-group-item">Público en general.</li>
-                </ul>
+        <div class="course-description col-lg-8 col-md-12 col-sm-12">
+            <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= course.name %> </h2>
+            <div class="bkgn-white-mrgn-black mgn-btm-15px">
+                <%= course.description %> 
             </div>
         </div>
             <div class="store-card card col-lg-3 col-md-12 col-sm-12">
                 <!-- <img src="https://placeimg.com/400/300/tech" class="card-img-top" alt="..."> -->
-                <img src="../public/img/placeholder2.png" class="card-img-top" alt="...">
+                <img src="/img/placeholder2.png" class="card-img-top" alt="cardImage">
                 <div class="card-body">
-                  <h5 class="card-title">Curso de Diseño Web: HTML y CSS desde cero hasta avanzado.</h5>
+                  <h5 class="card-title"><%= course.name %></h5>
                   <p class="card-text">Este curso incluye</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">20 hs de Material audiovisual</li>
+                  <li class="list-group-item">Material audiovisual</li>
                   <li class="list-group-item">Recursos descargables</li>
                   <li class="list-group-item">Certificado de finalización</li>
                   <li class="list-group-item">Garantia de reembolso 30 días</li>
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.html" role="button">Añadir al carrito</a><br>
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.html" role="button">Comprar ahora</a>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.ejs" role="button">Añadir al carrito</a><br>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.ejs" role="button">Comprar ahora</a>
                 </div>
               </div>
         </div>
