@@ -3,7 +3,45 @@ const path = require('path');
 
 const products = require('../data/products.json');
 
+// Products
+const artProducts = products.filter(product => {
+    return product.category == 'Arte'
+});
+const developmentProducts = products.filter(product => {
+    return product.category == 'Desarrollo'
+});
+const personalDevelopmentProducts = products.filter(product => {
+    return product.category == 'Desarrollo Personal'
+});
+const designProducts = products.filter(product => {
+    return product.category == 'Diseño'
+});
+const photografyProducts = products.filter(product => {
+    return product.category == 'Fotografía'
+});
+const computingProducts = products.filter(product => {
+    return product.category == 'Informática'
+});
+const marketingProducts = products.filter(product => {
+    return product.category == 'Marketing'
+});
+const businessProducts = products.filter(product => {
+    return product.category == 'Negocios'
+});
+
 const productsController = {
+    list: (req, res) => {
+        res.render('products', {
+            artProducts,
+            developmentProducts,
+            personalDevelopmentProducts,
+            designProducts,
+            photografyProducts,
+            computingProducts,
+            marketingProducts,
+            businessProducts
+        });
+    },
     create: (req, res, next) =>{
         res.render('productForm')
     },
@@ -44,6 +82,7 @@ const productsController = {
         /* res.redirect('/products'); */
         res.send('GUARDADO...')
     }
+
 }
 
 

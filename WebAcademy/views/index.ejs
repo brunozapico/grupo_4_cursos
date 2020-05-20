@@ -56,10 +56,9 @@
             </article>
             
             <article class="top-courses-sec-courses">
-                <!-- ESTE FOR PASARIA A SER POR CADA CURSO CON OUTSTANDING == TRUE -->
-                <% for( let i = 0; i < 4; i++ ) { %>
-                    <%- include('partials/indexCourse.ejs') %>
-                    <% } %>
+                <% outstandingProducts.forEach(product => { %>
+                    <%- include('partials/indexCourse.ejs', {product}) %>
+                <% }) %>
             </article>            
         </section>
             

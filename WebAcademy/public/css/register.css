@@ -75,7 +75,7 @@
     padding: 0;
 }
 
-.register-btn-col a {
+.register-btn-col button {
     display: block;
     text-align: center;
     width: 100%;
@@ -87,7 +87,7 @@
     border-radius: 2px;
 }
 
-.register-btn-col a:hover {
+.register-btn-col button:hover {
     text-decoration: none;
     background-color: rgb(0, 78, 117);
     border-color: rgb(0, 78, 117);
@@ -95,7 +95,7 @@
     box-shadow: 0px 0px 10px rgba(211, 211, 211, 0.2);
 }
 
-.register-btn-col a:focus {
+.register-btn-col button:focus {
     outline:none;
     outline-width: 0;
     box-shadow: none;
@@ -103,7 +103,7 @@
     -webkit-box-shadow: none;
 }
 
-.register-btn-col a:active {
+.register-btn-col button:active {
     background-color: rgb(0, 78, 117);
     border-color: rgb(0, 78, 117);
     transform: scale(0.95);

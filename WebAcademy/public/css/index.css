@@ -373,6 +373,14 @@ main {
     margin-top: 10px;
 }
 
+.top-courses-sec-courses .course h4 a {
+    color: inherit;
+}
+
+.top-courses-sec-courses .course h4 a:hover {
+    text-decoration: none;
+}
+
 .top-courses-sec-courses .course p {
     font-size: 1em;
     width: 90%;
