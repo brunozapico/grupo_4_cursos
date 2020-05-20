@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('partials/head') %> 
-    <link rel="stylesheet" href="../public/css/productDetail.css">
+    <link rel="stylesheet" href="/css/productDetail.css">
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="button-categories-container mgn-btm-15px">
                     <div class="button-categorie bkgn-white-mrgn-black">TURNO X</div>
-                    <div class="button-categorie bkgn-white-mrgn-black"><%= couser.category %></div>
+                    <div class="button-categorie bkgn-white-mrgn-black"><%= course.category %></div>
                 </div>
                 <div class="course-small-description mgn-btm-15px bkgn-white-mrgn-black"><p><%= course.smallDescription%></p></div>
                 <div class="course-schedule">
@@ -29,7 +29,7 @@
             </div>
             <div class="course-img col-lg-7 col-md-12 col-sm-12">
                 <!-- <img src="https://placeimg.com/698/500/tech" alt=""></div> -->
-                <img src="../public/img/placeholder2.png" alt=""></div>
+                <img src="/img/placeholder2.png" alt="courseImage"></div>
         </div>
         <div class="second-container col-12">
         <div class="course-description col-lg-8 col-md-12 col-sm-12">
@@ -40,20 +40,20 @@
         </div>
             <div class="store-card card col-lg-3 col-md-12 col-sm-12">
                 <!-- <img src="https://placeimg.com/400/300/tech" class="card-img-top" alt="..."> -->
-                <img src="../public/img/placeholder2.png" class="card-img-top" alt="...">
+                <img src="/img/placeholder2.png" class="card-img-top" alt="cardImage">
                 <div class="card-body">
                   <h5 class="card-title"><%= course.name %></h5>
                   <p class="card-text">Este curso incluye</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">20 hs de Material audiovisual</li>
+                  <li class="list-group-item">Material audiovisual</li>
                   <li class="list-group-item">Recursos descargables</li>
                   <li class="list-group-item">Certificado de finalización</li>
                   <li class="list-group-item">Garantia de reembolso 30 días</li>
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.html" role="button">Añadir al carrito</a><br>
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.html" role="button">Comprar ahora</a>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.ejs" role="button">Añadir al carrito</a><br>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="shoppingCart.ejs" role="button">Comprar ahora</a>
                 </div>
               </div>
         </div>
