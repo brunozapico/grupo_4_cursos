@@ -16,7 +16,7 @@
                 <div class="col-md-12"><!--TITULO-->
                     <h1>Estas editando el curso: <%= product.name %> </h1>
                 </div>
-                <form action="/products/edit/<%= product.id %> ?_method=PUT" method="POST" class="center">
+                <form action="/products/edit/<%= product.id %> ?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
@@ -33,12 +33,12 @@
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="NCurso" id="" placeholder="Nombre del Curso" value="<%= product.name %> ">
+                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= product.name %> ">
                         </div>
                     </div>
                     <div class="row"><!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="Description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= product.description %></textarea>
+                            <textarea name="description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= product.description %></textarea>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
