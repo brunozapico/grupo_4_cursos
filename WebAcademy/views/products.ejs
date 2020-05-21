@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/products.css"> 
+</head>
+<body>
+    <header>
+        <%- include('partials/header') %>     
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1>
+                Todos nuestros cursos:
+            </h1>
+
+            <h2>
+                Arte
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% artProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Desarrollo
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% developmentProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Desarrollo Personal
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% personalDevelopmentProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Diseño
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% designProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Fotografía
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% photografyProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Informática
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% computingProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Marketing
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% marketingProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+            <h2>
+                Negocios
+            </h2>
+            <div class="row center-90">
+                
+                <div class="row">
+                    <% businessProducts.forEach(product => { %>
+                        <%- include('partials/productsCourse.ejs', {product}) %>
+                    <% }) %> 
+                </div>
+            </div>
+
+        </div>
+                
+    </main>
+    
+    <footer>
+        <%- include('partials/footer') %> 
+    </footer>
+    
+    <%- include('partials/scripts') %> 
+</body>
+</html>

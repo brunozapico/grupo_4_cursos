@@ -6,8 +6,7 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const productDetailRouter = require('./routes/productDetail');
+const productsRouter = require('./routes/products');
 
 const app = express();
 
@@ -24,8 +23,7 @@ app.use(methodOverride('_method'));
 
 // routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/productDetail', productDetailRouter);
+app.use('/products', productsRouter);
 
 // locals
 app.locals.webacademy = 'Web Academy';
