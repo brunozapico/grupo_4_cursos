@@ -22,4 +22,7 @@ router.post('/create', upload.any(), productsController.store)
 
 router.get('/:id', productsController.detail);
 
+router.get('/edit/:id', productsController.edit);
+router.put('/edit/:id', productsController.update);
+
 module.exports = router;
