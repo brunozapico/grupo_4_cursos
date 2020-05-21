@@ -38,23 +38,23 @@
                     </div>
                     <div class="row"><!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="Description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"></textarea>
+                            <textarea name="Description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= product.description %></textarea>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
                         <div class="col-md-12 center">
-                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"></textarea>
+                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"><%= product.description_short %> </textarea>
                         </div>
                     </div>
                     <div class="row center"><!--Calendario --> 
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="inicio" id="dateInicio" min="" value="<%= product.start %> ">
+                                <input class="input-mg" type="date" name="start" id="dateInicio" min="" value="<%= product.start %> ">
                             </div>
                             <div>
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="fin" id="dateFin" min="">
+                                <input class="input-mg" type="date" name="end" id="dateFin" min="" value="<%= product.end %> ">
                             </div>
                         </div>
                         <div class="col-md-6 border space">
@@ -80,7 +80,7 @@
                         <div class="col-md-4 border space">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
-                            <input class="input-mg" type="number" min="0" value="<%= product.vacancies %> ">                        
+                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= product.vacancies %> ">                        
                         </div>
                         <div class="col-md-4 border space">
                             <!--Destacado -->
@@ -91,20 +91,20 @@
                         <div class="col-md-4 border space">
                             <!--Precio -->
                             <label for="">Precio U$D</label>
-                            <input class="input-mg" type="number" min="0" value="<%= product.price %> ">
+                            <input class="input-mg" type="number" name="price" min="0" placeholder="<%= product.price %> ">
                         </div>
                     </div>
                     <div class="row center"><!--Multimedia -->
                             <div class="col-md-12 border space tamaño">
                                 <label for="">Multimedia</label>
-                                <input class="input-mg" type="file" name="multimedia">
+                                <input class="input-mg" type="file" name="category_image">
                                 <p class="help-block">Hasta 120 MB</p>
                             </div>
                     </div>
                     <div class="row center border space tamaño"><!--Logo -->
                         <div class="col-md-12">
                             <label for="">Logo</label>
-                            <input class="input-mg" type="file" name="Logo" id="" value="<%= product.image %> ">
+                            <input class="input-mg" type="file" name="image" id="" value="<%= product.image %> ">
                         </div>
                     </div>
                     <div class="row center"><!--Boton de envio -->
