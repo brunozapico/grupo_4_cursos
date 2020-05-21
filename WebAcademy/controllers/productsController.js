@@ -46,7 +46,7 @@ const productsController = {
         res.render('productForm')
     },
     store: (req, res, next) =>{
-
+        
         let product = {
             category: req.body.category,
             category_image: req.files[0].filename,
@@ -91,6 +91,18 @@ const productsController = {
         
         res.render('productDetail', {product});
     },
+    edit: (req, res, next) => {
+        let id = products.findIndex(product => {
+            return product.id == req.params.id
+        });
+        
+        let product = products[id];
+        
+        res.render('productEdit', {product});
+    },
+    update: (req, res, next) => {
+        
+    }
 }
 
 
