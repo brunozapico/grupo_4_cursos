@@ -81,8 +81,16 @@ const productsController = {
         
         /* res.redirect('/products'); */
         res.send('GUARDADO...')
-    }
-
+    },
+    detail: (req, res) => {
+        let id = products.findIndex(product => {
+            return product.id == req.params.id
+        });
+        
+        let product = products[id];
+        
+        res.render('productDetail', {product});
+    },
 }
 
 
