@@ -7,4 +7,6 @@ router.get('/', indexController.index);
 router.get('/register', indexController.register);
 router.post('/register', indexController.create);
 
+router.get('/shoppingCart', indexController.shoppingCart);
+
 module.exports = router;
