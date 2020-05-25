@@ -373,6 +373,14 @@ main {
     margin-top: 10px;
 }
 
+.top-courses-sec-courses .course h4 a {
+    color: inherit;
+}
+
+.top-courses-sec-courses .course h4 a:hover {
+    text-decoration: none;
+}
+
 .top-courses-sec-courses .course p {
     font-size: 1em;
     width: 90%;
@@ -570,7 +578,8 @@ main {
     margin: auto 0 auto 10px;
 }
 
-.category-title > h4 {
+.category-title > a {
+    color: inherit;
     display: block;
     font-size: 16px;
     font-weight: 500;
@@ -583,6 +592,10 @@ main {
     cursor: pointer;
     box-shadow: 1px 1px 20px rgba(177, 177, 177);
     transition: box-shadow 0.5s;
+}
+
+.category-title > a:hover {
+    text-decoration: none;
 }
 
 /* TIPS */

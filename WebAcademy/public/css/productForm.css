@@ -92,3 +92,7 @@ button:active {
 input[type=file] {
     max-width: 100%;
 }
+
+.mg-button{
+    margin-bottom: 20px;
+}

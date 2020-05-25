@@ -1,0 +1,27 @@
+[
+    {
+        "class": "fas fa-code",
+        "title": "Desarrollo"
+    }, {
+        "class": "fas fa-chart-bar",
+        "title": "Negocios"
+    }, {
+        "class": "fas fa-desktop",
+        "title": "Informática"
+    }, {
+        "class": "fas fa-crop-alt",
+        "title": "Diseño"
+    }, {
+        "class": "far fa-lightbulb",
+        "title": "Marketing"
+    }, {
+        "class": "fas fa-book-open",
+        "title": "Desarrollo Personal"
+    }, {
+        "class": "fas fa-camera",
+        "title": "Fotografía"
+    }, {
+        "class": "fas fa-paint-brush",
+        "title": "Arte"
+    }
+]

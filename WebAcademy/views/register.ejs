@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/header') %>
+    </header>
+    
+    <div class="container">
+        <form action="/register" method="POST" class="center">
+            <div class="row">
+                <div class="col-12 register-title">
+                    <h2>Inscribite y comenza a aprender.</h2>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-11 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Nombre completo" aria-label="Username" aria-describedby="basic-addon1" name="name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-11 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-11 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11 register-btn-col">
+                    <button type="submit" class="register-btn">Registrate</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11 register-terms">
+                    <h6>Al registrarte, aceptas nuestras <a href="">Condiciones de uso y Política de privacidad.</a></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9 register-login">
+                    <h4>¿Ya tenes una cuenta? <a href="">Iniciar sesión</a></h4>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+       <%- include('partials/footer') %> 
+    </footer>
+    
+    <%- include('partials/scripts') %>
+</body>
+</html>

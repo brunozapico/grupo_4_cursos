@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+</head>
+<body>   
+    <header>
+        <%- include('partials/header') %>     
+    </header>
+    
+    <div class="slider">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
+                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
+                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
+                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    
+    <main>
+        <section class="top-courses-section">
+            <article class="top-courses-sec-title">
+                <h4>Nuestros cursos más concurridos</h4>
+            </article>
+            
+            <article class="top-courses-sec-courses">
+                <% outstandingProducts.forEach(product => { %>
+                    <%- include('partials/indexCourse.ejs', {product}) %>
+                <% }) %>
+            </article>            
+        </section>
+            
+        <section class="start-now">
+            <article class="start-now-info">
+                <h4 class="start-now-title">
+                    Empezá a aprender lo que más te interesa, hoy mismo.
+                </h4>
+                <p class="start-now-p">
+                    Inscribite y formá parte de la comunidad WA.
+                </p>
+                <a href="/register" class="start-now-button">Empezá ahora</a>
+            </article>
+        </section>
+            
+        <section class="categories-section">
+            <article class="categories-sec-title">
+                <h4>Principales categorías</h4>
+            </article>
+                
+            <article class="categories-sec-categories">
+                <% categories.forEach(category => { %>
+                    <%- include('partials/indexCategory', {category}) %> 
+                <% }) %>
+            </article>
+        </section>
+                
+        <section class="tips-section">
+            <article class="tips-sec-title">
+                <h4>Algunos tips</h4>
+            </article>
+                    
+            <article class="tips-sec-tips"> 
+                <% tips.forEach(tip => { %>
+                    <%- include('partials/indexTip', {tip}) %> 
+                <% }) %>        
+            </article>                    
+        </section>
+                
+    </main>
+            
+    <footer>
+        <%- include('partials/footer') %> 
+    </footer>
+            
+    <%- include('partials/scripts') %> 
+</body>
+</html>
