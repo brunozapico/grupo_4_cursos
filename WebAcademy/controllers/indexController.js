@@ -23,7 +23,7 @@ const indexController = {
             password: bcrypt.hashSync(req.body.password, 10),
         }
         
-        let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "usersDataBase.json"), {encoding:'UTF-8'});
+        let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
 
         let users;
         if (usersDataBase == ""){
@@ -36,9 +36,12 @@ const indexController = {
         
         usersJSON = JSON.stringify(users);
 
-        fs.writeFileSync(path.join(__dirname, "..", "data", "usersDataBase.json"), usersJSON);
+        fs.writeFileSync(path.join(__dirname, "..", "data", "users.json"), usersJSON);
 
         res.redirect('/');
+    },
+    shoppingCart: (req, res) => {
+        res.render('shoppingCart')
     }
 }
 
