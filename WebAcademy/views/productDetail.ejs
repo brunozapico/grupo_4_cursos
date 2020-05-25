@@ -12,44 +12,47 @@
     
     <main class="container">
         <div class="row course-container col-12">
-            <div class="course col-lg-4 col-md-12 col-sm-12">
-                <div class="mgn-btm-5px">
-                    <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= product.name %></h2>
-                </div>
-                <div class="mgn-btm-5px">
-                    <div><h4 class="bkgn-white-mrgn-black"><%= product.category %></h4></div>
-                </div>
-                <div><h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= product.description_short %></h5></div>
-                <div><p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= product.start %> <br> Y termina el <%= product.end %> <br> El horario sera de <%= product.time %> <br> Durante los días <%= product.days %>
-                </p></div>
-                <div class="mgn-btm-5px bkgn-white-mrgn-black"><h5>Apurate!! Solo hay <%= product.vacancies %> vacantes</h5></div>
-            </div>
-            <div class="course-img col-lg-7 col-md-12 col-sm-12">
-                <img src="/img/cursos/category.jpg" alt="courseImage"></div>
-            </div>
-            <div class="second-container col-12">
-                <div class="course-description col-lg-8 col-md-12 col-sm-12">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="course-description"> <!--Descripcion Larga-->
                     <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= product.name %> </h2>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
                         <%= product.description %> 
                     </div>
                 </div>
-                <div class="store-card card col-lg-3 col-md-12 col-sm-12">
-                    <img src="/img/cursos/curso.jpg" class="card-img-top" alt="cardImage">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= product.name %></h5>
-                        <p class="card-text">Este curso incluye</p>
+                <div class="course-img"> <!--Imagen Grande-->
+                    <img src="/img/cursos/category.jpg" alt="courseImage">
+                </div>
+            </div>
+            <div class="store-card card col-lg-3 col-md-12 col-sm-12"> <!--Carta de compra-->
+                <img src="/img/cursos/curso.jpg" class="card-img-top" alt="cardImage">
+                <div class="card-body">
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <p class="card-text">Este curso incluye</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Material audiovisual</li>
+                    <li class="list-group-item">Recursos descargables</li>
+                    <li class="list-group-item">Certificado de finalización</li>
+                    <li class="list-group-item">Garantia de reembolso 30 días</li>
+                </ul>
+                <div class="card-body">
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart/<%= product.id %>" role="button">Añadir al carrito</a><br>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart/<%= product.id %>" role="button">Comprar ahora</a>
+                </div>
+            </div>
+        </div>
+            <div class="second-container col-12">
+                <div class="course col-lg-12 col-md-12 col-sm-12"> <!--Descripcion Corta-->
+                    <div class="mgn-btm-5px">
+                        <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= product.name %></h2>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Material audiovisual</li>
-                        <li class="list-group-item">Recursos descargables</li>
-                        <li class="list-group-item">Certificado de finalización</li>
-                        <li class="list-group-item">Garantia de reembolso 30 días</li>
-                    </ul>
-                    <div class="card-body">
-                        <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart/<%= product.id %>" role="button">Añadir al carrito</a><br>
-                        <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart/<%= product.id %>" role="button">Comprar ahora</a>
+                    <div class="mgn-btm-5px">
+                        <div><h4 class="bkgn-white-mrgn-black"><%= product.category %></h4></div>
                     </div>
+                    <div><h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= product.description_short %></h5></div>
+                    <div><p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= product.start %> <br> Y termina el <%= product.end %> <br> El horario sera de <%= product.time %> <br> Durante los días <%= product.days %>
+                    </p></div>
+                    <div class="mgn-btm-5px bkgn-white-mrgn-black"><h5>Apurate!! Solo hay <%= product.vacancies %> vacantes</h5></div>
                 </div>
             </div>
         </main>
