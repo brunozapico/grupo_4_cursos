@@ -78,9 +78,8 @@ const productsController = {
         productsDB = JSON.stringify(products);
         
         fs.writeFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), productsDB);
-        
-        /* res.redirect('/products'); */
-        res.send('GUARDADO...')
+
+        res.redirect('/products');
     },
     detail: (req, res) => {
         let id = products.findIndex(product => {
@@ -143,7 +142,7 @@ const productsController = {
 
         fs.writeFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), productsDB);
 
-        res.send('ELIMINADO')
+        res.redirect('/products');
     }
 }
 
