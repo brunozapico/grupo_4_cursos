@@ -21,6 +21,9 @@ router.get('/', indexController.index);
 router.get('/register', indexController.register);
 router.post('/register', upload.any(), indexController.create);
 
+router.get('/login', indexController.login);
+router.post('/login', indexController.processLogin);
+
 router.get('/shoppingCart', indexController.shoppingCart);
 
 module.exports = router;
