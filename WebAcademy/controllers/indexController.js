@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const { check, validationResult, body } = require('express-validator');
 
 const tips = require('../data/tipsDataBase.json');
 const products = require('../data/products.json');
@@ -11,10 +12,10 @@ const outstandingProducts = products.filter(product => {
 
 const indexController = {
     index: (req, res) => {
-        res.render('index', {products, outstandingProducts, categories, tips});
+        res.render('index', {products, outstandingProducts, categories, tips, loggedInUser: req.session.loggedIn});
     },
     register: (req, res) => {
-        res.render('register');
+        res.render('register', {loggedInUser: req.session.loggedIn});
     },
     create: (req, res) => {
         let user = {
@@ -39,10 +40,13 @@ const indexController = {
 
         fs.writeFileSync(path.join(__dirname, "..", "data", "users.json"), usersJSON);
 
-        res.redirect('/');
+        req.session.loggedIn = user;
+        res.cookie('remember', user.email, { maxAge: 6000000 })
+
+        res.redirect('/users');
     },
     login: (req, res) => {
-        res.render('login');
+        res.render('login', {loggedInUser: req.session.loggedIn})
     },
     processLogin: (req, res) => {
         let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
@@ -90,7 +94,7 @@ const indexController = {
         res.render('users', {loggedInUser: req.session.loggedIn});
     },
     shoppingCart: (req, res) => {
-        res.render('shoppingCart')
+        res.render('shoppingCart', {loggedInUser: req.session.loggedIn})
     }
 }
 

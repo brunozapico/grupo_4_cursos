@@ -39,11 +39,12 @@ const productsController = {
             photografyProducts,
             computingProducts,
             marketingProducts,
-            businessProducts
+            businessProducts,
+            loggedInUser: req.session.loggedIn
         });
     },
     create: (req, res, next) =>{
-        res.render('productForm')
+        res.render('productForm', {loggedInUser: req.session.loggedIn})
     },
     store: (req, res, next) =>{
         
@@ -88,7 +89,7 @@ const productsController = {
         
         let product = products[id];
         
-        res.render('productDetail', {product});
+        res.render('productDetail', {product, loggedInUser: req.session.loggedIn});
     },
     edit: (req, res, next) => {
         let id = products.findIndex(product => {
@@ -97,7 +98,7 @@ const productsController = {
         
         let product = products[id];
         
-        res.render('productEdit', {product});
+        res.render('productEdit', {product, loggedInUser: req.session.loggedIn});
     },
     update: (req, res, next) => {
         let product = {

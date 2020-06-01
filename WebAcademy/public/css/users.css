@@ -32,3 +32,11 @@
 .logout:active {
     font-weight: 500;
 }
+
+@media (max-width: 767px) {
+    .avatar-div {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}
