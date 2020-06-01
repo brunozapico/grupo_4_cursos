@@ -8,6 +8,7 @@ const session = require('express-session');
 const rememberMiddleware = require('./middlewares/rememberMiddleware');
 
 const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(rememberMiddleware);
 
 // routes
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 
 // locals
