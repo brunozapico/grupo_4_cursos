@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer');
 const indexController = require('../controllers/indexController');
+const guestMiddleware = require('../middlewares/guestMiddleware');
 
 // MULTER Config.
 var storage = multer.diskStorage({
@@ -21,7 +22,7 @@ router.get('/', indexController.index);
 router.get('/register', indexController.register);
 router.post('/register', upload.any(), indexController.create);
 
-router.get('/login', indexController.login);
+router.get('/login', guestMiddleware, indexController.login);
 router.post('/login', indexController.processLogin);
 
 router.get('/shoppingCart', indexController.shoppingCart);
