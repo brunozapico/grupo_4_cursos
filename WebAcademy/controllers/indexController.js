@@ -21,6 +21,7 @@ const indexController = {
             name: req.body.name,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
+            avatar: req.files[0].filename
         }
         
         let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
