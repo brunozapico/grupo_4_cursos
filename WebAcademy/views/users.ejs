@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/users.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/header') %> 
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>¡Bienvenido/a devuelta <%= loggedInUser.name %>!</h2>
+                    <h4>Estos son tus datos:</h4>
+                </div>
+            </div>
+            <div class="row data-row">
+                <div class="col-3 avatar-div">
+                    <img src="/img/users/<%= loggedInUser.avatar %>" alt="" class="avatar">
+                </div>
+                <div class="col-9">
+                    <p> <span class="identifier">Nombre:</span> <%= loggedInUser.name %> </p>
+                    <p> <span class="identifier">Email:</span> <%= loggedInUser.email%></p>
+                    <a href="/logout" class="logout">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('partials/footer') %> 
+    </footer>
+    
+    <%- include('partials/scripts') %>
+</body>
+</html>
