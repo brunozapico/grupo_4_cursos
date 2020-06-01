@@ -81,6 +81,9 @@ const indexController = {
         res.redirect('/users');
 
     },
+    users: (req, res) => {
+        res.render('users', {loggedInUser: req.session.loggedIn});
+    },
     shoppingCart: (req, res) => {
         res.render('shoppingCart')
     }

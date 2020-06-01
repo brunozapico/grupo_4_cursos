@@ -25,6 +25,8 @@ router.post('/register', upload.any(), indexController.create);
 router.get('/login', guestMiddleware, indexController.login);
 router.post('/login', indexController.processLogin);
 
+router.get('/users', indexController.users);
+
 router.get('/shoppingCart', indexController.shoppingCart);
 
 module.exports = router;
