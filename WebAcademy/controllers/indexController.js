@@ -81,6 +81,11 @@ const indexController = {
         res.redirect('/users');
 
     },
+    logout: (req, res) => {
+        req.session.destroy(); // borra session
+        res.clearCookie('remember'); // borra cookies
+        res.redirect('/login');
+    },
     users: (req, res) => {
         res.render('users', {loggedInUser: req.session.loggedIn});
     },
