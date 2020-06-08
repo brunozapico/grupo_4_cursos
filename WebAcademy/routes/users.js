@@ -4,6 +4,7 @@ const path = require('path');
 const multer = require('multer');
 const usersController = require('../controllers/usersController');
 const loggedMiddleware = require('../middlewares/loggedMiddleware');
+const guestMiddleware = require('../middlewares/guestMiddleware')
 
 // MULTER Config.
 var storage = multer.diskStorage({
@@ -19,12 +20,12 @@ var storage = multer.diskStorage({
 
 router.get('/', usersController.users);
 
-router.get('/register', usersController.register);
+router.get('/register', loggedMiddleware, usersController.register);
 router.post('/register', upload.any(), usersController.create);
 
 router.get('/login', loggedMiddleware, usersController.login);
 router.post('/login', usersController.processLogin);
 
-router.get('/logout', usersController.logout);
+router.get('/logout', guestMiddleware, usersController.logout);
 
 module.exports = router;
