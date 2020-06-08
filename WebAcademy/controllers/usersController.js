@@ -59,9 +59,11 @@ const usersController = {
         }
         
         if(loginUser == undefined) {
+            req.session.destroy(); // borra session
+            res.clearCookie('remember'); // borra cookies
             return res.render('login', {errors: [
                 {msg: 'Credenciales inválidas'}
-            ]});
+            ], loggedInUser: {name:'Iniciar Sesión'}});
         }
         
         // Creo la session

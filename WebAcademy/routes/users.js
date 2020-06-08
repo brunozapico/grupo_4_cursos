@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
   
   var upload = multer({ storage: storage })
 
-router.get('/', usersController.users);
+router.get('/', guestMiddleware, usersController.users);
 
 router.get('/register', loggedMiddleware, usersController.register);
 router.post('/register', upload.any(), usersController.create);
