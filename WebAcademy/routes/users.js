@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer');
 const usersController = require('../controllers/usersController');
-const guestMiddleware = require('../middlewares/guestMiddleware');
+const loggedMiddleware = require('../middlewares/loggedMiddleware');
 
 // MULTER Config.
 var storage = multer.diskStorage({
@@ -22,7 +22,7 @@ router.get('/', usersController.users);
 router.get('/register', usersController.register);
 router.post('/register', upload.any(), usersController.create);
 
-router.get('/login', guestMiddleware, usersController.login);
+router.get('/login', loggedMiddleware, usersController.login);
 router.post('/login', usersController.processLogin);
 
 router.get('/logout', usersController.logout);
