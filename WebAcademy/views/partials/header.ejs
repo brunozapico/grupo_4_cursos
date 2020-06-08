@@ -98,11 +98,13 @@
         <a href="/users/register" class="header-user-btn" id="btn-signup">Registrarse</a>
         <a href="/users/login" class="fas fa-user"></a>
     </div>
+    <% console.log(loggedInUser) %> 
     <% } else { %>
-    <div class="header-user">
-        <a href="/users" class="header-user-btn" id="btn-login"><%= loggedInUser.name %></a>
-        <a href="/users" class="fas fa-user"></a>
-    </div>
-    <% } %>
+        <div class="header-user">
+            <a href="/users" class="header-user-btn" id="btn-login"><%= loggedInUser.name %></a>
+            <a href="/users" class="fas fa-user"></a>
+        </div>
+        <% console.log(loggedInUser) %> 
+        <% } %>
 
 </div>
