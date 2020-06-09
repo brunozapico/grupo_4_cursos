@@ -7,14 +7,10 @@
   En el futuro pretendemos expandir este desarrollo y lograr brindar cursos certificados por el Ministerio de Educación, y distintas instituciones educativas de prestigio internacional.
 
 
-
 ## Participantes
 
 ##### Castro Lucas
 Tengo 34 años, papá de Ramón de 3 años, hincha de River Plate, y estudiante de "Programación Web Full Stack" en Digital House. ¡Futuro programador!
-
-##### Meza Martina
-Tengo 19 años, estudio Diseño Industrial y "Programación Web Full Stack".
 
 ##### Rodríguez Martin
 Tengo 25 años, estudiante de "Programación Web Full Stack" en Digital House, fanático del fútbol.
@@ -26,14 +22,19 @@ Tengo 23 años y entre mis mayores intereses se encuentran las finanzas, la econ
 
 ## Instalación
 
-```https://github.com/brunozapico/grupo_4_cursos.git```
-
+```git clone https://github.com/brunozapico/grupo_4_cursos.git```
 
 
 ## Utilización
 
-Ingresar a ```http://localhost/proyecto/index.html``` 
+Instalar requerimientos:
+```npm install``` 
 
+Correr el servidor:
+```npm start``` 
+
+Visitar:
+```http://localhost:3000/```
 
 
 ## Recursos
@@ -45,7 +46,7 @@ Ingresar a ```http://localhost/proyecto/index.html```
 - [LogoMaker](https://logomaker.thehoth.com/) para la creación del logo.
 - NodeJS, NPM, Express.
 - [Typora](https://typora.io/) para edición del README.
-- Workbench.
+- MySQL Workbench.
 - XAMPP, servidor local de PHP y MySQL.
 - [Zoom](https://zoom.us/) para reuniones grupales.
 - [Trello](https://trello.com/b/BGfRL22W/desarrollo-web) Tablero de trabajo
