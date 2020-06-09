@@ -1,0 +1,42 @@
+.container {
+    margin: 20px auto 400px auto;
+}
+
+.data-row {
+    margin: 10px auto;
+    padding: 20px 0;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 0px 5px rgba(177, 177, 177, 0.7);
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.identifier {
+    font-weight: 600;
+}
+
+.logout {
+    color: inherit;
+}
+
+.logout:hover {
+    color: inherit;
+    text-shadow: 0px 0px 5px lightgray;
+}
+
+.logout:active {
+    font-weight: 500;
+}
+
+@media (max-width: 767px) {
+    .avatar-div {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}

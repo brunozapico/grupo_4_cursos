@@ -1,14 +1,20 @@
-
 <div class="header-left-menu">
     <div class="header-logo">
-        <img src="/img/logo/lgo-wa-derecha.png" alt="WA Logo" id="h-lg-logo">
-        <img src="/img/logo/logo-wa-abajo.png" alt="WA Logo" id="h-sm-logo">
-        <img src="/img/logo/logo-wa.png" alt="WA Logo" id="h-xs-logo">
+        <a href="/">
+            <img src="/img/logo/lgo-wa-derecha.png" alt="WA Logo" id="h-lg-logo">
+        </a>
+        <a href="/">
+            <img src="/img/logo/logo-wa-abajo.png" alt="WA Logo" id="h-sm-logo">
+        </a>
+        <a href="/">
+            <img src="/img/logo/logo-wa.png" alt="WA Logo" id="h-xs-logo">
+        </a>
     </div>
-    
-    
+
+
     <div class="cat-dropdown-menu">
-        <h6>Categorías</h6> <!--DIV-->
+        <h6>Categorías</h6>
+        <!--DIV-->
         <div class="menu">
             <ul class="dropdown-nav">
                 <li><i class="fas fa-bars"></i>
@@ -73,8 +79,8 @@
                 </li>
             </ul>
         </div>
-    </div>           
-    
+    </div>
+
     <div class="header-searchbar">
         <input type="text" placeholder="¿Qué querés aprender hoy?" id="searchbar">
         <i class="fas fa-search" id="search-logo"></i>
@@ -85,10 +91,18 @@
     <div class="header-cart">
         <a href="/shoppingCart" class="fas fa-shopping-cart"></a>
     </div>
-    
+
+    <% if (loggedInUser == undefined) { %>
     <div class="header-user">
-        <a href="/register" class="header-user-btn" id="btn-login">Iniciar sesión</a>
-        <a href="/register" class="header-user-btn" id="btn-signup">Registrarse</a>
-        <a href="/register" class="fas fa-user"></a>
-    </div> 
-</div>         
+        <a href="/users/login" class="header-user-btn" id="btn-login">Iniciar sesión</a>
+        <a href="/users/register" class="header-user-btn" id="btn-signup">Registrarse</a>
+        <a href="/users/login" class="fas fa-user"></a>
+    </div>
+    <% } else { %>
+        <div class="header-user">
+            <a href="/users" class="header-user-btn" id="btn-login"><%= loggedInUser.name %></a>
+            <a href="/users" class="fas fa-user"></a>
+        </div>
+        <% } %>
+
+</div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/header', {loggedInUser}) %>
+    </header>
+    
+    <div class="container">
+        <% if(typeof errors != 'undefined') { %>
+            <p>Atención, hubo un error.</p>
+            <ul>
+                <% for (let i = 0; i < errors.length; i++) { %>
+                    <li>
+                        <%= errors[i].msg %> 
+                    </li>
+                <% } %> 
+            </ul>
+        <% } %> 
+
+        <form action="/users/login" method="POST" class="center" autocomplete="off">
+            <div class="row">
+                <div class="col-12 register-title">
+                    <h2>Inicia Sesión</h2>
+                </div>
+            </div>
+            
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="checkbox" name="remember" class="remember"> Recordarme
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11 register-btn-col">
+                    <button type="submit" class="register-btn">Iniciar Sesión</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9 register-login">
+                    <h4>¿No tenes una cuenta? <a href="/users/register">Registrate</a></h4>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+       <%- include('partials/footer') %> 
+    </footer>
+    
+    <%- include('partials/scripts') %>
+</body>
+</html>

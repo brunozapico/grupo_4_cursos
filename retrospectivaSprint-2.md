@@ -1,22 +1,17 @@
-## Retrospectiva Sprint-2 - Grupo 4
+## Retrospectiva Sprint-1 - Grupo 4
 
-Después de charlar y revisar como habíamos trabajado en el segundo sprint hicimos la sifuiente retrospectiva.
+Después de charlar y revisar como habíamos trabajado en el primer sprint surgió lo siguiente.
 
-**Start Doing:**
-- Consultar mas entre nosotros para sacarnos dudas.
-- Mejorar la division de tareas.
-- Tener el sprint terminado con tiempo, para poder antes de la entrega pulir los detalles.
+**Start Doing**: Empezar a usar trello. 
 
-**More of:**
-- Usar *trello*
-- Seguimos mejorando en el uso de Git.
+**More of**:
+- Tuvimos varias reuniones. 
+- Estuvimos todos presentes.
+- Tuvimos bastante fluidez y participamos todos con ideas.
+- Trabajamos en un clima agradable.
 
-**Keep Doing:**
-- Reuniones semanales.
-- Asistencia a las reuniones.
-- Trabajar en un clima agradable.
+**Keep Doing** : Todavía es muy pronto para poner algo acá.
 
-**Less of:**
-- Llegar a la entrega con el tiempo justo.
+**Less of:** Todavía nada.
 
 **Stop Doing:** Todavía nada.
