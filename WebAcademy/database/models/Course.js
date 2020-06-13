@@ -59,10 +59,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
             defaultValue: dataTypes.NOW
         },
-        update_up: {
+        updated_at: {
             type: dataTypes.DATE
         }
-    }
+    };
 
     let config = {
         tableName: 'courses',
@@ -70,7 +70,7 @@ module.exports = (sequelize, dataTypes) => {
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
-    }
+    };
 
     const User = sequelize.define(alias, cols, config);
 
@@ -89,7 +89,11 @@ module.exports = (sequelize, dataTypes) => {
             as: 'schedule', //singular porque tiene uno
             foreignKey: 'schedule_id',
         });
-    }
+        Course.belongsTo(models.Professor, {
+            as: 'professor', //singular porque tiene uno
+            foreignKey: 'professor_id',
+        });
+    };
 
     return User;
-}
+};

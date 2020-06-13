@@ -29,10 +29,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
         defaultValue: dataTypes.NOW
         },
-        update_up: {
+        updated_ap: {
             type: dataTypes.DATE
         }
-    }
+    };
 
     let config = {
         tableName: 'users',
@@ -40,15 +40,15 @@ module.exports = (sequelize, dataTypes) => {
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
-    }
+    };
 
     const User = sequelize.define(alias, cols, config);
 
     User.associate = (models) => {
         User.hasMany(models.Course, {
             as: 'courses', //plural porque tiene muchos
-        })
+        });
     }
 
     return User;
-}
+};
