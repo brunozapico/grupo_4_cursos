@@ -89,6 +89,10 @@ module.exports = (sequelize, dataTypes) => {
             as: 'schedule', //singular porque tiene uno
             foreignKey: 'schedule_id',
         });
+        Course.belongsTo(models.Professor, {
+            as: 'professor', //singular porque tiene uno
+            foreignKey: 'professor_id',
+        });
     }
 
     return User;
