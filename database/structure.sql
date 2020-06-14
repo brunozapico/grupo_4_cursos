@@ -71,19 +71,6 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`categories` (
 
 
 -- -----------------------------------------------------
--- Table `web_academy`.`schedule`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `web_academy`.`schedule` (
-  `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
-  `term_id` INT UNSIGNED NOT NULL,
-  `days_id` INT UNSIGNED NOT NULL,
-  `hour_id` INT UNSIGNED NOT NULL,
- `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`));
-
-
--- -----------------------------------------------------
 -- Table `web_academy`.`professors`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `web_academy`.`professors` (
@@ -199,17 +186,19 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`user_course` (
 -- -----------------------------------------------------
 -- Table `web_academy`.`schedule`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `web_academy`.`schedule` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `term_id` INT(10) UNSIGNED NOT NULL,
-  `days_id` INT(10) UNSIGNED NOT NULL,
-  `hour_id` INT(10) UNSIGNED NOT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT NULL,
-  `updated_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id` (`id` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4;
+-- -----------------------------------------------------
+-- Table `mydb`.`schedule`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`schedule` (
+  `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
+  `starts_at` DATE NOT NULL,
+  `ends_at` DATE NOT NULL,
+  `days` VARCHAR(100) NOT NULL,
+  `from` TIME NOT NULL,
+  `up_to` TIME NOT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`));
 
 
 
