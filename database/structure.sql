@@ -96,13 +96,13 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
   `description_short` TEXT NOT NULL,
   `description_full` TEXT NOT NULL,
   `category_id` INT NOT NULL,
-  `schedule_id` INT NOT NULL,
+  `program_id` INT NOT NULL,
   `professor_id` INT  NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `schedule_id_idx` (`schedule_id` ASC),
+  INDEX `program_id_idx` (`program_id` ASC),
   INDEX `category_id_idx` (`category_id` ASC),
   INDEX `professor_id_idx` (`professor_id` ASC),
   CONSTRAINT `category_id`
@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
     REFERENCES `web_academy`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `schedule_id`
-    FOREIGN KEY (`schedule_id`)
-    REFERENCES `web_academy`.`schedule` (`id`)
+  CONSTRAINT `program_id`
+    FOREIGN KEY (`program_id`)
+    REFERENCES `web_academy`.`program` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `professor_id`
@@ -187,14 +187,14 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`user_course` (
 -- Table `web_academy`.`schedule`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `web_academy`.`schedule` (
+CREATE TABLE IF NOT EXISTS `web_academy`.`program` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `starts_at` DATE NOT NULL,
   `ends_at` DATE NOT NULL,
   `days` VARCHAR(100) NOT NULL,
-  `from` TIME NOT NULL,
+  `since` TIME NOT NULL,
   `up_to` TIME NOT NULL,
-  `created_at` TIMESTAMP NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
 
