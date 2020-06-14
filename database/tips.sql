@@ -1,0 +1,3 @@
+insert into tips (title, description, icon) values ('TIP 1', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
+insert into tips (title, description, icon) values ('TIP 2', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
+insert into tips (title, description, icon) values ('TIP 3', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
