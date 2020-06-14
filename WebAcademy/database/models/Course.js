@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
@@ -27,7 +27,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         outstanding: {
-            type: dataTypes.INTEGER.UNSIGNED, //tinyInt
+            type: dataTypes.BOOLEAN, //tinyInt
             allowNull: false,
             defaultValue: 0
         },
@@ -40,27 +40,39 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         categorie_id: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            foreignKey: true
+            foreignKey: true,
+            references: {
+                model: 'Category',
+                key: 'id'
+            }
         },
-        schedule_id: {
-            type: dataTypes.INTEGER,
+        program_id: {
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            foreignKey: true
+            foreignKey: true,
+            references: {
+                model: 'Program',
+                key: 'id'
+            }
         },
         professor_id: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            foreignKey: true
+            foreignKey: true,
+            references: {
+                model: 'Professor',
+                key: 'id'
+            }
         },
-        created_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW
-        },
-        updated_at: {
-            type: dataTypes.DATE
-        }
+        // created_at: {
+        //     type: dataTypes.DATE,
+        //     defaultValue: dataTypes.NOW
+        // },
+        // updated_at: {
+        //     type: dataTypes.DATE
+        // }
     };
 
     let config = {
@@ -71,22 +83,22 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: 'updated_at'
     };
 
-    const User = sequelize.define(alias, cols, config);
+    const Course = sequelize.define(alias, cols, config);
 
     Course.associate = (models) => {
         Course.belongsToMany(models.User, {
             as: 'users', //plural porque tiene muchos
-            througth: 'user_course',
-            foreignKey: 'user_id',
-            otherKey: 'course_id'
+            through: 'user_course',
+            foreignKey: 'course_id',
+            otherKey: 'user_id'
         });
         Course.belongsTo(models.Category, {
             as: 'category', //singular porque tiene una
             foreignKey: 'category_id',
         });
-        Course.belongsTo(models.Schedule, {
-            as: 'schedule', //singular porque tiene uno
-            foreignKey: 'schedule_id',
+        Course.belongsTo(models.Program, {
+            as: 'program', //singular porque tiene uno
+            foreignKey: 'program_id',
         });
         Course.belongsTo(models.Professor, {
             as: 'professor', //singular porque tiene uno
@@ -94,5 +106,5 @@ module.exports = (sequelize, dataTypes) => {
         });
     };
 
-    return User;
+    return Course;
 };

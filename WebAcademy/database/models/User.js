@@ -4,7 +4,7 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id: {
-            type: dataTypes.INTEGER,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
@@ -23,14 +23,16 @@ module.exports = (sequelize, dataTypes) => {
         },
         password: {
             type: dataTypes.STRING(255),
+            allowNull: false,
+            unique: true,
         },
-        created_at: {
-            type: dataTypes.DATE,
-        defaultValue: dataTypes.NOW
-        },
-        updated_ap: {
-            type: dataTypes.DATE
-        }
+        // created_at: {
+        //     type: dataTypes.DATE,
+        // defaultValue: dataTypes.NOW
+        // },
+        // updated_ap: {
+        //     type: dataTypes.DATE
+        // }
     };
 
     let config = {
@@ -44,8 +46,16 @@ module.exports = (sequelize, dataTypes) => {
     const User = sequelize.define(alias, cols, config);
 
     User.associate = (models) => {
-        User.hasMany(models.Course, {
+        User.belongsToMany(models.Course, {
             as: 'courses', //plural porque tiene muchos
+            through: 'user_course',
+            foreignKey: 'user_id',
+            otherKey: 'course_id'
+        });
+
+        User.hasMany(models.ShoppingCart, {
+            as: 'shopping_carts',
+            foreignKey: 'user_id'
         });
     }
 

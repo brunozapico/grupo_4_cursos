@@ -3,11 +3,10 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id : {
-            type :dataTypes.INTEGER,
+            type :dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncremet: true,
             allowNull: false,
-            unique: true
         },
         title : {
             type: dataTypes.STRING(255),
@@ -22,17 +21,17 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100),
             allowNull: false,
         },
-        created_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW
-        },
-        update_at: {
-            type: dataTypes.DATE
-        }        
+        // created_at: {
+        //     type: dataTypes.DATE,
+        //     defaultValue: dataTypes.NOW
+        // },
+        // update_at: {
+        //     type: dataTypes.DATE
+        // }        
     };
 
     let config = {
-        tableName: 'courses',
+        tableName: 'tips',
         underscored: true,
         timestamps: true,
         createdAt: 'created_at',
