@@ -186,10 +186,8 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`user_course` (
 -- -----------------------------------------------------
 -- Table `web_academy`.`schedule`
 -- -----------------------------------------------------
--- -----------------------------------------------------
--- Table `mydb`.`schedule`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`schedule` (
+
+CREATE TABLE IF NOT EXISTS `web_academy`.`schedule` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `starts_at` DATE NOT NULL,
   `ends_at` DATE NOT NULL,
