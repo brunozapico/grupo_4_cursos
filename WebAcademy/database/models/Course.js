@@ -21,7 +21,6 @@ module.exports = (sequelize, dataTypes) => {
         image: {
             type: dataTypes.STRING(255),
             allowNull: false
-            //unique: true, //el avatar de users es unique , pero este no.
         },
         vacancies: {
             type: dataTypes.INTEGER.UNSIGNED, //tinyInt

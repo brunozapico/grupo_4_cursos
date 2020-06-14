@@ -19,11 +19,10 @@ module.exports = (sequelize, dataTypes) => {
         },
         avatar: {
             type: dataTypes.STRING(255),
-            unique: true, //la imagen de courses no es unique, unificar el criterio
+            unique: true,
         },
         password: {
             type: dataTypes.STRING(255),
-            unique: true // no lo creo necesario
         },
         created_at: {
             type: dataTypes.DATE,
