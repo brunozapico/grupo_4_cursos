@@ -1,124 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/products.css"> 
+    <link rel="stylesheet" href="/css/products.css">
 </head>
+
 <body>
     <header>
-        <%- include('partials/header') %>     
+        <%# include('partials/header') %>
     </header>
     
     <main>
         <div class="container">
             <h1>
-                Todos nuestros cursos:
+                <%= title %>
             </h1>
-
-            <h2 id="Arte">
-                Arte
-            </h2>
-            <div class="row center-90">
+            
+            <% for (let i=0; i < categories.length; i++) { %>
                 
-                <div class="row">
-                    <% artProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
+                <h2 id="<%= categories[i].title %> ">
+                    <%= categories[i].title %>
+                </h2>
+                
+                <div class="row center-90">
+                    
+                    <% for (let j = 0; j < categories[i].course.length; j++) { 
+                        let course = categories[i].course[j] %>
+
+                    <div class="row">
+                        <%- include('partials/productsCourse.ejs', {course}) %>
+                        <% } %>
+                    </div>
                 </div>
-            </div>
-
-            <h2 id="Desarrollo">
-                Desarrollo
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% developmentProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Desarrollo Personal">
-                Desarrollo Personal
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% personalDevelopmentProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Diseño">
-                Diseño
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% designProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Fotografía">
-                Fotografía
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% photografyProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Informática">
-                Informática
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% computingProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Marketing">
-                Marketing
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% marketingProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Negocios">
-                Negocios
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% businessProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-        </div>
-                
+       </div>
     </main>
+        
+        <footer>
+            <%# include('partials/footer') %>
+        </footer>
+        
+        <%- include('partials/scripts') %>
+    </body>
     
-    <footer>
-        <%- include('partials/footer') %> 
-    </footer>
-    
-    <%- include('partials/scripts') %> 
-</body>
-</html>
+    </html>
