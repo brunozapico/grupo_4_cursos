@@ -7,8 +7,9 @@ const Op = db.Sequelize.Op;
 const productsController = {
     list: (req, res) => {
         db.Category.findAll({
-            include: { associations: 'course' }
+            include: { associations: 'courses' }
         }).then(categories => {
+            //res.json(categories)
             res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
         });
     },
@@ -95,7 +96,7 @@ const productsController = {
             include: [{association: 'categories'}]
         })
         let categories = db.Category.findAll({
-            include: { associations: 'course' }
+            include: { associations: 'courses' }
         })
 
         Promise.all([resultadoBusqueda, categories])
