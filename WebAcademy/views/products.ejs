@@ -10,37 +10,38 @@
     <header>
         <%# include('partials/header') %>
     </header>
-    
+
     <main>
         <div class="container">
             <h1>
                 <%= title %>
             </h1>
-            
             <% for (let i=0; i < categories.length; i++) { %>
-                
-                <h2 id="<%= categories[i].title %> ">
-                    <%= categories[i].title %>
-                </h2>
-                
-                <div class="row center-90">
-                    
-                    <% for (let j = 0; j < categories[i].course.length; j++) { 
+
+            <h2 id="<%= categories[i].title %> ">
+                <%= categories[i].title %>
+            </h2>
+
+            <div class="row center-90">
+
+                <% for (let j = 0; j < categories[i].course.length; j++) { 
                         let course = categories[i].course[j] %>
 
-                    <div class="row">
-                        <%- include('partials/productsCourse.ejs', {course}) %>
-                        <% } %>
-                    </div>
+                <div class="row">
+                    <%- include('partials/productsCourse.ejs', {course}) %>
                 </div>
-       </div>
+
+                <% } %>
+            </div>
+            <% } %>
+        </div>
     </main>
-        
-        <footer>
-            <%# include('partials/footer') %>
-        </footer>
-        
-        <%- include('partials/scripts') %>
-    </body>
-    
-    </html>
+
+    <footer>
+        <% include('partials/footer') %>
+    </footer>
+
+    <%- include('partials/scripts') %>
+</body>
+
+</html>
