@@ -15,21 +15,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12"><!--TITULO-->
-                    <h1>Carga tu Curso</h1>
+                    <h1> <%= title  %> </h1>
                 </div>
                 <form action="/products/create" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
                             <label for="">Categorias</label>
-                            <input class="input-mg" type="radio" name="category" value="Arte">Arte
-                            <input class="input-mg" type="radio" name="category" value="Desarrollo">Desarrollo
-                            <input class="input-mg" type="radio" name="category" value="Desarrollo Personal">Desarrollo Personal<br>
-                            <input class="input-mg" type="radio" name="category" value="Diseño">Diseño
-                            <input class="input-mg" type="radio" name="category" value="Fotografía">Fotografía
-                            <input class="input-mg" type="radio" name="category" value="Informática">Informática<br>
-                            <input class="input-mg" type="radio" name="category" value="Marketing">Marketing
-                            <input class="input-mg" type="radio" name="category" value="Negocios">Negocios
+                            <select class="input-mg" <%# chequear clase %> name="category">
+                                <option value="">Selecciona una categoria</option>
+                                <% for (let i = 0; i < categories.length; i++) { %> 
+                                <option value="<%= categories[i].id %> ">
+                                    <%= categories[i].title %> 
+                                 </option>
+                            </select>
+                                <% } %> 
                         </div>
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row"><!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="description" cols="82%" rows="10" placeholder="Escriba una descripcion detallada del Curso"></textarea>
+                            <textarea name="description_full" cols="82%" rows="10" placeholder="Escriba una descripcion detallada del Curso"></textarea>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
@@ -51,22 +51,26 @@
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="start" id="dateInicio" min="">
+                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="">
                             </div>
                             <div>
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="end" id="dateFin" min="">
+                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="">
                             </div>
                         </div>
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Dias de Cursada</label>
                                 <div class="dias">
-                                    <input class="input-mg" type="checkbox" name="days" value="Lunes">Lun
-                                    <input class="input-mg" type="checkbox" name="days" value="Martes">Mar
-                                    <input class="input-mg" type="checkbox" name="days" value="Miercoles">Mier
-                                    <input class="input-mg" type="checkbox" name="days" value="Jueves">Jue
-                                    <input class="input-mg" type="checkbox" name="days" value="Viernes">Vier
+                                    <select name="days" id="">
+                                        <option value="">Selecciona los dias de cursada</option>
+                                        <option value="Lunes - Miercoles - Viernes">
+                                            Lunes - Miercoles - Viernes
+                                        </option>
+                                        <option value="Martes - Jueves - Sabado">
+                                            Martes - Jueves - Sabado
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
