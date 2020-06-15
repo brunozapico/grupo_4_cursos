@@ -27,28 +27,6 @@ const usersController = {
         
         db.User.create(user);
 
-        // let user = {
-        //     name: req.body.name,
-        //     email: req.body.email,
-        //     password: bcrypt.hashSync(req.body.password, 10),
-        //     avatar: req.files[0].filename
-        // }
-        
-        // let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
-
-        // let users;
-        // if (usersDataBase == ""){
-        //     users = [];
-        // } else {
-        //     users = JSON.parse(usersDataBase);
-        // }
-
-        // users.push(user);
-        
-        // usersJSON = JSON.stringify(users);
-
-        // fs.writeFileSync(path.join(__dirname, "..", "data", "users.json"), usersJSON);
-
         req.session.loggedIn = user;
         res.cookie('remember', user.email, { maxAge: 6000000 })
 
@@ -65,14 +43,20 @@ const usersController = {
             }
         })
             .then(loginUser => {
-                if (loginUser != '') {
+                if (loginUser != null &&  bcrypt.compareSync(req.body.password, loginUser.password)) {
                     return loginUser
+                } else {
+                    req.session.destroy();
+                    res.clearCookie('remember');
+                    return res.render('login', {errors: [
+                        {msg: 'Credenciales inválidas'}
+                    ], loggedInUser: {name:'Iniciar Sesión'}});
                 }
             })
                 .then(loginUser => {
                     if(loginUser == undefined) {
-                        req.session.destroy(); // borra session
-                        res.clearCookie('remember'); // borra cookies
+                        req.session.destroy();
+                        res.clearCookie('remember');
                         return res.render('login', {errors: [
                             {msg: 'Credenciales inválidas'}
                         ], loggedInUser: {name:'Iniciar Sesión'}});
@@ -90,54 +74,57 @@ const usersController = {
 
                 })
 
-        // console.log(`Soy el: ${loginUser}`)
-        
-        // let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
-
-        // let users;
-        // if (usersDataBase == ""){
-        //     users = [];
-        // } else {
-        //     users = JSON.parse(usersDataBase);
-        // }
-        
-        // let loginUser;
-        // for(let i = 0; i < users.length; i++) {
-        //     if(users[i].email == req.body.email) {
-        //         if(bcrypt.compareSync(req.body.password, users[i].password)) {
-        //             loginUser = users[i];
-        //             break;
-        //         }
-        //     }
-        // }
-        
-        // if(loginUser == undefined) {
-        //     req.session.destroy(); // borra session
-        //     res.clearCookie('remember'); // borra cookies
-        //     return res.render('login', {errors: [
-        //         {msg: 'Credenciales inválidas'}
-        //     ], loggedInUser: {name:'Iniciar Sesión'}});
-        // }
-        
-        // // Creo la session
-        // req.session.loggedIn = loginUser;
-        // loggedInUser = req.session.loggedIn
-
-        // if(req.body.remember != undefined) {
-        //     res.cookie('remember', loginUser.email, { maxAge: 6000000 })
-        // }
-
-        // res.redirect('/users');
-
     },
     logout: (req, res) => {
-        req.session.destroy(); // borra session
-        res.clearCookie('remember'); // borra cookies
+        req.session.destroy();
+        res.clearCookie('remember');
         res.redirect('/users/login');
     },
     users: (req, res) => {
         res.render('users', {loggedInUser: req.session.loggedIn});
     },
+    edit: (req, res) => {
+        db.User.findOne({
+            where: {
+                email: req.params.email
+            }
+        })
+            .then(user => {
+                res.render('editProfile', {user:user, loggedInUser: req.session.loggedIn});
+            })
+    },
+    update: (req, res) => {
+        let user;
+        if(req.files[0] != undefined){
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: `/img/users/${req.files[0].filename}`,
+            }
+        } else {
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+            }
+        }
+        
+        db.User.update(user, {
+            where: {
+                email: req.params.email
+            }
+        })
+            .then(() => {
+                res.clearCookie('remember');
+                req.session.loggedIn = user;
+                if(req.body.remember != undefined) {
+                    res.cookie('remember', req.session.loggedIn.email, { maxAge: 6000000 })
+                }
+
+                res.redirect(`/users`);
+            })
+    }
 }
 
 module.exports = usersController;

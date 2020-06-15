@@ -19,11 +19,13 @@
             </div>
             <div class="row data-row">
                 <div class="col-12 col-md-3 avatar-div">
-                    <img src="/img/users/<%= loggedInUser.avatar %>" alt="" class="avatar">
+                    <img src="<%= loggedInUser.avatar %>" alt="" class="avatar">
                 </div>
                 <div class="col-12 col-md-9">
                     <p> <span class="identifier">Nombre:</span> <%= loggedInUser.name %> </p>
                     <p> <span class="identifier">Email:</span> <%= loggedInUser.email%></p>
+                    <a href="/users/editProfile/<%= loggedInUser.email %>" class="logout">Editar Perfil</a>
+                    <br>
                     <a href="/users/logout" class="logout">Cerrar Sesión</a>
                 </div>
             </div>

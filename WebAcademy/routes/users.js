@@ -26,6 +26,9 @@ router.post('/register', upload.any(), usersController.create);
 router.get('/login', loggedMiddleware, usersController.login);
 router.post('/login', usersController.processLogin);
 
+router.get('/editProfile/:email', usersController.edit);
+router.put('/editProfile/:email', upload.any(), usersController.update);
+
 router.get('/logout', guestMiddleware, usersController.logout);
 
 module.exports = router;
