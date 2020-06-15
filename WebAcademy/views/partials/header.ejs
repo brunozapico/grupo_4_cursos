@@ -37,8 +37,10 @@
     </div>
 
     <div class="header-searchbar">
-        <input type="text" placeholder="¿Qué querés aprender hoy?" id="searchbar">
-        <i class="fas fa-search" id="search-logo"></i>
+        <form action="/products/search" method="GET">
+            <input type="text" name="q" placeholder="¿Qué querés aprender hoy?" id="searchbar">
+            <i class="fas fa-search" id="search-logo"></i>
+        </form>
     </div>
 </div>
 
