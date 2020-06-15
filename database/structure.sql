@@ -115,8 +115,7 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
     REFERENCES `web_academy`.`professors` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-
+    
 -- -----------------------------------------------------
 -- Table `web_academy`.`cart_courses`
 -- -----------------------------------------------------
@@ -182,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`user_course` (
 -- Table `web_academy`.`program`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS `web_academy`.`program` (
+CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `days` VARCHAR(100) NOT NULL,
   `since_time` TIME NOT NULL,
@@ -192,13 +191,11 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`program` (
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `course_id_idx` (`course_id` ASC),
-    CONSTRAINT `course_id`
+    CONSTRAINT `courses_programs_id`
     FOREIGN KEY (`course_id`)
     REFERENCES `web_academy`.`courses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
