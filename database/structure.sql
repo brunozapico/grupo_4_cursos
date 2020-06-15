@@ -98,13 +98,15 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
   `description_short` TEXT NOT NULL,
   `description_full` TEXT NOT NULL,
   `category_id` INT NOT NULL,
-  `professor_id` INT  NOT NULL,
+  `professor_id` INT NOT NULL,
+  `program_id` INT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `category_id_idx` (`category_id` ASC),
   INDEX `professor_id_idx` (`professor_id` ASC),
+  INDEX `program_id_idx` (`program_id` ASC),
   CONSTRAINT `category_id`
     FOREIGN KEY (`category_id`)
     REFERENCES `web_academy`.`categories` (`id`)
@@ -113,6 +115,11 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
   CONSTRAINT `professor_id`
     FOREIGN KEY (`professor_id`)
     REFERENCES `web_academy`.`professors` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `program_id`
+    FOREIGN KEY (`program_id`)
+    REFERENCES `web_academy`.`programs` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
@@ -186,16 +193,9 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
   `days` VARCHAR(100) NOT NULL,
   `since_time` TIME NOT NULL,
   `up_to_time` TIME NOT NULL,
-  `course_program_id` INT NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`),
-  INDEX `course_program_id_idx` (`course_program_id` ASC),
-    CONSTRAINT `courses_program_id`
-    FOREIGN KEY (`course_program_id`)
-    REFERENCES `web_academy`.`courses` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  PRIMARY KEY (`id`));
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
