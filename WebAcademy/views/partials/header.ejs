@@ -19,62 +19,17 @@
             <ul class="dropdown-nav">
                 <li><i class="fas fa-bars"></i>
                     <ul class="dropdown">
-                        <li><a href="/products#Arte">Arte</a>
+                    <% for(let i = 0; i < categories.length; i++) { %>   
+                        <li><a href="<%= categories[i].id %>"><%= categories[i].title %></a>
                             <ul class="dropdown-cat">
-                                <li><a href="/products/1">Instrumentos</a></li>
-                                <li><a href="/products/2">Música</a></li>
-                                <li><a href="/products/3">Producción</a></li>
+                            <% for(let j = 0; j < categories[i].courses.length; j++) { %>
+                                <li>
+                                    <a href="/products/detail/<%= categories[i].courses[j].id %>"><%= categories[i].courses[j].title %> </a>
+                                </li>    
+                            <% } %> 
                             </ul>
                         </li>
-                        <li><a href="/products#Desarrollo">Desarrollo</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/4">Apps Móviles</a></li>
-                                <li><a href="/products/5">Base de Datos</a></li>
-                                <li><a href="/products/6">Desarrollo Web</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Desarrollo Personal">Desarrollo Personal</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/7">Influencia</a></li>
-                                <li><a href="/products/8">Liderazgo</a></li>
-                                <li><a href="/products/9">Productividad</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Diseño">Diseño</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/10">3D y animación</a></li>
-                                <li><a href="/products/11">Diseño Gráfico</a></li>
-                                <li><a href="/products/12">Diseño Web</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Fotografía">Fotografía</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/13">Diseño de Videos</a></li>
-                                <li><a href="/products/14">Fundamentos de Fotografía</a></li>
-                                <li><a href="/products/15">Retratos</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Informática">Informática</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/16">Hardware</a></li>
-                                <li><a href="/products/17">Redes y Seguridad</a></li>
-                                <li><a href="/products/18">Sistemas Operativos</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Marketing">Marketing</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/19">Fundamentos de Marketing</a></li>
-                                <li><a href="/products/20">Marketing Digital</a></li>
-                                <li><a href="/products/21">Publicidad</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/products#Negocios">Negocios</a>
-                            <ul class="dropdown-cat">
-                                <li><a href="/products/22">Finanzas Personales</a></li>
-                                <li><a href="/products/23">Finanzas Corporativas</a></li>
-                                <li><a href="/products/24">Mercado de Capitales</a></li>
-                            </ul>
-                        </li>
+                    <% } %>
                     </ul>
                 </li>
             </ul>

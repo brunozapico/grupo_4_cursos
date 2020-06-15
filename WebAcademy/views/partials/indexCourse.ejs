@@ -1,11 +1,11 @@
 <div class="course">
-    <img src="img/cursos/<%= product.image %>" alt="">
-    <h4><a href="/products/<%= product.id %>"><%= product.name %></a></h4>
-    <p><%= product.description_short %></p>
+    <img src="img/cursos/<%= course.image %>" alt="">
+    <h4><a href="/products/<%= course.id %>"><%= course.name %></a></h4>
+    <p><%= course.description_short %></p>
     <div class="hidden-course-info">
-        <p><span class="hidden-course-info-title">Precio:</span> USD <%= product.price %></p>
-        <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= product.start %></p>
-        <p><span class="hidden-course-info-title">Vacantes:</span> <%= product.vacancies %></p>
+        <p><span class="hidden-course-info-title">Precio:</span> USD <%= course.price %></p>
+        <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course.start_date %></p>
+        <p><span class="hidden-course-info-title">Vacantes:</span> <%= course.vacancies %></p>
         <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
     </div>
 </div>
