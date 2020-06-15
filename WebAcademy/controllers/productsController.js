@@ -7,7 +7,7 @@ const Op = db.Sequelize.Op;
 const productsController = {
     list: (req, res) => {
         db.Category.findAll({
-            include: { associations: 'courses' }
+            include: [{ association: 'courses' }]
         }).then(categories => {
             //res.json(categories)
             res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
@@ -15,7 +15,7 @@ const productsController = {
     },
     create: (req, res, next) => {
         db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
-            include: { associations: 'course', associations: 'program' }
+            include: [{ association: 'course'}, {association: 'program' }]
         }).then(categories => {
             res.render('productsForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
@@ -39,7 +39,7 @@ const productsController = {
     },
     detail: (req, res) => {
         db.Course.findByPk(req.params.id, {
-            includ: [{association : 'professors'}, {association : 'program'}, {association : 'categories'}]
+            include: [{association : 'professors'}, {association : 'program'}, {association : 'categories'}]
         })
             .then(course =>{
                 res.render('productDetail', {course, loggedInUser: req.session.loggedIn});
