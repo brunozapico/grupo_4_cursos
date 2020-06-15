@@ -90,29 +90,24 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `price` MEDIUMINT UNSIGNED NOT NULL,
+  `starts_date` DATE NOT NULL,
+  `ends_date` DATE NOT NULL,
   `image` VARCHAR(255) NULL DEFAULT '/img/cursos/curso.jpg' ,
   `vacancies` TINYINT UNSIGNED NOT NULL,
   `outstanding` TINYINT UNSIGNED NOT NULL DEFAULT 0,
   `description_short` TEXT NOT NULL,
   `description_full` TEXT NOT NULL,
   `category_id` INT NOT NULL,
-  `program_id` INT NOT NULL,
   `professor_id` INT  NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  INDEX `program_id_idx` (`program_id` ASC),
   INDEX `category_id_idx` (`category_id` ASC),
   INDEX `professor_id_idx` (`professor_id` ASC),
   CONSTRAINT `category_id`
     FOREIGN KEY (`category_id`)
     REFERENCES `web_academy`.`categories` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `program_id`
-    FOREIGN KEY (`program_id`)
-    REFERENCES `web_academy`.`program` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `professor_id`
@@ -184,19 +179,24 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`user_course` (
     ON UPDATE NO ACTION);
 
 -- -----------------------------------------------------
--- Table `web_academy`.`schedule`
+-- Table `web_academy`.`program`
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `web_academy`.`program` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
-  `starts_at` DATE NOT NULL,
-  `ends_at` DATE NOT NULL,
   `days` VARCHAR(100) NOT NULL,
-  `since` TIME NOT NULL,
-  `up_to` TIME NOT NULL,
+  `since_time` TIME NOT NULL,
+  `up_to_time` TIME NOT NULL,
+  `course_id` INT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`),
+  INDEX `course_id_idx` (`course_id` ASC),
+    CONSTRAINT `course_id`
+    FOREIGN KEY (`course_id`)
+    REFERENCES `web_academy`.`course` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 
 
