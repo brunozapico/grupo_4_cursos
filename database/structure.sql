@@ -186,16 +186,17 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
   `days` VARCHAR(100) NOT NULL,
   `since_time` TIME NOT NULL,
   `up_to_time` TIME NOT NULL,
-  `course_id` INT NOT NULL,
+  `course_program_id` INT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  INDEX `course_id_idx` (`course_id` ASC),
-    CONSTRAINT `courses_programs_id`
-    FOREIGN KEY (`course_id`)
+  INDEX `course_program_id_idx` (`course_program_id` ASC),
+    CONSTRAINT `courses_program_id`
+    FOREIGN KEY (`course_program_id`)
     REFERENCES `web_academy`.`courses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

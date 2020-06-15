@@ -64,30 +64,30 @@ insert into categories (title, icon, avatar) values ('Negocios', 'fas fa-chart-b
 
 -- INSERT PROGRAM
 
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 1);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 2);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 3);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 4);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 5);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 6);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 7);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 8);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 9);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 10);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 11);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 12);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 13);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 14);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 15);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 16);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 17);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 18);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 19);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 20);
-insert into programs (days, since_time, up_to_time, course_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 21);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 22);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 23);
-insert into programs (days, since_time, up_to_time, course_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 24);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 1);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 2);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 3);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 4);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 5);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 6);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 7);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 8);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 9);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 10);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 11);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 12);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 13);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 14);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 15);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 16);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 17);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 18);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '08:00', '12:00', 19);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '13:00', '17:00', 20);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Lunes - Miércoles - Viernes', '18:00', '22:00', 21);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '08:00', '12:00', 22);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '13:00', '17:00', 23);
+insert into programs (days, since_time, up_to_time, course_program_id) values ('Martes - Jueves - Sábado', '18:00', '22:00', 24);
 
 -- INSERT PROFESSORS
 
