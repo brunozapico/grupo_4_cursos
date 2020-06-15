@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`program` (
   INDEX `course_id_idx` (`course_id` ASC),
     CONSTRAINT `course_id`
     FOREIGN KEY (`course_id`)
-    REFERENCES `web_academy`.`course` (`id`)
+    REFERENCES `web_academy`.`courses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
