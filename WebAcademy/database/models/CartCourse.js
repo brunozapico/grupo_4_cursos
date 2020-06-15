@@ -3,31 +3,39 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id : {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncremet: true,
             allowNull: false,
             unique: true
         },
         course_id: {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: 'Course',
+                key: 'id'
+            }
         },
         shopping_cart_id: {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: 'ShoppingCart',
+                key: 'id'
+            }
         },
-        created_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW
-        },
-        update_at: {
-            type: dataTypes.DATE
-        }         
+        // created_at: {
+        //     type: dataTypes.DATE,
+        //     defaultValue: dataTypes.NOW
+        // },
+        // update_at: {
+        //     type: dataTypes.DATE
+        // }         
     };
 
     let config = {
-        tableName: 'courses',
+        tableName: 'cart_course',
         underscored: true,
         timestamps: true,
         createdAt: 'created_at',
@@ -47,20 +55,16 @@ module.exports = (sequelize, dataTypes) => {
     }; */
 
     CartCourse.associate = (models) => {
-        CartCourse.belongsToMany(models.Courses, {
-            as: 'courses', // por que son muchos cursos
-            onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
-            foreignKey: {
-                allowNull: true
-            }
+        CartCourse.belongsTo(models.Course, {
+            as: 'courses',
+            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
+            foreignKey: 'course_id'
         });
-        CartCourse.belongsToMany(models,ShoppingCart, {
-            as: 'shopping_cart', // por que son muchos shopping cart
-            onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
-            foreignKey: {
-                allowNull: true
-            }
-        })
+        CartCourse.belongsTo(models.ShoppingCart, {
+            as: 'shopping_cart',
+            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
+            foreignKey: 'shopping_cart_id'
+        });
     };
 
     return CartCourse;

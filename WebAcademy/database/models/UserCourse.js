@@ -3,31 +3,38 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id : {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncremet: true,
             allowNull: false,
-            unique: true
         },
         users_id : {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: 'User',
+                key: 'id'
+            }
         },
         courses_id : {
-            type : dataTypes.INTEGER,
+            type : dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: 'Course',
+                key: 'id'
+            }
         },
-        created_at: {
-            type: dataTypes.DATE,
-            defaultValue: dataTypes.NOW
-        },
-        update_at: {
-            type: dataTypes.DATE
-        }         
+        // created_at: {
+        //     type: dataTypes.DATE,
+        //     defaultValue: dataTypes.NOW
+        // },
+        // update_at: {
+        //     type: dataTypes.DATE
+        // }         
     };
 
     let config = {
-        tableName: 'courses',
+        tableName: 'user_course',
         underscored: true,
         timestamps: true,
         createdAt: 'created_at',
@@ -47,20 +54,16 @@ module.exports = (sequelize, dataTypes) => {
     };*/
 
     UserCourse.associate = (models) => {
-        UserCourse.belongsTo(models.Courses, {
+        UserCourse.belongsTo(models.Course, {
             as: 'courses' , // por que son muchos cursos
-            onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
-            foreignKey: {
-                allowNull: true
-            }
+            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
+            foreignKey: 'course_id'
         });
-        UserCourse.belongsTo(models,Users, {
+        UserCourse.belongsTo(models.User, {
             as: 'users', // por que son muchos usuarios
-            onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
-            foreignKey: {
-                allowNull: true
-            }
-        })
+            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
+            foreignKey: 'user_id'
+        });
     }
 
     return UserCourse;

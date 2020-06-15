@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Tip';
+    let alias = 'Program';
 
     let cols = {
         id : {
@@ -8,17 +8,24 @@ module.exports = (sequelize, dataTypes) => {
             autoIncremet: true,
             allowNull: false,
         },
-        title : {
-            type: dataTypes.STRING(255),
-            allowNull: false,
-            unique: true
-        },
-        description : {
-            type: dataTypes.TEXT,
+        starts_at : {
+            type: dataTypes.DATE,
             allowNull: false,
         },
-        icon : {
+        ends_at : {
+            type: dataTypes.DATE,
+            allowNull: false,
+        },
+        days : {
             type: dataTypes.STRING(100),
+            allowNull: false,
+        },
+        since : {
+            type: dataTypes.TIME,
+            allowNull: false,
+        },
+        up_to : {
+            type: dataTypes.TIME,
             allowNull: false,
         },
         // created_at: {
@@ -31,14 +38,22 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
-        tableName: 'tips',
+        tableName: 'program',
         underscored: true,
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     };
 
-    const Tip = sequelize.define(alias, cols, config);
+    const Program = sequelize.define(alias, cols, config);
 
-    return Tip;
+    Program.associate = models => {
+        Program.hasMany(models.Course, {
+            as: 'courses',
+            foreignKey: 'program_id'
+        });
+    };
+
+
+    return Program;
 }
