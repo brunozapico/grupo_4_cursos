@@ -15,11 +15,7 @@ const productsController = {
     },
     create: (req, res, next) => {
         db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
-<<<<<<< HEAD
             include: [{ association: 'course'}, {association: 'program' }]
-=======
-            include: { association: 'course', association: 'program' }
->>>>>>> e7e0172717bfdce4afca5f5571e9bb93295484bd
         }).then(categories => {
             res.render('productsForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
