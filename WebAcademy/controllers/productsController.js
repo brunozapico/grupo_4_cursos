@@ -23,8 +23,8 @@ const productsController = {
         db.Course.create({
             name: req.body.name,
             price: req.body.price,
-            starts_date: req.body, //completar
-            ends_date: req.body, //completar
+            starts_date: req.body.starts_date,
+            ends_date: req.body.ends_date,
             image: req.body, //completar
             vacancies: req.body.vacancies,
             outstanding: req.body.outstanding,
