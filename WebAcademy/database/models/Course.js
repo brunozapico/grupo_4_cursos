@@ -1,7 +1,7 @@
 module.exports = (sequelize, dataTypes) => {
-
+    
     let alias = 'Course';
-
+    
     let cols = {
         id: {
             type: dataTypes.INTEGER.UNSIGNED,
@@ -17,6 +17,15 @@ module.exports = (sequelize, dataTypes) => {
         price: {
             type: dataTypes.INTEGER.UNSIGNED, // en la tabla pide mediumint
             allowNull: false
+        },
+        starts_date: {
+            type: dataTypes.DATE,
+            allowNull: false
+        },
+        ends_date: {
+            type: dataTypes.DATE,
+            allowNull: false
+            
         },
         image: {
             type: dataTypes.STRING(255),
@@ -48,15 +57,6 @@ module.exports = (sequelize, dataTypes) => {
                 key: 'id'
             }
         },
-        program_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Program',
-                key: 'id'
-            }
-        },
         professor_id: {
             type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
@@ -74,7 +74,7 @@ module.exports = (sequelize, dataTypes) => {
         //     type: dataTypes.DATE
         // }
     };
-
+    
     let config = {
         tableName: 'courses',
         underscored: true,
@@ -82,9 +82,9 @@ module.exports = (sequelize, dataTypes) => {
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     };
-
+    
     const Course = sequelize.define(alias, cols, config);
-
+    
     Course.associate = (models) => {
         Course.belongsToMany(models.User, {
             as: 'users', //plural porque tiene muchos
@@ -92,19 +92,19 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: 'course_id',
             otherKey: 'user_id'
         });
+        Course.hasMany(models.Program, {
+            as: 'programs', //puede tener varios programas
+            foreignKey: 'course_id'
+        });
         Course.belongsTo(models.Category, {
             as: 'category', //singular porque tiene una
             foreignKey: 'category_id',
-        });
-        Course.belongsTo(models.Program, {
-            as: 'program', //singular porque tiene uno
-            foreignKey: 'program_id',
         });
         Course.belongsTo(models.Professor, {
             as: 'professor', //singular porque tiene uno
             foreignKey: 'professor_id',
         });
     };
-
+    
     return Course;
 };
