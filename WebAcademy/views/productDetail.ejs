@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('partials/head') %> 
+    <%- include('partials/head') %>
     <link rel="stylesheet" href="/css/productDetail.css">
 </head>
+
 <body>
     <header>
-        <%- include('partials/header') %> 
+        <%- include('partials/header') %>
         
     </header>
     
     <main class="container">
         <div class="row course-container col-12">
             <div class="col-lg-8 col-md-12 col-sm-12">
-                <div class="course-description"> <!--Descripcion Larga-->
-                    <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= product.name %> </h2>
+                <div class="course-description">
+                    <!--Descripcion Larga-->
+                    <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= course.name %> </h2>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
-                        <%= product.description %> 
+                        <%= course.description %>
                     </div>
                 </div>
-                <div class="course-img"> <!--Imagen Grande-->
+                <div class="course-img">
+                    <!--Imagen Grande-->
                     <img src="/img/cursos/category.jpg" alt="courseImage">
                 </div>
             </div>
-            <div class="store-card card col-lg-3 col-md-12 col-sm-12"> <!--Carta de compra-->
+            <div class="store-card card col-lg-3 col-md-12 col-sm-12">
+                <!--Carta de compra-->
                 <img src="/img/cursos/curso.jpg" class="card-img-top" alt="cardImage">
                 <div class="card-body">
-                    <h5 class="card-title"><%= product.name %></h5>
+                    <h5 class="card-title"><%= course.name %></h5>
                     <p class="card-text">Este curso incluye</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -36,31 +41,45 @@
                     <li class="list-group-item">Garantia de reembolso 30 días</li>
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Añadir al carrito</a><br>
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Comprar ahora</a>
-                </div>
-            </div>
-        </div>
-            <div class="second-container col-12">
-                <div class="course col-lg-12 col-md-12 col-sm-12"> <!--Descripcion Corta-->
-                    <div class="mgn-btm-5px">
-                        <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= product.name %></h2>
+                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Añadir al
+                        carrito</a><br>
+                        <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Comprar
+                            ahora</a>
+                        </div>
                     </div>
-                    <div class="mgn-btm-5px">
-                        <div><h4 class="bkgn-white-mrgn-black"><%= product.category %></h4></div>
-                    </div>
-                    <div><h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= product.description_short %></h5></div>
-                    <div><p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= product.start %> <br> Y termina el <%= product.end %> <br> El horario sera de <%= product.time %> <br> Durante los días <%= product.days %>
-                    </p></div>
-                    <div class="mgn-btm-5px bkgn-white-mrgn-black"><h5>Apurate!! Solo hay <%= product.vacancies %> vacantes</h5></div>
                 </div>
-            </div>
-        </main>
+                <div class="second-container col-12">
+                    <div class="course col-lg-12 col-md-12 col-sm-12">
+                        <!--Descripcion Corta-->
+                        <div class="mgn-btm-5px">
+                            <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= course.name %></h2>
+                        </div>
+                        <div class="mgn-btm-5px">
+                            <div>
+                                <h4 class="bkgn-white-mrgn-black"><%= course.category %></h4>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= course.description_short %></h5>
+                        </div>
+                        <div>
+                            <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= course.starts_date %> <br> Y
+                                termina el <%= course.ends_date %> <br> El horario sera de <%= course.since_time %> <br> Durante
+                                los días <%= course.up_to_time %>
+                            </p>
+                        </div>
+                        <div class="mgn-btm-5px bkgn-white-mrgn-black">
+                            <h5>Apurate!! Solo hay <%= course.vacancies %> vacantes</h5>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <footer>
+                <%- include('partials/footer') %>
+            </footer>
+            
+            <%- include('partials/scripts') %>
+        </body>
         
-        <footer>
-            <%- include('partials/footer') %> 
-        </footer>
-        
-        <%- include('partials/scripts') %>
-    </body>
-    </html>
+        </html>
