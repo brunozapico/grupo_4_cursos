@@ -1,6 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
     let alias = 'Program';
-
+    
     let cols = {
         id : {
             type :dataTypes.INTEGER.UNSIGNED,
@@ -8,25 +8,26 @@ module.exports = (sequelize, dataTypes) => {
             autoIncremet: true,
             allowNull: false,
         },
-        starts_at : {
-            type: dataTypes.DATE,
-            allowNull: false,
-        },
-        ends_at : {
-            type: dataTypes.DATE,
-            allowNull: false,
-        },
         days : {
             type: dataTypes.STRING(100),
             allowNull: false,
         },
-        since : {
+        since_time : {
             type: dataTypes.TIME,
             allowNull: false,
         },
-        up_to : {
+        up_to_time : {
             type: dataTypes.TIME,
             allowNull: false,
+        },
+        course_id: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+            foreignKey: true,
+            references: {
+                model: 'course',
+                key: 'id'
+            }
         },
         // created_at: {
         //     type: dataTypes.DATE,
@@ -36,7 +37,7 @@ module.exports = (sequelize, dataTypes) => {
         //     type: dataTypes.DATE
         // }        
     };
-
+    
     let config = {
         tableName: 'program',
         underscored: true,
@@ -44,16 +45,15 @@ module.exports = (sequelize, dataTypes) => {
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     };
-
+    
     const Program = sequelize.define(alias, cols, config);
-
+    
     Program.associate = models => {
-        Program.hasMany(models.Course, {
-            as: 'courses',
-            foreignKey: 'program_id'
+        Program.belongsTo(models.Course, {
+            as: 'course', //singular porque tiene un id de programa unico
+            foreignKey: 'course_id',
         });
     };
-
-
+    
     return Program;
 }
