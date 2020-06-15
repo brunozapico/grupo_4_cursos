@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`users` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `avatar_UNIQUE` (`avatar` ASC));
-  
+  UNIQUE INDEX `avatar_UNIQUE` (`avatar` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC));
 
 
 -- -----------------------------------------------------

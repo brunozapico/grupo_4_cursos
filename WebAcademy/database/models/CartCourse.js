@@ -44,16 +44,6 @@ module.exports = (sequelize, dataTypes) => {
 
     const CartCourse = sequelize.define(alias, cols, config);
 
-     // TENGO DUDAS DE QUE EN REALIDAD LLEVE RELACION Y NO SEA LA QUE ESTA COMENTADA
-
-    /*Course.associate = (models) => {
-        Course.belongsToMany(models.ShoppingCart, {
-            as: 'shopping_carts', // por que son muchos cursos
-            througth: 'cart_courses',
-            foreignKey: 'course_id',
-            otherKey: 'shshopping_cart_id'
-    }; */
-
     CartCourse.associate = (models) => {
         CartCourse.belongsTo(models.Course, {
             as: 'courses',
