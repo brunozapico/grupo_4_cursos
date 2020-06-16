@@ -54,14 +54,7 @@ const usersController = {
                 }
             })
                 .then(loginUser => {
-                    if(loginUser == undefined) {
-                        req.session.destroy();
-                        res.clearCookie('remember');
-                        return res.render('login', {errors: [
-                            {msg: 'Credenciales inválidas'}
-                        ], loggedInUser: {name:'Iniciar Sesión'}});
-                    }
-
+                    
                     // Creo la session
                     req.session.loggedIn = loginUser;
                     loggedInUser = req.session.loggedIn
