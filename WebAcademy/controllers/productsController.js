@@ -9,8 +9,8 @@ const productsController = {
         db.Category.findAll({
             include: [{ association: 'courses' }]
         }).then(categories => {
-            res.json(categories)
-            //res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
+            //res.json(categories)
+            res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
         });
     },
     create: (req, res, next) => {
@@ -39,7 +39,7 @@ const productsController = {
     },
     detail: (req, res) => {
         db.Course.findByPk(req.params.id, {
-            include: [{association : 'professors'}, {association : 'program'}, {association : 'categories'}]
+            include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'categories'}]
         })
             .then(course =>{
                 res.render('productDetail', {course, loggedInUser: req.session.loggedIn});

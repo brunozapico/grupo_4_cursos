@@ -21,16 +21,14 @@
             <h2 id="<%= categories[i].title %> ">
                 <%= categories[i].title %>
             </h2>
-
             <div class="row center-90">
 
-                <% for (let j = 0; j < categories[i].course.length; j++) { 
-                        let course = categories[i].course[j] %>
+                <% for (let j = 0; j < categories[i].courses.length; j++) { 
+                        let course = categories[i].courses[j] %>
 
                 <div class="row">
                     <%- include('partials/productsCourse.ejs', {course}) %>
                 </div>
-
                 <% } %>
             </div>
             <% } %>
