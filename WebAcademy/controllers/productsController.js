@@ -51,7 +51,9 @@ const productsController = {
         
     },
     edit: (req, res, next) => { // funciona la logica, revisar vista
-        let courseEdit = db.Course.findByPk(req.params.id);
+        let courseEdit = db.Course.findByPk(req.params.id, {
+            include: [{association: 'category'}]
+        });
         let categoryEdit = db.Category.findAll();
 
             Promise.all([courseEdit, categoryEdit])

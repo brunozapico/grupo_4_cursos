@@ -21,14 +21,14 @@
                         <div class="col-md-6 border">
                             <!--Categorias-->
                             <label for="">Categorias</label>
-                            <input class="input-mg" type="radio" name="category" value="Arte">Arte
-                            <input class="input-mg" type="radio" name="category" value="Desarrollo">Desarrollo
-                            <input class="input-mg" type="radio" name="category" value="Desarrollo Personal">Desarrollo Personal<br>
-                            <input class="input-mg" type="radio" name="category" value="Diseño">Diseño
-                            <input class="input-mg" type="radio" name="category" value="Fotografía">Fotografía
-                            <input class="input-mg" type="radio" name="category" value="Informática">Informática<br>
-                            <input class="input-mg" type="radio" name="category" value="Marketing">Marketing
-                            <input class="input-mg" type="radio" name="category" value="Negocios">Negocios
+                            <select class="input-mg" <%# chequear clase %> name="category">
+                                <option value=""><%= courses.category.title %></option>
+                                <% for (let i = 0; i < categories.length; i++) { %> 
+                                <option value="<%= categories[i].id %> ">
+                                    <%= categories[i].title %> 
+                                 </option>
+                                 <% } %> 
+                            </select>
                         </div>
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
@@ -61,18 +61,27 @@
                             <div>
                                 <label for="">Dias de Cursada</label>
                                 <div class="dias">
-                                    <input class="input-mg" type="checkbox" name="days" value="Lunes">Lun
-                                    <input class="input-mg" type="checkbox" name="days" value="Martes">Mar
-                                    <input class="input-mg" type="checkbox" name="days" value="Miercoles">Mier
-                                    <input class="input-mg" type="checkbox" name="days" value="Jueves">Jue
-                                    <input class="input-mg" type="checkbox" name="days" value="Viernes">Vier
+                                    <select name="days" id="">
+                                        <option value="">Selecciona los dias de cursada</option>
+                                        <option value="Lunes - Miercoles - Viernes">
+                                            Lunes - Miercoles - Viernes
+                                        </option>
+                                        <option value="Martes - Jueves - Sabado">
+                                            Martes - Jueves - Sabado
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
                                 <label for="">Horarios</label>
-                                <input class="input-mg" type="radio" name="time" value="08am - 12pm">08am - 12pm<br>
-                                <input class="input-mg" type="radio" name="time" value="13pm - 17pm">13pm - 17pm<br>
-                                <input class="input-mg" type="radio" name="time" value="18pm - 22pm">18pm - 22pm<br>
+                                <div>
+                                    <label for="">Hora de inicio</label>
+                                    <input class="input-mg" type="time" step="1" name="since_time" value="">
+                                </div>
+                                <div>
+                                    <label for="">Hora de finalización</label>
+                                    <input class="input-mg" type="time" step="1" name="up_to_time" value="">
+                                </div>
                             </div>
                         </div>
                     </div>
