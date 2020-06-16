@@ -93,6 +93,7 @@ module.exports = (sequelize, dataTypes) => {
         });
         Course.belongsTo(models.Category, {
             as: 'category', //singular porque tiene una
+            foreignKey: 'category_id',
         });
         Course.belongsTo(models.Program, {
             as: 'program', //singular porque tiene uno
@@ -100,6 +101,7 @@ module.exports = (sequelize, dataTypes) => {
         });
         Course.belongsTo(models.Professor, {
             as: 'professor', //singular porque tiene uno
+            foreignKey: 'professor_id',
         });
     };
 
