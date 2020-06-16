@@ -7,12 +7,11 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         name: {
             type: dataTypes.STRING(100),
             allowNull: false,
-            unique: true
         },
         price: {
             type: dataTypes.INTEGER.UNSIGNED, // en la tabla pide mediumint

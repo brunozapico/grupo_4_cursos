@@ -57,7 +57,7 @@ const productsController = {
             professor_id: req.body.professor,
             program_id: programID,
         }).then(() => {
-            res.redirect('products')
+            res.redirect('/products')
         });
     },
     detail: (req, res) => { // funciona la logica, revisar vista
