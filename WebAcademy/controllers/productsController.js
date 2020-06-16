@@ -38,13 +38,17 @@ const productsController = {
         });
     },
     detail: (req, res) => {
-        db.Course.findByPk(req.params.id, {
+        let categories = db.Category.findAll({
+            include: [{ association: 'courses' }]
+        });
+        let courses = db.Course.findByPk(req.params.id, {
             include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'category'}]
-        })
-            .then(course =>{
-                res.render('productDetail', {course, loggedInUser: req.session.loggedIn});
+        });
+        Promise.all([categories, courses])    
+        .then(([categories, courses]) => {
+              // res.json(courses, categories)
+                res.render('productDetail', {categories, courses, loggedInUser: req.session.loggedIn});
             });
-        
     },
     edit: (req, res, next) => {
         let courseEdit = db.Course.findByPk(req.params.id);
