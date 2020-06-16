@@ -50,7 +50,7 @@ const productsController = {
             });
         
     },
-    edit: (req, res, next) => { // funciona la logica, revisar vista
+    edit: (req, res, next) => { // funciona la logica, revisar vista. //falta traer fecha, dias y horario
         let courseEdit = db.Course.findByPk(req.params.id, {
             include: [{association: 'category'}]
         });
@@ -89,11 +89,11 @@ const productsController = {
                 }
             }
             .then(()=>{
-                res.redirect('products')
+                res.redirect('/products')
             })
     )},
     search(req,res) { // funciona la logica, revisar vista
-        let resultadoBusqueda  = db.Course.findAll({
+        let course  = db.Course.findAll({
             where: {
                 name: {
                     [Op.substring]: req.query.q,
@@ -105,7 +105,7 @@ const productsController = {
             include: { association: 'courses' }
         })
 
-        Promise.all([resultadoBusqueda, categories])
+        Promise.all([course, categories])
 
         .then(([course, categories]) => {
             res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
