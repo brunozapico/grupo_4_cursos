@@ -11,15 +11,13 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0;
 
------------------------------------------------------
+-- -----------------------------------------------------
 -- Schema web_academy
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema web_academy
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `web_academy` DEFAULT CHARACTER SET utf8 ;
-USE `web_academy` ;
+DROP DATABASE IF EXISTS `web_academy`;
+CREATE DATABASE `web_academy`;
+USE `web_academy`;
 
 -- -----------------------------------------------------
 -- Table `web_academy`.`users`
