@@ -21,18 +21,24 @@ const productsController = {
         });
     },
     store: (req, res, next) => {
-        let since;
-        let upTo;
-            if(req.body.turnos == 'M'){
-                since = '08:00';
-                upTo = '12:00'
-            }else if(req.body.turnos == 'T'){
-                since = '13:00';
-                upTo = '17:00'
-            }else if(req.body.turnos == 'N'){
-                since = '18:00';
-                upTo = '22:00'
-            }
+        let days = req.body.days;
+        let shift = req.body.shifts;
+        let programID;
+
+        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+            programID = 1;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+            programID = 2;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+            programID = 3;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+            programID = 4;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+            programID = 5;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+            programID = 6;
+        }
+
         db.Course.create({
             name: req.body.name,
             price: req.body.price,
@@ -44,7 +50,8 @@ const productsController = {
             description_short: req.body.description_short,
             description_full: req.body.description_full,
             category_id: req.body.categoty,
-            professor_id: req.body.professor
+            professor_id: req.body.professor,
+            program_id: programID,
         }).then(() => {
             res.redirect('products')
         });
@@ -74,6 +81,24 @@ const productsController = {
             });
     },
     update: (req, res, next) => {
+        let days = req.body.days;
+        let shift = req.body.shifts;
+        let programID;
+
+        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+            programID = 1;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+            programID = 2;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+            programID = 3;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+            programID = 4;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+            programID = 5;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+            programID = 6;
+        }
+        
             db.Course.update({
                 name: req.body.name,
                 price: req.body.price,
@@ -85,7 +110,8 @@ const productsController = {
                 description_short: req.body.description_short,
                 description_full: req.body.description_full,
                 category_id: req.body.categoty,
-                professor_id: req.body.professor
+                professor_id: req.body.professor,
+                program_id: programID,
             },{
                 where :{
                     id : req.params.id}
