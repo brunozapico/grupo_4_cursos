@@ -38,11 +38,15 @@ const productsController = {
         });
     },
     detail: (req, res) => { // funciona la logica, revisar vista
-        db.Course.findByPk(req.params.id, {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' }
+        })
+        let courses = db.Course.findByPk(req.params.id, {
             include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'category'}]
         })
-            .then(course =>{
-                res.render('productDetail', {course, loggedInUser: req.session.loggedIn});
+        Promise.all([categories, courses])
+            .then(([categories, courses]) =>{
+                res.render('productDetail', {courses, categories, loggedInUser: req.session.loggedIn});
             });
         
     },
