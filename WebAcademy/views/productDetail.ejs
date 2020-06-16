@@ -17,9 +17,9 @@
             <div class="col-lg-8 col-md-12 col-sm-12">
                 <div class="course-description">
                     <!--Descripcion Larga-->
-                    <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= course.name %> </h2>
+                    <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.name %> </h2>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
-                        <%= course.description %>
+                        <%= courses.description %>
                     </div>
                 </div>
                 <div class="course-img">
@@ -31,7 +31,7 @@
                 <!--Carta de compra-->
                 <img src="/img/cursos/curso.jpg" class="card-img-top" alt="cardImage">
                 <div class="card-body">
-                    <h5 class="card-title"><%= course.name %></h5>
+                    <h5 class="card-title"><%= courses.name %></h5>
                     <p class="card-text">Este curso incluye</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -52,20 +52,20 @@
                     <div class="course col-lg-12 col-md-12 col-sm-12">
                         <!--Descripcion Corta-->
                         <div class="mgn-btm-5px">
-                            <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= course.name %></h2>
+                            <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= courses.name %></h2>
                         </div>
                         <div class="mgn-btm-5px">
                             <div>
-                                <h4 class="bkgn-white-mrgn-black"><%= course.category %></h4>
+                                <h4 class="bkgn-white-mrgn-black"><%= courses.category %></h4>
                             </div>
                         </div>
                         <div>
-                            <h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= course.description_short %></h5>
+                            <h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= courses.description_short %></h5>
                         </div>
                         <div>
-                            <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= course.starts_date %> <br> Y
-                                termina el <%= course.ends_date %> <br> El horario sera de <%= course.since_time %> <br> Durante
-                                los días <%= course.up_to_time %>
+                            <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= courses.starts_date %> <br> Y
+                                termina el <%= courses.ends_date %> <br> El horario sera de <%= courses.since_time %> <br> Durante
+                                los días <%= courses.up_to_time %>
                             </p>
                         </div>
                         <div class="mgn-btm-5px bkgn-white-mrgn-black">

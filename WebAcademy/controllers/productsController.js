@@ -15,7 +15,7 @@ const productsController = {
     },
     create: (req, res, next) => {
         db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
-            include: [{ association: 'course'}, {association: 'program' }]
+            include: [{ association: 'courses'}, {association: 'program' }]
         }).then(categories => {
             res.render('productsForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
@@ -39,7 +39,7 @@ const productsController = {
     },
     detail: (req, res) => {
         db.Course.findByPk(req.params.id, {
-            include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'categories'}]
+            include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'category'}]
         })
             .then(course =>{
                 res.render('productDetail', {course, loggedInUser: req.session.loggedIn});
@@ -93,16 +93,16 @@ const productsController = {
                     [Op.substring]: req.query.q,
                 }
             },
-            include: [{association: 'categories'}]
+            include: [{association: 'category'}]
         })
         let categories = db.Category.findAll({
-            include: { associations: 'courses' }
+            include: { association: 'courses' }
         })
 
         Promise.all([resultadoBusqueda, categories])
 
-        .then(([resultadoBusqueda, categories]) => {
-            res.render('search', {resultadoBusqueda, categories, title: 'Este es el resultado de tu busqueda'})
+        .then(([course, categories]) => {
+            res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
         })
     }
 }
