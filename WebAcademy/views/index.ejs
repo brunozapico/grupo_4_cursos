@@ -56,8 +56,8 @@
             </article>
             
             <article class="top-courses-sec-courses">
-                <% outstandingProducts.forEach(product => { %>
-                    <%- include('partials/indexCourse.ejs', {product}) %>
+                <% outstanding.forEach(courses => { %>
+                    <%- include('partials/indexCourse.ejs', {courses}) %>
                 <% }) %>
             </article>            
         </section>

@@ -20,15 +20,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.TIME,
             allowNull: false,
         },
-        course_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'course',
-                key: 'id'
-            }
-        },
         // created_at: {
         //     type: dataTypes.DATE,
         //     defaultValue: dataTypes.NOW

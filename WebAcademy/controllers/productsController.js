@@ -21,6 +21,18 @@ const productsController = {
         });
     },
     store: (req, res, next) => {
+        let since;
+        let upTo;
+            if(req.body.turnos == 'M'){
+                since = '08:00';
+                upTo = '12:00'
+            }else if(req.body.turnos == 'T'){
+                since = '13:00';
+                upTo = '17:00'
+            }else if(req.body.turnos == 'N'){
+                since = '18:00';
+                upTo = '22:00'
+            }
         db.Course.create({
             name: req.body.name,
             price: req.body.price,
@@ -83,15 +95,23 @@ const productsController = {
             });
     },
     destroy : (req, res) => {
-        db.Course.destroy({
+        db.UserCourse.destroy({
             where : {
-                id :req.params.id
-                }
+                courses_id : req.params.id
             }
-            .then(()=>{
-                res.redirect('/products')
-            })
-    )},
+        })
+        .then(() => {
+            db.Course.destroy({
+                where : {
+                    id :req.params.id
+                    }
+                })
+                .then(()=>{
+                    res.redirect('/products')
+                })
+        })
+            
+    },
     search(req,res) { // funciona la logica, revisar vista
         let course  = db.Course.findAll({
             where: {
