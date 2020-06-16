@@ -14,10 +14,14 @@ const productsController = {
         });
     },
     create: (req, res, next) => { // funciona la logica, revisar vista
-        db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
+        let professor = db.Professor.findAll();
+
+        let categorie = db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
             include: [{ association: 'courses'}, /*{association: 'program' }*/]
-        }).then(categories => {
-            res.render('productForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
+        });
+        Promise.all([professor, categorie])
+        .then(([professor, categories]) => {
+            res.render('productForm', { categories, professor, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
     },
     store: (req, res, next) => {
@@ -43,7 +47,7 @@ const productsController = {
             outstanding: req.body.outstanding,
             description_short: req.body.description_short,
             description_full: req.body.description_full,
-            category_id: req.body.categoty,
+            category_id: req.body.category,
             professor_id: req.body.professor
         }).then(() => {
             res.redirect('products')
@@ -64,13 +68,15 @@ const productsController = {
     },
     edit: (req, res, next) => { // funciona la logica, revisar vista. //falta traer fecha, dias y horario
         let courseEdit = db.Course.findByPk(req.params.id, {
-            include: [{association: 'category'}]
+            include: [{association: 'category'},{association: 'professor'}]
         });
         let categoryEdit = db.Category.findAll();
 
-            Promise.all([courseEdit, categoryEdit])
-            .then(([courses, categories]) => {
-                res.render('productEdit', {courses, categories, loggedInUser: req.session.loggedIn});
+        let professor = db.Professor.findAll();
+
+            Promise.all([courseEdit, categoryEdit, professor])
+            .then(([courses, categories, professor]) => {
+                res.render('productEdit', {courses, categories, professor, loggedInUser: req.session.loggedIn});
             });
     },
     update: (req, res, next) => {
@@ -84,7 +90,7 @@ const productsController = {
                 outstanding: req.body.outstanding,
                 description_short: req.body.description_short,
                 description_full: req.body.description_full,
-                category_id: req.body.categoty,
+                category_id: req.body.category,
                 professor_id: req.body.professor
             },{
                 where :{

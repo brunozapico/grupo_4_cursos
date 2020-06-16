@@ -24,7 +24,7 @@
                             <select class="input-mg" <%# chequear clase %> name="category">
                                 <option value=""><%= courses.category.title %></option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
-                                <option value="<%= categories[i].id %> ">
+                                <option name='category' value="<%= categories[i].id %> ">
                                     <%= categories[i].title %> 
                                  </option>
                                  <% } %> 
@@ -83,6 +83,19 @@
                                     <input class="input-mg" type="time" step="1" name="up_to_time" value="">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row center border space tamaño"><!--Logo -->
+                        <div class="col-md-12">
+                            <label for="">Profesor</label>
+                            <select class="input-mg" <%# chequear clase %> name="professor">
+                                <option value="">Selecciona el nombre del profesor</option>
+                                <% for (let j = 0; j < professor.length; j++) { %> 
+                                <option name='professor' value="<%= professor[j] %> ">
+                                    <%= professor[j].first_name + ' ' + professor[j].last_name %> 
+                                 </option>
+                                 <% } %> 
+                            </select>
                         </div>
                     </div>
                     <div class="row center">
