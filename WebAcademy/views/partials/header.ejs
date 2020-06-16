@@ -22,7 +22,7 @@
                     <% for(let i = 0; i < categories.length; i++) { %>   
                         <li><a href="<%= categories[i].id %>"><%= categories[i].title %></a>
                             <ul class="dropdown-cat">
-                            <% for(let j = 0; j < categories[i].courses.length; j++) { %>
+                            <% for(let j = 0; j < categories[i].courses; j++) { %>
                                 <li>
                                     <a href="/products/detail/<%= categories[i].courses[j].id %>"><%= categories[i].courses[j].title %> </a>
                                 </li>    

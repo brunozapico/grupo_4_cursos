@@ -14,9 +14,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12"><!--TITULO-->
-                    <h1>Estas editando el curso: <%= product.name %> </h1>
+                    <h1>Estas editando el curso: <%= courses.name %> </h1>
                 </div>
-                <form action="/products/edit/<%= product.id %> ?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
+                <form action="/products/edit/<%= courses.id %> ?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
@@ -33,28 +33,28 @@
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= product.name %> ">
+                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= courses.name %> ">
                         </div>
                     </div>
                     <div class="row"><!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= product.description %></textarea>
+                            <textarea name="description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= courses.description_full %></textarea>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
                         <div class="col-md-12 center">
-                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"><%= product.description_short %> </textarea>
+                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"><%= courses.description_short %> </textarea>
                         </div>
                     </div>
                     <div class="row center"><!--Calendario --> 
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="start" id="dateInicio" min="" value="<%= product.start %> ">
+                                <input class="input-mg" type="date" name="start" id="dateInicio" min="" value="<%= courses.starts_date %> ">
                             </div>
                             <div>
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="end" id="dateFin" min="" value="<%= product.end %> ">
+                                <input class="input-mg" type="date" name="end" id="dateFin" min="" value="<%= courses.end_date %> ">
                             </div>
                         </div>
                         <div class="col-md-6 border space">
@@ -80,7 +80,7 @@
                         <div class="col-md-4 border space">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
-                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= product.vacancies %> ">                        
+                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= courses.vacancies %> ">                        
                         </div>
                         <div class="col-md-4 border space">
                             <!--Destacado -->
@@ -91,7 +91,7 @@
                         <div class="col-md-4 border space">
                             <!--Precio -->
                             <label for="">Precio U$D</label>
-                            <input class="input-mg" type="number" name="price" min="0" placeholder="<%= product.price %> ">
+                            <input class="input-mg" type="number" name="price" min="0" placeholder="<%= courses.price %> ">
                         </div>
                     </div>
                     <div class="row center"><!--Multimedia -->
@@ -104,7 +104,7 @@
                     <div class="row center border space tamaño"><!--Logo -->
                         <div class="col-md-12">
                             <label for="">Logo</label>
-                            <input class="input-mg" type="file" name="image" id="" value="<%= product.image %> ">
+                            <input class="input-mg" type="file" name="image" id="" value="<%= courses.image %> ">
                         </div>
                     </div>
                     <div class="row center"><!--Boton de envio -->
@@ -114,7 +114,7 @@
                         
                     </div>
                 </form>
-                <form action="/products/delete/<%= product.id %> ?_method=DELETE" method="POST" class="center delete-btn" >
+                <form action="/products/delete/<%= courses.id %> ?_method=DELETE" method="POST" class="center delete-btn" >
                     <button type="submit" class="button mg-button">Borrar Curso</button>
                 </form>
             </div>

@@ -5,7 +5,7 @@ const db = require('../database/models');
 const Op = db.Sequelize.Op;
 
 const productsController = {
-    list: (req, res) => {
+    list: (req, res) => { // funciona la logica, revisar vista
         db.Category.findAll({
             include: [{ association: 'courses' }]
         }).then(categories => {
@@ -13,11 +13,11 @@ const productsController = {
             res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
         });
     },
-    create: (req, res, next) => {
+    create: (req, res, next) => { // funciona la logica, revisar vista
         db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
-            include: [{ association: 'courses'}, {association: 'program' }]
+            include: [{ association: 'courses'}, /*{association: 'program' }*/]
         }).then(categories => {
-            res.render('productsForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
+            res.render('productForm', { categories, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
     },
     store: (req, res, next) => {
@@ -34,23 +34,19 @@ const productsController = {
             category_id: req.body.categoty,
             professor_id: req.body.professor
         }).then(() => {
-            res.redirect('/products')
+            res.redirect('products')
         });
     },
-    detail: (req, res) => {
-        let categories = db.Category.findAll({
-            include: [{ association: 'courses' }]
-        });
-        let courses = db.Course.findByPk(req.params.id, {
+    detail: (req, res) => { // funciona la logica, revisar vista
+        db.Course.findByPk(req.params.id, {
             include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'category'}]
-        });
-        Promise.all([categories, courses])    
-        .then(([categories, courses]) => {
-              // res.json(courses, categories)
-                res.render('productDetail', {categories, courses, loggedInUser: req.session.loggedIn});
+        })
+            .then(course =>{
+                res.render('productDetail', {course, loggedInUser: req.session.loggedIn});
             });
+        
     },
-    edit: (req, res, next) => {
+    edit: (req, res, next) => { // funciona la logica, revisar vista
         let courseEdit = db.Course.findByPk(req.params.id);
         let categoryEdit = db.Category.findAll();
 
@@ -77,7 +73,7 @@ const productsController = {
                     id : req.params.id}
             })
             .then( () =>{
-                res.redirect(`/products/detail/${req.params.id}`)
+                res.redirect(`products/detail/${req.params.id}`)
             });
     },
     destroy : (req, res) => {
@@ -87,10 +83,10 @@ const productsController = {
                 }
             }
             .then(()=>{
-                res.redirect('/products')
+                res.redirect('products')
             })
     )},
-    search(req,res) {
+    search(req,res) { // funciona la logica, revisar vista
         let resultadoBusqueda  = db.Course.findAll({
             where: {
                 name: {
@@ -107,7 +103,7 @@ const productsController = {
 
         .then(([course, categories]) => {
             res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
-        })
+         })
     }
 }
 
