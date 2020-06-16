@@ -51,7 +51,6 @@ module.exports = (sequelize, dataTypes) => {
     Program.associate = models => {
         Program.belongsTo(models.Course, {
             as: 'course', //singular porque tiene un id de programa unico
-            foreignKey: 'course_id',
         });
     };
     

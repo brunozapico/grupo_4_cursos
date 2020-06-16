@@ -9,8 +9,8 @@ const productsController = {
         db.Category.findAll({
             include: [{ association: 'courses' }]
         }).then(categories => {
-            //res.json(categories)
-            res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
+            res.json(categories)
+            //res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
         });
     },
     create: (req, res, next) => {

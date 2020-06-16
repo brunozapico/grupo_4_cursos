@@ -44,14 +44,12 @@ module.exports = (sequelize, dataTypes) => {
     const UserCourse = sequelize.define(alias, cols, config);
 
     UserCourse.associate = (models) => {
-        UserCourse.belongsToMany(models.Course, {
+        UserCourse.belongsTo(models.Course, {
             as: 'courses' , // por que son muchos cursos
-            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
-            foreignKey: 'course_id'
+            foreignKey: 'courses_id'
         });
-        UserCourse.belongsToMany(models.User, {
+        UserCourse.belongsTo(models.User, {
             as: 'users', // por que son muchos usuarios
-            // onDelete: "CASCADE",  // tengo dudas de la relacion y del uso, pero puede ser que sea asi 
             foreignKey: 'user_id'
         });
     }
