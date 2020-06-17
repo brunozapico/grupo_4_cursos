@@ -16,14 +16,20 @@
             <h1>
                 <%= title %>
             </h1>
+            <% for(let i = 0; i< course.length; i++) { %> 
             <h2>
-                <%= course.category//.title no me funciona %>
+                <%= course[i].category.title %>
             </h2>
             <div class="row center-90">
                 <div class="row">
-                    <%- include('partials/productsCourse.ejs', {course}) %>
+                    <div class="course col-9 col-md-5 col-lg-3">
+                        <img src="<%= course[i].image %>" alt="">
+                        <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
+                        <p><%= course[i].description_short %></p>
+                    </div>
                 </div>
             </div>
+            <% } %> 
         </div>
     </main>
 
