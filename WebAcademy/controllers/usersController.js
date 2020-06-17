@@ -6,18 +6,21 @@ const db = require('../database/models');
 
 const usersController = {
     register: (req, res) => {
-        res.render('register', {loggedInUser: req.session.loggedIn});
+        db.Category.findAll()
+            .then(categories => {
+                res.render('register', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
     create: (req, res) => {
         let user;
-        if(req.files[0] != undefined){
+        if(req.files[0] != undefined){ // si hay avatar
             user = {
                 name: req.body.name,
                 email: req.body.email,
                 password: bcrypt.hashSync(req.body.password, 10),
                 avatar: `/img/users/${req.files[0].filename}`,
             }
-        } else {
+        } else { // si no hay avatar
             user = {
                 name: req.body.name,
                 email: req.body.email,
@@ -33,29 +36,20 @@ const usersController = {
         res.redirect('/users');
     },
     login: (req, res) => {
-        res.render('login', {loggedInUser: req.session.loggedIn})
+        db.Category.findAll()
+            .then(categories => {
+                res.render('login', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
     processLogin: (req, res) => {
-        
-        db.User.findOne({
-            where: {
-                email: req.body.email
-            }
-        })
-            .then(loginUser => {
-                if (loginUser != null &&  bcrypt.compareSync(req.body.password, loginUser.password)) {
-                    return loginUser
-                } else {
-                    req.session.destroy();
-                    res.clearCookie('remember');
-                    return res.render('login', {errors: [
-                        {msg: 'Credenciales inválidas'}
-                    ], loggedInUser: {name:'Iniciar Sesión'}});
-                }
-            })
-                .then(loginUser => {
+        let categories = db.Category.findAll()
+        let user = db.User.findOne({where: {email: req.body.email}});
+
+        Promise.all([categories, user])
+            .then(([categories, user]) => {
+                let loginUser = user;
+                if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { // en la database tenemos contraseñas no encriptadas, por eso tengo que verificar tambien sin el bcrypt, en un futuro seria solo con bcrypt.
                     
-                    // Creo la session
                     req.session.loggedIn = loginUser;
                     loggedInUser = req.session.loggedIn
 
@@ -63,10 +57,15 @@ const usersController = {
                         res.cookie('remember', loginUser.email, { maxAge: 6000000 })
                     }
 
-                    res.redirect('/users');
-
-                })
-
+                    res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                } else {
+                    req.session.destroy();
+                    res.clearCookie('remember');
+                    res.render('login', {errors: [
+                        {msg: 'Credenciales inválidas'}
+                    ], loggedInUser: {name:'Iniciar Sesión'}, categories});
+                }
+            });
     },
     logout: (req, res) => {
         req.session.destroy();
@@ -74,17 +73,19 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        res.render('users', {loggedInUser: req.session.loggedIn});
+        db.Category.findAll()
+            .then(categories => {
+                res.render('users', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
     edit: (req, res) => {
-        db.User.findOne({
-            where: {
-                email: req.params.email
-            }
-        })
-            .then(user => {
-                res.render('editProfile', {user:user, loggedInUser: req.session.loggedIn});
-            })
+        let categories = db.Category.findAll()
+        let user = db.User.findOne({where: {email: req.params.email}});
+
+        Promise.all([categories, user])
+            .then(([categories, user]) => {
+                res.render('editProfile', {user:user, loggedInUser: req.session.loggedIn, categories});
+            });
     },
     update: (req, res) => {
         let user;
@@ -109,6 +110,7 @@ const usersController = {
             }
         })
             .then(() => {
+                // primero limpio la cookie anterior por si se edito el mail, despues creo la nueva
                 res.clearCookie('remember');
                 req.session.loggedIn = user;
                 if(req.body.remember != undefined) {
