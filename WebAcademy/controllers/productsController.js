@@ -77,7 +77,9 @@ const productsController = {
         let courseEdit = db.Course.findByPk(req.params.id, {
             include: [{association: 'category'},{association: 'professor'}]
         });
-        let categoryEdit = db.Category.findAll();
+        let categoryEdit = db.Category.findAll({
+            include: {association: 'courses'}
+        });
 
         let professor = db.Professor.findAll();
 
