@@ -17,6 +17,14 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER.UNSIGNED, // en la tabla pide mediumint
             allowNull: false
         },
+        starts_date: {
+            type: dataTypes.DATE,
+            allowNull: false
+        },
+        ends_date: {
+            type: dataTypes.DATE,
+            allowNull: false
+        },
         image: {
             type: dataTypes.STRING(255),
             allowNull: false
