@@ -55,7 +55,7 @@ const productsController = {
             description_full: req.body.description_full,
             category_id: req.body.category,
             professor_id: req.body.professor,
-            program_id: programID,
+            program_id: programID
         }).then(() => {
             res.redirect('/products')
         });
@@ -88,7 +88,7 @@ const productsController = {
                 res.render('productEdit', {courses, categories, professor, loggedInUser: req.session.loggedIn});
             });
     },
-    update: (req, res, next) => {
+    update: (req, res) => {
         let days = req.body.days;
         let shift = req.body.shifts;
         let programID;
@@ -119,7 +119,7 @@ const productsController = {
                 description_full: req.body.description_full,
                 category_id: req.body.category,
                 professor_id: req.body.professor,
-                program_id: programID,
+                program_id: programID
             },{
                 where :{
                     id : req.params.id}

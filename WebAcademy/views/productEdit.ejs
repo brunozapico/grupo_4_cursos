@@ -16,7 +16,7 @@
                 <div class="col-md-12"><!--TITULO-->
                     <h1>Estas editando el curso: <%= courses.name %> </h1>
                 </div>
-                <form action="/products/edit/<%= courses.id %> ?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
+                <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
@@ -50,11 +50,11 @@
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="start" id="dateInicio" min="" value="<%= courses.starts_date %> ">
+                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="" value="<%= courses.starts_date %> ">
                             </div>
                             <div>
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="end" id="dateFin" min="" value="<%= courses.end_date %> ">
+                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="" value="<%= courses.ends_date %> ">
                             </div>
                         </div>
                         <div class="col-md-6 border space">
@@ -129,7 +129,7 @@
                         
                     </div>
                 </form>
-                <form action="/products/delete/<%= courses.id %> ?_method=DELETE" method="POST" class="center delete-btn" >
+                <form action="/products/delete/<%= courses.id %>?_method=DELETE" method="POST" class="center delete-btn" >
                     <button type="submit" class="button mg-button">Borrar Curso</button>
                 </form>
             </div>
