@@ -6,7 +6,9 @@ const db = require('../database/models');
 
 const usersController = {
     register: (req, res) => {
-        db.Category.findAll()
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
             .then(categories => {
                 res.render('register', {categories, loggedInUser: req.session.loggedIn});
             });
@@ -36,13 +38,17 @@ const usersController = {
         res.redirect('/users');
     },
     login: (req, res) => {
-        db.Category.findAll()
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
             .then(categories => {
                 res.render('login', {categories, loggedInUser: req.session.loggedIn});
             });
     },
     processLogin: (req, res) => {
-        let categories = db.Category.findAll()
+        let categories = db.Category.findAll({
+            include: {association: 'courses'}
+        })
         let user = db.User.findOne({where: {email: req.body.email}});
 
         Promise.all([categories, user])
@@ -73,13 +79,17 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        db.Category.findAll()
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
             .then(categories => {
                 res.render('users', {categories, loggedInUser: req.session.loggedIn});
             });
     },
     edit: (req, res) => {
-        let categories = db.Category.findAll()
+        let categories = db.Category.findAll({
+            include: {association: 'courses'}
+        })
         let user = db.User.findOne({where: {email: req.params.email}});
 
         Promise.all([categories, user])
