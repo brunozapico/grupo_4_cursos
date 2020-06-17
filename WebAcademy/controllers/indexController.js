@@ -24,8 +24,11 @@ const indexController = {
         })
     },
     shoppingCart: (req, res) => {
-        res.render('shoppingCart', {loggedInUser: req.session.loggedIn})
+        db.Category.findAll()
+            .then(categories => {
+                res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn})
+            });
     }
-}
+};
 
 module.exports = indexController;
