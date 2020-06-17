@@ -59,7 +59,7 @@
                 <% for(let i = 0; i < course.length; i++) { %>
                     <div class="course">
                         <img src="<%= course[i].image %>" alt="">
-                        <h4><a href="/products/<%= course[i].id %>"><%= course[i].name %></a></h4>
+                        <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
                         <p><%= course[i].description_short %></p>
                         <div class="hidden-course-info">
                             <p><span class="hidden-course-info-title">Precio:</span> USD <%= course[i].price %></p>
