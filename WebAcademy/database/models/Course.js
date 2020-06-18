@@ -55,15 +55,6 @@ module.exports = (sequelize, dataTypes) => {
                 key: 'id'
             }
         },
-        program_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Program',
-                key: 'id'
-            }
-        },
         professor_id: {
             type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
@@ -103,9 +94,8 @@ module.exports = (sequelize, dataTypes) => {
             as: 'category', //singular porque tiene una
             foreignKey: 'category_id',
         });
-        Course.belongsTo(models.Program, {
-            as: 'program', //singular porque tiene uno
-            foreignKey: 'program_id',
+        Course.hasMany(models.Program, {
+            as: 'programs', //singular porque tiene uno
         });
         Course.belongsTo(models.Professor, {
             as: 'professor', //singular porque tiene uno
