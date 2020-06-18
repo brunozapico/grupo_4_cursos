@@ -24,7 +24,9 @@ const indexController = {
         })
     },
     shoppingCart: (req, res) => {
-        db.Category.findAll()
+        db.Category.findAll({
+            include: [{ association: 'courses' }]
+        })
             .then(categories => {
                 res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn})
             });
