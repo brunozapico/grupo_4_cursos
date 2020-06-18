@@ -18,8 +18,9 @@
                 <div class="course-description">
                     <!--Descripcion Larga-->
                     <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.name %> </h2>
+                    <h3 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.category.title %> </h3>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
-                        <%= courses.description %>
+                        <%= courses.description_short %>
                     </div>
                 </div>
                 <div class="course-img">
@@ -40,6 +41,11 @@
                     <li class="list-group-item">Certificado de finalización</li>
                     <li class="list-group-item">Garantia de reembolso 30 días</li>
                 </ul>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><%= `Precio - $${courses.price}` %> </li>
+                    </ul>
+                </div>
                 <div class="card-body">
                     <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Añadir al
                         carrito</a><br>
