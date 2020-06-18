@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`professors` (
 -- Table `web_academy`.`courses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NOT NULL,
   `price` MEDIUMINT UNSIGNED NOT NULL,
   `starts_date` DATE NOT NULL,
@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`courses` (
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `category_id_idx` (`category_id` ASC),
   INDEX `professor_id_idx` (`professor_id` ASC),
   INDEX `program_id_idx` (`program_id` ASC),
