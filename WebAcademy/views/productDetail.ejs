@@ -45,9 +45,9 @@
                         carrito</a><br>
                         <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Comprar
                             ahora</a>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
                 <div class="second-container col-12">
                     <div class="course col-lg-12 col-md-12 col-sm-12">
                         <!--Descripcion Corta-->
@@ -64,8 +64,9 @@
                         </div>
                         <div>
                             <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= courses.starts_date %> <br> Y
-                                termina el <%= courses.ends_date %> <br> El horario sera de <%= courses.since_time %> <br> Durante
-                                los días <%= courses.up_to_time %>
+                                termina el <%= courses.ends_date %> <br> El horario sera de <%# courses.program.since_time %>
+                                <br> Durante
+                                los días <%# courses.program.up_to_time %>
                             </p>
                         </div>
                         <div class="mgn-btm-5px bkgn-white-mrgn-black">

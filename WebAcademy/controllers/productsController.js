@@ -60,12 +60,12 @@ const productsController = {
             res.redirect('/products')
         });
     },
-    detail: (req, res) => { // funciona la logica, revisar vista
+    detail: (req, res) => { // falta que muestre el horario y los dias
         let categories = db.Category.findAll({
             include: { association: 'courses' }
         })
         let courses = db.Course.findByPk(req.params.id, {
-            include: [/* {association : 'professors'}, {association : 'program'}, */ {association : 'category'}]
+            include: [{association : 'professor'}/* , {association : 'programs'} */, {association : 'category'}]
         })
         Promise.all([categories, courses])
             .then(([categories, courses]) =>{
@@ -125,7 +125,7 @@ const productsController = {
                     id : req.params.id}
             })
             .then( () =>{
-                res.redirect(`products/detail/${req.params.id}`)
+                res.redirect(`/products/detail/${req.params.id}`)
             });
     },
     destroy : (req, res) => {
@@ -164,6 +164,14 @@ const productsController = {
         .then(([course, categories]) => {
             res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
          })
+    },
+    programs(req, res){
+        db.Program.findAll({
+            attributes: [id[0]]
+        })
+        .then(programs => {
+            res.json(programs.days)
+        })
     }
 }
 

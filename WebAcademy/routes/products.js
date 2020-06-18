@@ -29,4 +29,6 @@ router.get('/search', productsController.search);
 
 router.delete('/delete/:id', productsController.destroy);
 
+router.get('/programs', productsController.programs)
+
 module.exports = router;
