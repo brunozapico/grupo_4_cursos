@@ -54,7 +54,8 @@ const usersController = {
         Promise.all([categories, user])
             .then(([categories, user]) => {
                 let loginUser = user;
-                if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { // en la database tenemos contraseñas no encriptadas, por eso tengo que verificar tambien sin el bcrypt, en un futuro seria solo con bcrypt.
+                if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { 
+                // en la database tenemos contraseñas no encriptadas, por eso tengo que verificar tambien sin el bcrypt, en un futuro seria solo con bcrypt.
                     
                     req.session.loggedIn = loginUser;
                     loggedInUser = req.session.loggedIn
