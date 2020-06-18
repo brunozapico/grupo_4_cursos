@@ -159,7 +159,7 @@ const productsController = {
         })
             
     },
-    search(req,res) { // si no se busca nada, que quede ahi
+    search(req,res) { // si no se busca nada te envia a la pagina de todos los cursos.
         if(req.query.q != ''){
             let course  = db.Course.findAll({
                 where: {
@@ -178,6 +178,8 @@ const productsController = {
             .then(([course, categories]) => {
                 res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
              })
+        } else {
+            res.redirect('/products');
         }
     },
     programs(req, res){
