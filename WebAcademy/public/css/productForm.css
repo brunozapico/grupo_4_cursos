@@ -36,6 +36,7 @@ textarea{
 /* INPUT */
 .input-mg {
     margin: 10px;
+    max-width: 90%;
 }
 
 label{
