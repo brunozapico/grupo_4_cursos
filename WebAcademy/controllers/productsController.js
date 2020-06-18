@@ -159,24 +159,26 @@ const productsController = {
         })
             
     },
-    search(req,res) { // funciona la logica, revisar vista
-        let course  = db.Course.findAll({
-            where: {
-                name: {
-                    [Op.substring]: req.query.q,
-                }
-            },
-            include: [{association: 'category'}]
-        })
-        let categories = db.Category.findAll({
-            include: { association: 'courses' }
-        })
-
-        Promise.all([course, categories])
-
-        .then(([course, categories]) => {
-            res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
-         })
+    search(req,res) { // si no se busca nada, que quede ahi
+        if(req.query.q != ''){
+            let course  = db.Course.findAll({
+                where: {
+                    name: {
+                        [Op.substring]: req.query.q,
+                    }
+                },
+                include: [{association: 'category'}]
+            })
+            let categories = db.Category.findAll({
+                include: { association: 'courses' }
+            })
+    
+            Promise.all([course, categories])
+    
+            .then(([course, categories]) => {
+                res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
+             })
+        }
     },
     programs(req, res){
         db.Program.findAll({
