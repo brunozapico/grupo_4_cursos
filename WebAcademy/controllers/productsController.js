@@ -181,14 +181,6 @@ const productsController = {
         } else {
             res.redirect('/products');
         }
-    },
-    programs(req, res){
-        db.Program.findAll({
-            attributes: [id[0]]
-        })
-        .then(programs => {
-            res.json(programs.days)
-        })
     }
 }
 
