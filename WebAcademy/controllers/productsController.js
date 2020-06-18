@@ -65,7 +65,7 @@ const productsController = {
             include: { association: 'courses' }
         })
         let courses = db.Course.findByPk(req.params.id, {
-            include: [{association : 'professor'}/* , {association : 'programs'} */, {association : 'category'}]
+            include: [{association : 'professor'}, {association : 'program'}, {association : 'category'}]
         })
         Promise.all([categories, courses])
             .then(([categories, courses]) =>{
