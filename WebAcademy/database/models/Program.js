@@ -20,16 +20,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.TIME,
             allowNull: false,
         },
-        course_p_id: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-            foreignKey: true,
-            references: {
-                model: 'Course',
-                key: 'id'
-            }
-        },
-
         // created_at: {
         //     type: dataTypes.DATE,
         //     defaultValue: dataTypes.NOW
@@ -50,9 +40,9 @@ module.exports = (sequelize, dataTypes) => {
     const Program = sequelize.define(alias, cols, config);
     
     Program.associate = models => {
-        Program.belongsTo(models.Course, {
+        Program.hasMany(models.Course, {
             as: 'courses', //singular porque tiene un id de programa unico
-            foreignKey: 'course_p_id'
+            foreignKey: 'program_id'
         });
     };
     
