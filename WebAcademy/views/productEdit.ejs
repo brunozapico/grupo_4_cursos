@@ -22,7 +22,7 @@
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
-                                <option value=""><%= courses.category.title %></option>
+                                <option value="">Selecciona una categoria</option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
                                 <option name='category' value="<%= categories[i].id %> ">
                                     <%= categories[i].title %> 
@@ -91,7 +91,7 @@
                             <select class="input-mg" <%# chequear clase %> name="professor">
                                 <option value="">Selecciona el nombre del profesor</option>
                                 <% for (let j = 0; j < professor.length; j++) { %> 
-                                <option name='professor' value="<%= professor[j] %> ">
+                                <option name='professor' value="<%= professor[j].id %> ">
                                     <%= professor[j].first_name + ' ' + professor[j].last_name %> 
                                  </option>
                                  <% } %> 
