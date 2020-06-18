@@ -96,6 +96,7 @@ module.exports = (sequelize, dataTypes) => {
         });
         Course.hasMany(models.Program, {
             as: 'programs', //singular porque tiene uno
+            foreignKey: 'course_p_id'
         });
         Course.belongsTo(models.Professor, {
             as: 'professor', //singular porque tiene uno

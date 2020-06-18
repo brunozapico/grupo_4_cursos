@@ -20,7 +20,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.TIME,
             allowNull: false,
         },
-        course_id: {
+        course_p_id: {
             type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             foreignKey: true,
@@ -52,7 +52,7 @@ module.exports = (sequelize, dataTypes) => {
     Program.associate = models => {
         Program.belongsTo(models.Course, {
             as: 'courses', //singular porque tiene un id de programa unico
-            foreignKey: 'course_id'
+            foreignKey: 'course_p_id'
         });
     };
     
