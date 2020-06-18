@@ -1,10 +1,4 @@
-const tips = require('../data/tipsDataBase.json');
-const products = require('../data/products.json');
-const categories = require('../data/categoriesDataBase.json');
 const db = require('../database/models');
-const outstandingProducts = products.filter(product => {
-    return product.outstanding == "true";
-});
 
 const indexController = {
     index: (req, res) => {
