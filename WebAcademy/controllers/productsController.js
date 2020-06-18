@@ -69,7 +69,20 @@ const productsController = {
         })
         Promise.all([categories, courses])
             .then(([categories, courses]) =>{
-                res.render('productDetail', {courses, categories, loggedInUser: req.session.loggedIn});
+                
+                let startsDate = String(courses.starts_date);
+                let start_date = `${startsDate.slice(-2)}/${startsDate.slice(5, 7)}/${startsDate.slice(0, 4)}`;
+
+                let endsDate = String(courses.ends_date);
+                let end_date = `${endsDate.slice(-2)}/${endsDate.slice(5, 7)}/${endsDate.slice(0, 4)}`;
+
+                let sinceTime = String(courses.program.since_time);
+                let since = sinceTime.slice(0,5);
+
+                let upToTime = String(courses.program.up_to_time);
+                let upTo = upToTime.slice(0,5);
+
+                res.render('productDetail', {start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn});
             });
         
     },

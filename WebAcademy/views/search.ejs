@@ -12,24 +12,36 @@
     </header>
 
     <main>
-        <div class="container">
-            <h1>
-                <%= title %>
-            </h1>
-            <% for(let i = 0; i< course.length; i++) { %> 
-            <h2>
-                <%= course[i].category.title %>
-            </h2>
-            <div class="row center-90">
-                <div class="row">
-                    <div class="course col-9 col-md-5 col-lg-3">
-                        <img src="<%= course[i].image %>" alt="">
-                        <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
-                        <p><%= course[i].description_short %></p>
-                    </div>
-                </div>
-            </div>
-            <% } %> 
+        <div>
+            <section class="products-section">
+                
+                <article class="products-sec-title">
+                    <h4><%= title %></h4>
+                </article>
+                
+                <article class="products-sec-courses">
+                    <% for (let i=0; i < course.length; i++) { %>
+                        
+                        <h4 class="products-sec-category">
+                            <%= course[i].category.title %>
+                        </h4>
+                            <div class="course">
+                                <img src="<%= course[i].image %>" alt="">
+                                <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
+                                <p><%= course[i].description_short %></p>
+
+                                <div class="hidden-course-info">
+                                    <p><span class="hidden-course-info-title">Precio:</span> USD <%= course[i].price %></p>
+                                    <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course[i].starts_date %></p>
+                                    <p><span class="hidden-course-info-title">Vacantes:</span> <%= course[i].vacancies %></p>
+                                    <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
+                                </div>
+
+                            </div>
+                    <% } %>
+                </article>
+
+            </section>
         </div>
     </main>
 

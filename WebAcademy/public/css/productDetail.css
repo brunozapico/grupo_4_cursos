@@ -68,6 +68,10 @@
     padding: 5px;
 }
 
+.price-tag {
+    padding: 0;
+}
+
 @media (max-width: 1024px) {
  }
 

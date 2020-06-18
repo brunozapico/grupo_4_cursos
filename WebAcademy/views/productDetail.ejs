@@ -33,7 +33,7 @@
                 <img src="/img/cursos/curso.jpg" class="card-img-top" alt="cardImage">
                 <div class="card-body">
                     <h5 class="card-title"><%= courses.name %></h5>
-                    <p class="card-text">Este curso incluye</p>
+                    <p class="card-text">Este curso incluye:</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Material audiovisual</li>
@@ -43,7 +43,7 @@
                 </ul>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><%= `Precio - $${courses.price}` %> </li>
+                        <li class="list-group-item price-tag">Precio: $<%= courses.price %></li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -69,13 +69,13 @@
                             <h5 class="mgn-btm-5px bkgn-white-mrgn-black"><%= courses.description_full %></h5>
                         </div>
                         <div>
-                            <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= courses.starts_date %> <br> Y
-                                termina el <%= courses.ends_date %> <br> El horario sera de <%= courses.program.since_time %> hasta las <%= courses.program.up_to_time %><br>
+                            <p class="mgn-btm-5px bkgn-white-mrgn-black">El curso comienza el <%= start_date %> <br> Y
+                                termina el <%= end_date %> <br> El horario sera de <%= since %> a <%= upTo %> hs.<br>
                                 Durante los días: <%= courses.program.days %>  
                             </p>
                         </div>
                         <div class="mgn-btm-5px bkgn-white-mrgn-black">
-                            <h5>Apurate!! Solo hay <%= courses.vacancies %> vacantes</h5>
+                            <h5>¡Apurate, solo cuenta con <%= courses.vacancies %> vacantes!</h5>
                         </div>
                     </div>
                 </div>
