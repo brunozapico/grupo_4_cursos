@@ -56,9 +56,19 @@
             </article>
             
             <article class="top-courses-sec-courses">
-                <% outstandingProducts.forEach(product => { %>
-                    <%- include('partials/indexCourse.ejs', {product}) %>
-                <% }) %>
+                <% for(let i = 0; i < course.length; i++) { %>
+                    <div class="course">
+                        <img src="<%= course[i].image %>" alt="">
+                        <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
+                        <p><%= course[i].description_short %></p>
+                        <div class="hidden-course-info">
+                            <p><span class="hidden-course-info-title">Precio:</span> USD <%= course[i].price %></p>
+                            <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course[i].starts_date %></p>
+                            <p><span class="hidden-course-info-title">Vacantes:</span> <%= course[i].vacancies %></p>
+                            <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+                    </div>
+                <% } %>
             </article>            
         </section>
             
@@ -80,9 +90,16 @@
             </article>
                 
             <article class="categories-sec-categories">
-                <% categories.forEach(category => { %>
-                    <%- include('partials/indexCategory', {category}) %> 
-                <% }) %>
+                <% for(let i = 0; i < categories.length; i++) { %>
+                    <div class="category">
+                        <div class="category-logo">
+                            <i class="<%= categories[i].icon %> "></i>
+                        </div>
+                        <div class="category-title">
+                            <a href="/products#<%= categories[i].title %>"><%= categories[i].title %></a>
+                        </div>
+                    </div>
+                <% } %> 
             </article>
         </section>
                 
@@ -90,11 +107,19 @@
             <article class="tips-sec-title">
                 <h4>Algunos tips</h4>
             </article>
-                    
+    
             <article class="tips-sec-tips"> 
-                <% tips.forEach(tip => { %>
-                    <%- include('partials/indexTip', {tip}) %> 
-                <% }) %>        
+                <% for(let i = 0; i < tips.length; i++) { %>
+                    <div class="tip">
+                        <div class="tip-logo">
+                            <i class="<%= tips[i].icon %>"></i>
+                        </div>
+                        <div class="tip-info">
+                            <h4><%= tips[i].title %></h4>
+                            <p><%= tips[i].description %></p>
+                        </div>
+                    </div>
+                <% } %>            
             </article>                    
         </section>
                 

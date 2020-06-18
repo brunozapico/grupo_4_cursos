@@ -1,149 +1,186 @@
 const fs = require('fs');
 const path = require('path');
 
-const products = require('../data/products.json');
-
-// Products
-const artProducts = products.filter(product => {
-    return product.category == 'Arte'
-});
-const developmentProducts = products.filter(product => {
-    return product.category == 'Desarrollo'
-});
-const personalDevelopmentProducts = products.filter(product => {
-    return product.category == 'Desarrollo Personal'
-});
-const designProducts = products.filter(product => {
-    return product.category == 'Diseño'
-});
-const photografyProducts = products.filter(product => {
-    return product.category == 'Fotografía'
-});
-const computingProducts = products.filter(product => {
-    return product.category == 'Informática'
-});
-const marketingProducts = products.filter(product => {
-    return product.category == 'Marketing'
-});
-const businessProducts = products.filter(product => {
-    return product.category == 'Negocios'
-});
+const db = require('../database/models');
+const Op = db.Sequelize.Op;
 
 const productsController = {
-    list: (req, res) => {
-        res.render('products', {
-            artProducts,
-            developmentProducts,
-            personalDevelopmentProducts,
-            designProducts,
-            photografyProducts,
-            computingProducts,
-            marketingProducts,
-            businessProducts,
-            loggedInUser: req.session.loggedIn
+    list: (req, res) => { // funciona la logica, revisar vista
+        db.Category.findAll({
+            include: [{ association: 'courses' }]
+        }).then(categories => {
+            //res.json(categories)
+            res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
         });
     },
-    create: (req, res, next) =>{
-        res.render('productForm', {loggedInUser: req.session.loggedIn})
-    },
-    store: (req, res, next) =>{
-        
-        let product = {
-            category: req.body.category,
-            category_image: req.files[0].filename,
-            days: req.body.days,
-            description: req.body.description,
-            description_short: req.body.description_short,
-            end: `${req.body.end.slice(-2)}-${req.body.end.slice(5,7)}-${req.body.end.slice(0,4)}`,
-            id: Date.now(),
-            image: req.files[1].filename,
-            name: req.body.name,
-            outstanding: req.body.outstanding,
-            price: req.body.price,
-            start: `${req.body.start.slice(-2)}-${req.body.start.slice(5,7)}-${req.body.start.slice(0,4)}`,
-            time: req.body.time,
-            vacancies: req.body.vacancies
-        }
-        
-        let productsDB = fs.readFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json') , {encoding: 'UTF-8'})
-        
-        let products;
-        if (productsDB == ""){
-            products = []
-        } else {
-            products = JSON.parse(productsDB);
-        }
-        
-        products.push(product);
-        
-        productsDB = JSON.stringify(products);
-        
-        fs.writeFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), productsDB);
+    create: (req, res, next) => { // funciona la logica, revisar vista
+        let professor = db.Professor.findAll();
 
-        res.redirect('/products');
-    },
-    detail: (req, res) => {
-        let id = products.findIndex(product => {
-            return product.id == req.params.id
+        let categorie = db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
+            include: [{ association: 'courses'}, /*{association: 'program' }*/]
         });
-        
-        let product = products[id];
-        
-        res.render('productDetail', {product, loggedInUser: req.session.loggedIn});
-    },
-    edit: (req, res, next) => {
-        let id = products.findIndex(product => {
-            return product.id == req.params.id
+        Promise.all([professor, categorie])
+        .then(([professor, categories]) => {
+            res.render('productForm', { categories, professor, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
         });
-        
-        let product = products[id];
-        
-        res.render('productEdit', {product, loggedInUser: req.session.loggedIn});
     },
-    update: (req, res, next) => {
-        let product = {
-            category: req.body.category,
-            category_image: req.files[0].filename,
-            days: req.body.days,
-            description: req.body.description,
-            description_short: req.body.description_short,
-            end: `${req.body.end.slice(-2)}-${req.body.end.slice(5,7)}-${req.body.end.slice(0,4)}`,
-            id: Date.now(),
-            image: req.files[1].filename,
-            name: req.body.name,
-            outstanding: req.body.outstanding,
-            price: req.body.price,
-            start: `${req.body.start.slice(-2)}-${req.body.start.slice(5,7)}-${req.body.start.slice(0,4)}`,
-            time: req.body.time,
-            vacancies: req.body.vacancies
-        };
-        let products = JSON.parse(fs.readFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), {encoding: 'UTF-8'}))
+    store: (req, res, next) => {
+        let days = req.body.days;
+        let shift = req.body.shifts;
+        let programID;
 
-        let id = products.findIndex(product => {
-            return product.id == req.params.id;
+        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+            programID = 1;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+            programID = 2;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+            programID = 3;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+            programID = 4;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+            programID = 5;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+            programID = 6;
+        }
+
+        db.Course.create({
+            name: req.body.name,
+            price: req.body.price,
+            starts_date: req.body.starts_date,
+            ends_date: req.body.ends_date,
+            image: `/img/cursos/${req.files[0].filename}`,
+            vacancies: req.body.vacancies,
+            outstanding: req.body.outstanding,
+            description_short: req.body.description_short,
+            description_full: req.body.description_full,
+            category_id: req.body.category,
+            professor_id: req.body.professor,
+            program_id: programID
+        }).then(() => {
+            res.redirect('/products')
+        });
+    },
+    detail: (req, res) => { // falta que muestre el horario y los dias
+        let categories = db.Category.findAll({
+            include: { association: 'courses' }
         })
+        let courses = db.Course.findByPk(req.params.id, {
+            include: [{association : 'professor'}, {association : 'program'}, {association : 'category'}]
+        })
+        Promise.all([categories, courses])
+            .then(([categories, courses]) =>{
+                
+                let startsDate = String(courses.starts_date);
+                let start_date = `${startsDate.slice(-2)}/${startsDate.slice(5, 7)}/${startsDate.slice(0, 4)}`;
 
-        products[id] = product;
+                let endsDate = String(courses.ends_date);
+                let end_date = `${endsDate.slice(-2)}/${endsDate.slice(5, 7)}/${endsDate.slice(0, 4)}`;
 
-        productsDB = JSON.stringify(products);
+                let sinceTime = String(courses.program.since_time);
+                let since = sinceTime.slice(0,5);
 
-        fs.writeFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), productsDB);
+                let upToTime = String(courses.program.up_to_time);
+                let upTo = upToTime.slice(0,5);
 
-        res.redirect('/products');
+                res.render('productDetail', {start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn});
+            });
         
+    },
+    edit: (req, res, next) => { // funciona la logica, revisar vista. //falta traer fecha, dias y horario
+        let courseEdit = db.Course.findByPk(req.params.id, {
+            include: [{association: 'category'},{association: 'professor'}]
+        });
+        let categoryEdit = db.Category.findAll({
+            include: {association: 'courses'}
+        });
+
+        let professor = db.Professor.findAll();
+
+            Promise.all([courseEdit, categoryEdit, professor])
+            .then(([courses, categories, professor]) => {
+                res.render('productEdit', {courses, categories, professor, loggedInUser: req.session.loggedIn});
+            });
+    },
+    update: (req, res) => {
+        let days = req.body.days;
+        let shift = req.body.shifts;
+        let programID;
+
+        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+            programID = 1;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+            programID = 2;
+        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+            programID = 3;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+            programID = 4;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+            programID = 5;
+        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+            programID = 6;
+        }
+        
+            db.Course.update({
+                name: req.body.name,
+                price: req.body.price,
+                starts_date: req.body.starts_date,
+                ends_date: req.body.ends_date,
+                image: `/img/cursos/${req.files[0].filename}`,
+                vacancies: req.body.vacancies,
+                outstanding: req.body.outstanding,
+                description_short: req.body.description_short,
+                description_full: req.body.description_full,
+                category_id: req.body.category,
+                professor_id: req.body.professor,
+                program_id: programID
+            },{
+                where :{
+                    id : req.params.id}
+            })
+            .then( () =>{
+                res.redirect(`/products/detail/${req.params.id}`)
+            });
     },
     destroy : (req, res) => {
-        let products = JSON.parse(fs.readFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), {encoding: 'UTF-8'}))
-        
-        products = products.filter(product => {
-            return product.id != req.params.id;
+        db.UserCourse.destroy({
+            where : {
+                courses_id : req.params.id
+            }
         })
-
-        productsDB = JSON.stringify(products);
-
-        fs.writeFileSync(path.join(__dirname + '/../' + 'data/' + 'products.json'), productsDB);
-
-        res.redirect('/products');
+        .then(() => {
+            db.Course.destroy({
+                where : {
+                    id :req.params.id
+                    }
+                })
+                .then(()=>{
+                    res.redirect('/products')
+                })
+        })
+            
+    },
+    search(req,res) { // si no se busca nada te envia a la pagina de todos los cursos.
+        if(req.query.q != ''){
+            let course  = db.Course.findAll({
+                where: {
+                    name: {
+                        [Op.substring]: req.query.q,
+                    }
+                },
+                include: [{association: 'category'}]
+            })
+            let categories = db.Category.findAll({
+                include: { association: 'courses' }
+            })
+    
+            Promise.all([course, categories])
+    
+            .then(([course, categories]) => {
+                res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
+             })
+        } else {
+            res.redirect('/products');
+        }
     }
 }
 

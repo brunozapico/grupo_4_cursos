@@ -2,33 +2,35 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const { check, validationResult, body } = require('express-validator');
+const db = require('../database/models');
 
 const usersController = {
     register: (req, res) => {
-        res.render('register', {loggedInUser: req.session.loggedIn});
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
+            .then(categories => {
+                res.render('register', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
     create: (req, res) => {
-        let user = {
-            name: req.body.name,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-            avatar: req.files[0].filename
+        let user;
+        if(req.files[0] != undefined){ // si hay avatar
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: `/img/users/${req.files[0].filename}`,
+            }
+        } else { // si no hay avatar
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+            }
         }
         
-        let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
-
-        let users;
-        if (usersDataBase == ""){
-            users = [];
-        } else {
-            users = JSON.parse(usersDataBase);
-        }
-
-        users.push(user);
-        
-        usersJSON = JSON.stringify(users);
-
-        fs.writeFileSync(path.join(__dirname, "..", "data", "users.json"), usersJSON);
+        db.User.create(user);
 
         req.session.loggedIn = user;
         res.cookie('remember', user.email, { maxAge: 6000000 })
@@ -36,55 +38,99 @@ const usersController = {
         res.redirect('/users');
     },
     login: (req, res) => {
-        res.render('login', {loggedInUser: req.session.loggedIn})
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
+            .then(categories => {
+                res.render('login', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
     processLogin: (req, res) => {
-        let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
+        let categories = db.Category.findAll({
+            include: {association: 'courses'}
+        })
+        let user = db.User.findOne({where: {email: req.body.email}});
 
-        let users;
-        if (usersDataBase == ""){
-            users = [];
-        } else {
-            users = JSON.parse(usersDataBase);
-        }
-        
-        let loginUser;
-        for(let i = 0; i < users.length; i++) {
-            if(users[i].email == req.body.email) {
-                if(bcrypt.compareSync(req.body.password, users[i].password)) {
-                    loginUser = users[i];
-                    break;
+        Promise.all([categories, user])
+            .then(([categories, user]) => {
+                let loginUser = user;
+                if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { 
+                // en la database tenemos contraseñas no encriptadas, por eso tengo que verificar tambien sin el bcrypt, en un futuro seria solo con bcrypt.
+                    
+                    req.session.loggedIn = loginUser;
+                    loggedInUser = req.session.loggedIn
+
+                    if(req.body.remember != undefined) {
+                        res.cookie('remember', loginUser.email, { maxAge: 6000000 })
+                    }
+
+                    res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                } else {
+                    req.session.destroy();
+                    res.clearCookie('remember');
+                    res.render('login', {errors: [
+                        {msg: 'Credenciales inválidas'}
+                    ], loggedInUser: {name:'Iniciar Sesión'}, categories});
                 }
-            }
-        }
-        
-        if(loginUser == undefined) {
-            req.session.destroy(); // borra session
-            res.clearCookie('remember'); // borra cookies
-            return res.render('login', {errors: [
-                {msg: 'Credenciales inválidas'}
-            ], loggedInUser: {name:'Iniciar Sesión'}});
-        }
-        
-        // Creo la session
-        req.session.loggedIn = loginUser;
-        loggedInUser = req.session.loggedIn
-
-        if(req.body.remember != undefined) {
-            res.cookie('remember', loginUser.email, { maxAge: 6000000 })
-        }
-
-        res.redirect('/users');
-
+            });
     },
     logout: (req, res) => {
-        req.session.destroy(); // borra session
-        res.clearCookie('remember'); // borra cookies
+        req.session.destroy();
+        res.clearCookie('remember');
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        res.render('users', {loggedInUser: req.session.loggedIn});
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
+            .then(categories => {
+                res.render('users', {categories, loggedInUser: req.session.loggedIn});
+            });
     },
+    edit: (req, res) => {
+        let categories = db.Category.findAll({
+            include: {association: 'courses'}
+        })
+        let user = db.User.findOne({where: {email: req.params.email}});
+
+        Promise.all([categories, user])
+            .then(([categories, user]) => {
+                res.render('editProfile', {user:user, loggedInUser: req.session.loggedIn, categories});
+            });
+    },
+    update: (req, res) => {
+        let user;
+        if(req.files[0] != undefined){
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: `/img/users/${req.files[0].filename}`,
+            }
+        } else {
+            user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+            }
+        }
+        
+        db.User.update(user, {
+            where: {
+                email: req.params.email
+            }
+        })
+            .then(() => {
+                // primero limpio la cookie anterior por si se edito el mail, despues creo la nueva
+                res.clearCookie('remember');
+                req.session.loggedIn = user;
+                if(req.body.remember != undefined) {
+                    res.cookie('remember', req.session.loggedIn.email, { maxAge: 6000000 })
+                }
+
+                res.redirect(`/users`);
+            })
+    }
 }
 
 module.exports = usersController;

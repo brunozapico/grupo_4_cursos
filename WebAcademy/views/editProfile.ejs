@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %> 
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <header>
+        <%- include('partials/header') %>
+    </header>
+    
+    <div class="container">
+        <form action="/users/editProfile/<%= user.email %>?_method=PUT" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off">
+            <div class="row">
+                <div class="col-12 register-title">
+                    <h2>Edita tus datos personales.</h2>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Nombre completo" aria-label="Username" aria-describedby="basic-addon1" name="name" required value="<%= user.name %> ">
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" required value="<%= user.email %> ">
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Nueva contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input cf-input" id="inputGroupFile02" name="avatar">
+                          <label class="custom-file-label cf-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02"><i class="far fa-user-circle avatar-logo"></i><span class="avatar-text">Avatar</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input type="checkbox" name="remember" class="remember"> Recordarme
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11 register-btn-col">
+                    <button type="submit" class="register-btn">Editar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <footer>
+       <%- include('partials/footer') %> 
+    </footer>
+    
+    <%- include('partials/scripts') %>
+</body>
+</html>

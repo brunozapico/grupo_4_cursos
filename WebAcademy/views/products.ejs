@@ -1,124 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/products.css"> 
+    <link rel="stylesheet" href="/css/products.css">
 </head>
+
 <body>
     <header>
-        <%- include('partials/header') %>     
+        <%- include('partials/header') %>
     </header>
     
     <main>
-        <div class="container">
-            <h1>
-                Todos nuestros cursos:
-            </h1>
-
-            <h2 id="Arte">
-                Arte
-            </h2>
-            <div class="row center-90">
+        <div>
+            <section class="products-section">
                 
-                <div class="row">
-                    <% artProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Desarrollo">
-                Desarrollo
-            </h2>
-            <div class="row center-90">
+                <article class="products-sec-title">
+                    <h4> <%= title %></h4>
+                </article>
                 
-                <div class="row">
-                    <% developmentProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
+                <article class="products-sec-courses">
+                    <% for (let i=0; i < categories.length; i++) { %>
+                        
+                        <h4 class="products-sec-category" id="<%= categories[i].title %>">
+                            <%= categories[i].title %>
+                        </h4>
+                        
+                        <% for (let j = 0; j < categories[i].courses.length; j++) { 
+                            let course = categories[i].courses[j] %>
+                            
+                            <div class="course">
+                                <img src="<%= course.image %>" alt="">
+                                <h4><a href="/products/detail/<%= course.id %>"><%= course.name %></a></h4>
+                                <p><%= course.description_short %></p>
 
-            <h2 id="Desarrollo Personal">
-                Desarrollo Personal
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% personalDevelopmentProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
+                                <div class="hidden-course-info">
+                                    <p><span class="hidden-course-info-title">Precio:</span> USD <%= course.price %></p>
+                                    <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course.starts_date %></p>
+                                    <p><span class="hidden-course-info-title">Vacantes:</span> <%= course.vacancies %></p>
+                                    <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
+                                </div>
 
-            <h2 id="Diseño">
-                Diseño
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% designProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
+                            </div>
+                        <% } %>
+                            
+                    <% } %>
+                </article>
 
-            <h2 id="Fotografía">
-                Fotografía
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% photografyProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Informática">
-                Informática
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% computingProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Marketing">
-                Marketing
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% marketingProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
-            <h2 id="Negocios">
-                Negocios
-            </h2>
-            <div class="row center-90">
-                
-                <div class="row">
-                    <% businessProducts.forEach(product => { %>
-                        <%- include('partials/productsCourse.ejs', {product}) %>
-                    <% }) %> 
-                </div>
-            </div>
-
+            </section>
         </div>
-                
     </main>
-    
+            
     <footer>
-        <%- include('partials/footer') %> 
+        <%- include('partials/footer') %>
     </footer>
-    
-    <%- include('partials/scripts') %> 
+            
+    <%- include('partials/scripts') %>
 </body>
+        
 </html>

@@ -1,17 +1,30 @@
-const tips = require('../data/tipsDataBase.json');
-const products = require('../data/products.json');
-const categories = require('../data/categoriesDataBase.json');
-const outstandingProducts = products.filter(product => {
-    return product.outstanding == "true";
-});
+const db = require('../database/models');
 
 const indexController = {
     index: (req, res) => {
-        res.render('index', {products, outstandingProducts, categories, tips, loggedInUser: req.session.loggedIn});
+        let categories = db.Category.findAll({
+            include: [{ association: 'courses' }]
+        })
+        let course = db.Course.findAll({
+            where: {
+                outstanding : 1
+            }
+        })
+        let tips = db.Tip.findAll()
+
+        Promise.all([categories, course, tips])
+        .then(([categories, course, tips])=>{
+            res.render('index', {categories, course, tips, loggedInUser: req.session.loggedIn});
+        })
     },
     shoppingCart: (req, res) => {
-        res.render('shoppingCart', {loggedInUser: req.session.loggedIn})
+        db.Category.findAll({
+            include: [{ association: 'courses' }]
+        })
+            .then(categories => {
+                res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn})
+            });
     }
-}
+};
 
 module.exports = indexController;
