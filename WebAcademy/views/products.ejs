@@ -16,13 +16,13 @@
             <section class="products-section">
                 
                 <article class="products-sec-title">
-                    <h4><%= title %></h4>
+                    <h4> <%= title %></h4>
                 </article>
                 
                 <article class="products-sec-courses">
                     <% for (let i=0; i < categories.length; i++) { %>
                         
-                        <h4 class="products-sec-category">
+                        <h4 class="products-sec-category" id="<%= categories[i].title %>">
                             <%= categories[i].title %>
                         </h4>
                         
