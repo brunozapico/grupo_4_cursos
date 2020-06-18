@@ -368,6 +368,7 @@ main {
 }
 
 .top-courses-sec-courses .course {
+    margin: 10px auto;
     width: 23%;
     height: 100%;
     display: flex;
