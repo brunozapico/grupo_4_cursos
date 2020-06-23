@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const {check, validationResult, body} = require('express-validator');
+
 
 const db = require('../database/models');
 const Op = db.Sequelize.Op;
@@ -102,6 +104,10 @@ const productsController = {
             });
     },
     update: (req, res) => {
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()){
+            
         let days = req.body.days;
         let shift = req.body.shifts;
         let programID;
@@ -140,6 +146,10 @@ const productsController = {
             .then( () =>{
                 res.redirect(`/products/detail/${req.params.id}`)
             });
+        } else {
+            res.redirect(`/products/Edit/${req.params.id}`, {errors: errors.errors})
+        }
+
     },
     destroy : (req, res) => {
         db.UserCourse.destroy({

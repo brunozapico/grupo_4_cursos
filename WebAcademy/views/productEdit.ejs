@@ -15,6 +15,19 @@
             <div class="row">
                 <div class="col-md-12"><!--TITULO-->
                     <h1>Estas editando el curso: <%= courses.name %> </h1>
+
+                    <% if (typeof errors != 'undefined') { %> 
+                        
+                        <%= <h2>Pero, espera! Que hay algun error, cheque la siguiente lista.</h2> %>  
+                        
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++) { %> 
+                                <li>
+                                    <%= errors[i].msg %> 
+                                </li>
+                        </ul>
+                    <% } %> 
+
                 </div>
                 <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
@@ -22,7 +35,7 @@
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
-                                <option value="">Selecciona una categoria</option>
+                                <option value="0">Selecciona una categoria</option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
                                 <option name='category' value="<%= categories[i].id %> ">
                                     <%= categories[i].title %> 
@@ -36,14 +49,14 @@
                             <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= courses.name %> ">
                         </div>
                     </div>
-                    <div class="row"><!--Descripcion -->
+                    <div class="row"><!--Descripcion completa -->
                         <div class="col-md-12 center">
-                            <textarea name="description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= courses.description_full %></textarea>
+                            <textarea name="description_full" id="" cols="82%" rows="10" placeholder="Escriba una descripcion detallada del Curso"><%= courses.description_full %></textarea>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
                         <div class="col-md-12 center">
-                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"><%= courses.description_short %> </textarea>
+                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion breve del Curso"><%= courses.description_short %> </textarea>
                         </div>
                     </div>
                     <div class="row center"><!--Calendario --> 
