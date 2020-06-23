@@ -14,28 +14,38 @@ const usersController = {
             });
     },
     create: (req, res) => {
-        let user;
-        if(req.files[0] != undefined){ // si hay avatar
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar: `/img/users/${req.files[0].filename}`,
-            }
-        } else { // si no hay avatar
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-            }
-        }
-        
-        db.User.create(user);
-
-        req.session.loggedIn = user;
-        res.cookie('remember', user.email, { maxAge: 6000000 })
-
-        res.redirect('/users');
+        db.Category.findAll({
+            include: {association: 'courses'}
+        })
+            .then(categories => {
+                let errors = validationResult(req);
+                if(!errors.isEmpty()) {
+                    res.render('register', {errors: errors.errors, categories, loggedInUser: req.session.loggedIn});
+                } else {
+                    let user;
+                    if(req.files[0] != undefined){ // si hay avatar
+                        user = {
+                            name: req.body.name,
+                            email: req.body.email,
+                            password: bcrypt.hashSync(req.body.password, 10),
+                            avatar: `/img/users/${req.files[0].filename}`,
+                        }
+                    } else { // si no hay avatar
+                        user = {
+                            name: req.body.name,
+                            email: req.body.email,
+                            password: bcrypt.hashSync(req.body.password, 10),
+                        }
+                    }
+                    
+                    db.User.create(user);
+            
+                    req.session.loggedIn = user;
+                    res.cookie('remember', user.email, { maxAge: 6000000 })
+            
+                    res.redirect('/users');
+                }
+            });
     },
     login: (req, res) => {
         db.Category.findAll({
