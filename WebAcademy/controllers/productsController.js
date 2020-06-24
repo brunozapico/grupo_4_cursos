@@ -27,40 +27,46 @@ const productsController = {
         });
     },
     store: (req, res, next) => {
-        let days = req.body.days;
-        let shift = req.body.shifts;
-        let programID;
+        let errors = validationResult(req);
+        if (!errors.isEmpty() ) {
+            res.redirect(`/products/create/${req.params.id}`, {errors: errors.errors})  //falta arreglar la ruta para que se vean los errores
+        } else {
+                    
+            let days = req.body.days;
+            let shift = req.body.shifts;
+            let programID;
 
-        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-            programID = 1;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-            programID = 2;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-            programID = 3;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-            programID = 4;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-            programID = 5;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-            programID = 6;
+            if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+                programID = 1;
+            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+                programID = 2;
+            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+                programID = 3;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+                programID = 4;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+                programID = 5;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+                programID = 6;
+            }
+
+            db.Course.create({
+                name: req.body.name,
+                price: req.body.price,
+                starts_date: req.body.starts_date,
+                ends_date: req.body.ends_date,
+                image: `/img/cursos/${req.files[0].filename}`,
+                vacancies: req.body.vacancies,
+                outstanding: req.body.outstanding,
+                description_short: req.body.description_short,
+                description_full: req.body.description_full,
+                category_id: req.body.category,
+                professor_id: req.body.professor,
+                program_id: programID
+            }).then(() => {
+                res.redirect('/products')
+            });
         }
-
-        db.Course.create({
-            name: req.body.name,
-            price: req.body.price,
-            starts_date: req.body.starts_date,
-            ends_date: req.body.ends_date,
-            image: `/img/cursos/${req.files[0].filename}`,
-            vacancies: req.body.vacancies,
-            outstanding: req.body.outstanding,
-            description_short: req.body.description_short,
-            description_full: req.body.description_full,
-            category_id: req.body.category,
-            professor_id: req.body.professor,
-            program_id: programID
-        }).then(() => {
-            res.redirect('/products')
-        });
     },
     detail: (req, res) => { // falta que muestre el horario y los dias
         let categories = db.Category.findAll({
