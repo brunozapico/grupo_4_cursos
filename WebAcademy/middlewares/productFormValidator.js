@@ -20,19 +20,18 @@ module.exports = [
         .withMessage('Debe de tener un minimo de 50 caracteres'),
 
     check('starts_date').isAfter()
-        .withMessage('La fecha de inicio debe ser porterior a la actual'), //chequea que la fecha sea porterior a la actual, ver si necesita parametros
+        .withMessage('La fecha de inicio debe ser posterior a la actual'),
 
     body('ends_date').custom((value, {req}) => {
-        let a = new Date (req.body.starts_date);
-        let b = new Date (value);
+        let starts_date = new Date (req.body.starts_date);
+        let ends_date = new Date (value);
 
-        if ((b - a) > 0) {
+        if ((ends_date - starts_date) > 0) {
             return true
-        } return false
-        
+        }
+        return false
 
-    })
-        .withMessage('La fecha de fin debe ser porterior a la fecha de inicio'), //chequear parametros
+    }).withMessage('La fecha de fin debe ser posterior a la fecha de inicio'),
 
     body('days').custom((value)=>{
         if(value == "0" )  {
@@ -57,13 +56,14 @@ module.exports = [
         return true
         
     }).withMessage('Debes seleccionar un profesor'),
-    check('vacancies').isInt({min: 12, max: 30}) // podria ser {min: 12, max: 30}
-        .withMessage('Deben ser desde 12 a 30 vacantes'), // con este tengo dudas de la segunda parte (lo saque de gitHub)
 
-    check('outstanding').isIn([1, 0]).withMessage('Error en outstanding'), // no estoy seguro si sera de esta forma
+    check('vacancies').isInt({min: 12, max: 30})
+        .withMessage('Deben ser desde 12 a 30 vacantes'),
 
-    check('price').isInt({min: 0, max: 999})
-        .withMessage('Debe selecionar un precio'),  //estoy en duda de que sea asi o con un .isINT
+    check('outstanding').isIn([1, 0]).withMessage('Debes seleccionar si es un Destacado o no'),
+
+    check('price').isInt({min: 1})
+        .withMessage('Debe selecionar un precio'),
 
     body('image')
         .custom((value, {req}) => {
@@ -76,7 +76,7 @@ module.exports = [
                     return true;
                 case '.png':
                     return true;
-                case '.gif':  // no creo que coloquen un gif, pero no seria mala idea
+                case '.gif':  
                     return true;
                 default:
                     return false;
