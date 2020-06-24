@@ -11,7 +11,7 @@
     
     <div class="container">
         <% if (typeof errors != 'undefined') { %>
-            ERRORS:
+            <p>Atención, hubo un error.</p>
             <ul>
                 <% for( let i = 0; i < errors.length; i++ ) { %>
                     <li><%= errors[i].msg %> </li>

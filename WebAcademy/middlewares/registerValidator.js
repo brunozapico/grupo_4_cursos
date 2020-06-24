@@ -19,14 +19,13 @@ module.exports = [
         if(value != '') {
             db.User.findOne({where: {email: req.body.email}})
             .then(user => {
-                // console.log(`USER ES: ${user}`)
                 if(user != null){
-                    return false;
+                    return true;
                 }
-                return true;
+                return false;
             })
         } else {
-            return true;
+            return true; // se agarra el error con el isEmail(), si no se repite.
         }
     })
     .withMessage('Esa dirección de correo electrónico ya existe.'),
@@ -34,6 +33,15 @@ module.exports = [
     check('password')
     .isLength({min:8})
     .withMessage('La contraseña debe tener al menos 8 carácteres.'),
+
+    body('c-password')
+    .custom((value, {req}) => {
+        if(value != req.body.password) {
+            return false
+        }
+        return true;
+    })
+    .withMessage('Las contraseñas no coinciden.'),
     
     body('avatar')
     .custom((value, {req}) => {
@@ -55,15 +63,5 @@ module.exports = [
             return true;
         }
     })
-    .withMessage('El archivo debe ser de formato: ".jpg", ".jpeg", ".png" o ".gif".'),
-
-    body('c-password')
-    .custom((value, {req}) => {
-        if(value != req.body.password) {
-            return false
-        }
-
-        return true;
-    })
-    .withMessage('Las contraseñas no coinciden.')
+    .withMessage('El archivo debe ser de formato: ".jpg", ".jpeg", ".png" o ".gif".')
 ]
