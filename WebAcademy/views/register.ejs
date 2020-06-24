@@ -18,7 +18,7 @@
                 <% } %>
             </ul>
         <% } %>
-        <form action="/users/register" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off">
+        <form action="/users/register" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off" id="register-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Inscribite y comenza a aprender.</h2>
@@ -26,7 +26,7 @@
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="name-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="email-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                         </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="password-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                         </div>
@@ -56,11 +56,11 @@
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="c-password-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Repetir contraseña" aria-label="Username" aria-describedby="basic-addon1" name="c-password">
+                        <input type="password" class="form-control" placeholder="Repetir contraseña" aria-label="Username" aria-describedby="basic-addon1" name="c_password">
                     </div>
                 </div>
             </div>
@@ -75,8 +75,15 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger hidden" role="alert" id="alert">
+                        Formatos válidos: ".jpg", ".jpeg", ".png" o ".gif".
+                      </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-11 register-btn-col">
-                    <button type="submit" class="register-btn">Registrate</button>
+                    <button type="submit" class="register-btn disabled" name="submit">Registrate</button>
                 </div>
             </div>
             <div class="row">
@@ -97,5 +104,7 @@
     </footer>
     
     <%- include('partials/scripts') %>
+
+    <script src="/js/registerValidator.js"></script>
 </body>
 </html>
