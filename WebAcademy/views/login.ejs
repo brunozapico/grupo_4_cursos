@@ -10,7 +10,7 @@
     </header>
     
     <div class="container">
-        <% if(typeof errors != 'undefined') { %>
+        <% if (typeof errors != 'undefined') { %>
             <p>Atención, hubo un error.</p>
             <ul>
                 <% for (let i = 0; i < errors.length; i++) { %>
@@ -34,7 +34,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" required>
+                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email">
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password" required>
+                        <input type="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password">
                     </div>
                 </div>
             </div>

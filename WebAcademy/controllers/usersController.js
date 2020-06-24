@@ -61,7 +61,11 @@ const usersController = {
         })
         let user = db.User.findOne({where: {email: req.body.email}});
 
-        Promise.all([categories, user])
+        let errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            res.render('login', {errors: errors.errors, loggedInUser: {name:'Iniciar Sesión'}, categories});
+        } else {
+            Promise.all([categories, user])
             .then(([categories, user]) => {
                 let loginUser = user;
                 if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { 
@@ -83,6 +87,7 @@ const usersController = {
                     ], loggedInUser: {name:'Iniciar Sesión'}, categories});
                 }
             });
+        }
     },
     logout: (req, res) => {
         req.session.destroy();
