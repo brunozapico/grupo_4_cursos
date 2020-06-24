@@ -28,10 +28,9 @@ const productsController = {
     },
     store: (req, res, next) => {
         let errors = validationResult(req);
+
         if (!errors.isEmpty() ) {
-            res.redirect(`/products/create/${req.params.id}`, {errors: errors.errors})  //falta arreglar la ruta para que se vean los errores
-        } else {
-                    
+                                
             let days = req.body.days;
             let shift = req.body.shifts;
             let programID;
@@ -66,6 +65,22 @@ const productsController = {
             }).then(() => {
                 res.redirect('/products')
             });
+
+        }else{
+            let courseEdit = db.Course.findByPk(req.params.id, {
+                include: [{association: 'category'},{association: 'professor'}]
+            });
+            let categoryEdit = db.Category.findAll({
+                include: {association: 'courses'}
+            });
+    
+            let professor = db.Professor.findAll();
+    
+                Promise.all([courseEdit, categoryEdit, professor])
+                .then(([courses, categories, professor]) => {
+                   
+                    res.render('products/create', {errors:errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn});
+                });
         }
     },
     detail: (req, res) => { // falta que muestre el horario y los dias
