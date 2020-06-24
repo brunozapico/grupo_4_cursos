@@ -3,9 +3,10 @@ const {check, validationResult, body} = require('express-validator');
 
 module.exports = [
     body('category').custom((value) => {
-        if(typeof value != "string")  { //no puedo hacer andar esto
+        if(value == "0" )  {
             return false
         }
+        return true
     }).withMessage('Tenes que seleccionar una categoria'),
 
     check('name').isLength({min: 3})
@@ -20,24 +21,45 @@ module.exports = [
     check('starts_date').isAfter()
         .withMessage('La fecha de inicio debe ser porterior a la actual'), //chequea que la fecha sea porterior a la actual, ver si necesita parametros
 
-    check('ends_date').isAfter('starts_date')
+    body('ends_date').custom((value, {req}) => {
+        let a = new Date (req.body.starts_date);
+        let b = new Date (value);
+
+        if ((b - a) > 0) {
+            return true
+        } return false
+        
+
+    })
         .withMessage('La fecha de fin debe ser porterior a la fecha de inicio'), //chequear parametros
 
     body('days').custom((value)=>{
+        if(value == "0" )  {
+            return false
+        }
+        return true
 
-    }),
+    }).withMessage('Debes seleccionar un dia'),
 
-    body('shifts').custom((value)=>{        // terminar validaciones
+    body('shifts').custom((value)=>{  
+        if(value == "0" )  {
+            return false
+        }
+        return true    
         
-    }),
+    }).withMessage('Debes seleccionar un turno'),
 
     body('professor').custom((value)=>{
+        if(value == "0" )  {
+            return false
+        }
+        return true
         
-    }),
+    }).withMessage('Debes seleccionar un profesor'),
     check('vacancies').isInt({min: 12, max: 30}) // podria ser {min: 12, max: 30}
         .withMessage('Deben ser desde 12 a 30 vacantes'), // con este tengo dudas de la segunda parte (lo saque de gitHub)
 
-    check('outstanding').isEmpty().withMessage('Error en outstanding'), // no estoy seguro si sera de esta forma
+    check('outstanding').isIn([1, 0]).withMessage('Error en outstanding'), // no estoy seguro si sera de esta forma
 
     check('price').isInt().withMessage('Debe selecionar un precio'),  //estoy en duda de que sea asi o con un .isINT
 
