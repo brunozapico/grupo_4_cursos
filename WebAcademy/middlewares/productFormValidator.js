@@ -1,4 +1,5 @@
 const {check, validationResult, body} = require('express-validator');
+const path = require('path');
 
 
 module.exports = [
@@ -61,7 +62,8 @@ module.exports = [
 
     check('outstanding').isIn([1, 0]).withMessage('Error en outstanding'), // no estoy seguro si sera de esta forma
 
-    check('price').isInt().withMessage('Debe selecionar un precio'),  //estoy en duda de que sea asi o con un .isINT
+    check('price').isInt({min: 0, max: 999})
+        .withMessage('Debe selecionar un precio'),  //estoy en duda de que sea asi o con un .isINT
 
     body('image')
         .custom((value, {req}) => {
