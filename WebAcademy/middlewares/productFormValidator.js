@@ -3,7 +3,7 @@ const {check, validationResult, body} = require('express-validator');
 
 module.exports = [
     body('category').custom((value) => {
-        if(value == '0') {
+        if(typeof value != "string")  { //no puedo hacer andar esto
             return false
         }
     }).withMessage('Tenes que seleccionar una categoria'),
@@ -34,13 +34,12 @@ module.exports = [
     body('professor').custom((value)=>{
         
     }),
-
-    check('vacancies').isInt([{allow_leading_zeroes: false}, {gt: 1, lt: 9}]) // podria ser {min: 12, max: 30}
+    check('vacancies').isInt({min: 12, max: 30}) // podria ser {min: 12, max: 30}
         .withMessage('Deben ser desde 12 a 30 vacantes'), // con este tengo dudas de la segunda parte (lo saque de gitHub)
 
-    check('outstanding').isEmpty(), // no estoy seguro si sera de esta forma
+    check('outstanding').isEmpty().withMessage('Error en outstanding'), // no estoy seguro si sera de esta forma
 
-    check('price').isNumeric(),  //estoy en duda de que sea asi o con un .isINT
+    check('price').isInt().withMessage('Debe selecionar un precio'),  //estoy en duda de que sea asi o con un .isINT
 
     body('image')
         .custom((value, {req}) => {

@@ -153,7 +153,20 @@ const productsController = {
                 res.redirect(`/products/detail/${req.params.id}`)
             });
         } else {
-            res.redirect(`/products/Edit/${req.params.id}`, {errors: errors.errors})
+            let courseEdit = db.Course.findByPk(req.params.id, {
+                include: [{association: 'category'},{association: 'professor'}]
+            });
+            let categoryEdit = db.Category.findAll({
+                include: {association: 'courses'}
+            });
+    
+            let professor = db.Professor.findAll();
+    
+                Promise.all([courseEdit, categoryEdit, professor])
+                .then(([courses, categories, professor]) => {
+                   
+                    res.render('productEdit', {errors:errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn});
+                });
         }
 
     },

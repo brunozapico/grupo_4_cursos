@@ -18,13 +18,14 @@
 
                     <% if (typeof errors != 'undefined') { %> 
                         
-                        <%= <h2>Pero, espera! Que hay algun error, cheque la siguiente lista.</h2> %>  
+                         <h2> <%='Pero, espera! Que hay algun error, cheque la siguiente lista.' %> </h2> 
                         
                         <ul>
                             <% for (let i = 0; i < errors.length; i++) { %> 
                                 <li>
                                     <%= errors[i].msg %> 
                                 </li>
+                                <% } %> 
                         </ul>
                     <% } %> 
 
@@ -34,10 +35,10 @@
                         <div class="col-md-6 border">
                             <!--Categorias-->
                             <label for="">Categorias</label>
-                            <select class="input-mg" <%# chequear clase %> name="category">
+                            <select class="input-mg" <%# chequear clase %> name="categorySelect">
                                 <option value="0">Selecciona una categoria</option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
-                                <option name='category' value="<%= categories[i].id %> ">
+                                <option name='category' value="<%= categories[i].id %>">
                                     <%= categories[i].title %> 
                                  </option>
                                  <% } %> 
@@ -46,7 +47,7 @@
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= courses.name %> ">
+                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= courses.name %>">
                         </div>
                     </div>
                     <div class="row"><!--Descripcion completa -->
@@ -63,11 +64,11 @@
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="" value="<%= courses.starts_date %> ">
+                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="" value="<%= courses.starts_date %>">
                             </div>
                             <div>
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="" value="<%= courses.ends_date %> ">
+                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="" value="<%= courses.ends_date %>">
                             </div>
                         </div>
                         <div class="col-md-6 border space">
