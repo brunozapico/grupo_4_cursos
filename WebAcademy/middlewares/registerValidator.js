@@ -20,9 +20,9 @@ module.exports = [
             db.User.findOne({where: {email: req.body.email}})
             .then(user => {
                 if(user != null){
-                    return true;
+                    return false;
                 }
-                return false;
+                return true;
             })
         } else {
             return true; // se agarra el error con el isEmail(), si no se repite.
