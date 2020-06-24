@@ -17,6 +17,16 @@
                 <div class="col-md-12"><!--TITULO-->
                     <h1> <%= title  %> </h1>
                 </div>
+                <!--ERRORES-->
+                <% if (typeof errors != 'undefined') { %>
+                    ERRORS:
+                    <ul>
+                        <% for( let i = 0; i < errors.length; i++ ) { %>
+                            <li><%= errors[i].msg %> </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+                <!--ERRORES-->
                 <form action="/products/create" method="POST" enctype="multipart/form-data" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
