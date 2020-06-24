@@ -1,36 +1,44 @@
 window.addEventListener('load', () => {
-    let form = document.getElementById('login-form');
+    let form = document.getElementById('login-form'),
     
-    let email = form.email;
-    let email_div = document.getElementById('email-div')
+        email = form.email,
+        email_div = document.getElementById('email-div'),
     
-    let password = form.password;
-    let password_div = document.getElementById('password-div')
+        password = form.password,
+        password_div = document.getElementById('password-div'),
     
-    let submit = form.submit;
+        submit = form.submit;
     
     enable = () => {
-        if(email.validity.typeMismatch == false && email.value.length > 0 && password.value.length > 0){
+        if(email.validity.typeMismatch == false && email.value.length > 0 && password.value.length >= 8){
             submit.classList.remove('disabled');
         } else {
             submit.classList.add('disabled');
+        };
+    };
+
+    valid_check = input => {
+        if(input.classList.contains('invalid')){
+            input.classList.replace('invalid', 'valid');
+        } else {
+            input.classList.add('valid');
+        };
+    };
+
+    invalid_check = input => {
+        if(input.classList.contains('valid')){
+            input.classList.replace('valid', 'invalid');
+        } else {
+            input.classList.add('invalid');
         };
     };
     
     // EMAIL
     email.addEventListener('input', event => {
         if (email.validity.typeMismatch || email.value.length == 0) {
-            if(email_div.classList.contains('valid')){
-                email_div.classList.replace('valid', 'invalid')
-            } else {
-                email_div.classList.add('invalid')
-            }
+            invalid_check(email_div);
         } else {
-            if(email_div.classList.contains('invalid')){
-                email_div.classList.replace('invalid', 'valid')
-            } else {
-                email_div.classList.add('valid')
-            }
+            valid_check(email_div);
         };
         
         enable();
@@ -38,20 +46,12 @@ window.addEventListener('load', () => {
     
     // PASSWORD
     password.addEventListener('input', event => {
-        if(password.value.length == 0){
-            if(password_div.classList.contains('valid')){
-                password_div.classList.replace('valid', 'invalid')
-            } else {
-                password_div.classList.add('invalid')
-            }
+        if(password.value.length >= 8){
+            valid_check(password_div);
         } else {
-            if(password_div.classList.contains('invalid')){
-                password_div.classList.replace('invalid', 'valid')
-            } else {
-                password_div.classList.add('valid')
-            }
+            invalid_check(password_div);
         };
-        
+
         enable();
     });
     
@@ -61,4 +61,4 @@ window.addEventListener('load', () => {
             event.preventDefault();
         };
     });
-})
+});
