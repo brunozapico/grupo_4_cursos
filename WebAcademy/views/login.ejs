@@ -21,7 +21,7 @@
             </ul>
         <% } %> 
 
-        <form action="/users/login" method="POST" class="center" autocomplete="off">
+        <form action="/users/login" method="POST" class="center" autocomplete="off" id="login-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Inicia Sesión</h2>
@@ -30,7 +30,7 @@
             
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="email-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                         </div>
@@ -40,7 +40,7 @@
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="password-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                         </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col-11 register-btn-col">
-                    <button type="submit" class="register-btn">Iniciar Sesión</button>
+                    <button name="submit" type="submit" class="register-btn disabled">Iniciar Sesión</button>
                 </div>
             </div>
             <div class="row">
@@ -71,5 +71,8 @@
     </footer>
     
     <%- include('partials/scripts') %>
+
+    <script src="/js/loginValidator.js"></script>
+    
 </body>
 </html>

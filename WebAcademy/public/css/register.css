@@ -173,3 +173,15 @@
 .remember {
     margin: 20px auto 0 auto;
 }
+
+/* VALIDATION */
+
+.valid {
+    box-shadow: 0 0 2px rgb(0, 78, 117);
+    border-radius: 4px;
+}
+
+.invalid {
+    box-shadow: 0 0 2px red;
+    border-radius: 4px;
+}
