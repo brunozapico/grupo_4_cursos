@@ -30,7 +30,7 @@
                     <% } %> 
 
                 </div>
-                <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
+                <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="validation" class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
@@ -138,7 +138,7 @@
                     </div>
                     <div class="row center"><!--Boton de envio -->
                         <div class="col-md-12 space">
-                            <button type="submit" class="button">Editar Curso</button>
+                            <button type="submit" name="submit" class="button disabled">Editar Curso</button>
                         </div>
                         
                     </div>
@@ -155,5 +155,7 @@
         <%- include('partials/footer') %> 
     </footer>
     <%- include('partials/scripts') %>
+
+    <script src="/js/formValidations.js"></script>
 </body>
 </html>

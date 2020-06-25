@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <%- include('partials/head') %> 
-    <link rel="stylesheet" href="/css/productForm.css">
-    
+    <link rel="stylesheet" href="/css/productForm.css">    
 </head>
 <body>
     <header>
@@ -135,7 +134,7 @@
                     </div>
                     <div class="row center"><!--Boton de envio -->
                         <div class="col-md-12 space">
-                            <button type="submit" class="button">Agregar Curso</button>
+                            <button type="submit" name="submit" class="button disabled">Agregar Curso</button>
                         </div>
                     </div>
                 </form>
@@ -148,5 +147,7 @@
         <%- include('partials/footer') %> 
     </footer>
     <%- include('partials/scripts') %>
+
+    <script src="/js/formValidations.js"></script>
 </body>
 </html>
