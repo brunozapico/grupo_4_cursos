@@ -10,7 +10,7 @@ module.exports = [
         return true
     }).withMessage('Tenes que seleccionar una categoria'),
 
-    check('name').isLength({min: 3})
+    check('courseName').isLength({min: 3})
         .withMessage('El nombre del curso debe tener como minimo 3 caracteres'),
 
     check('description_full').isLength({min: 255})
