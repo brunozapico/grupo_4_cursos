@@ -7,11 +7,11 @@ window.addEventListener('load', () => {
 
         email = form.email,
         email_div = document.getElementById('email-div'),
-        email_error_log = document.getElementById('email-error-log');
+        email_error_log = document.getElementById('email-error-log'),
 
         password = form.password,
         password_div = document.getElementById('password-div'),
-        password_error_log = document.getElementById('password-error-log');
+        password_error_log = document.getElementById('password-error-log'),
          
         confirmPassword = form.c_password,
         c_password_div = document.getElementById('c-password-div'),
