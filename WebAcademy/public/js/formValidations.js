@@ -1,39 +1,54 @@
-window.addEventListener('load',() =>{
+window.addEventListener('load', () => {
 
+    
+    
     let form = document.getElementById('validation');
-
-         category = form.category,
-         name = form.name,
-         description_full = form.description_full,
-         description_short = form.description_short,
-         starts_date = form.starts_date,
-         ends_date = form.ends_date,
-         days = form.days,
-         shifts = form.shifts,
-         professor = form.professor,
-         vacancies = form.vacancies,
-         outstanding = form.outstanding,
-         price = form.price,
-         image = form.image,
-         submit = form.submit,
-         ext = image.slice((image.length -4 )),
-         extName;
-            if(ext === '.jpg' || ext === 'jpeg' || ext === '.png' || ext === '.gif'){
-                extName =  true
-            }else {
-                extName = false
-            };
-
+    
+    category = form.category,
+    categoryDiv = document.getElementById('category-div'),
+    name = form.name,
+    nameDiv = document.getElementById('name-div'),
+    description_full = form.description_full,
+    descFullDiv = document.getElementById('descFull-div'),
+    description_short = form.description_short,
+    descShortDiv = document.getElementById('descShort-div'),
+    starts_date = form.starts_date,
+    startsDateDiv = document.getElementById('startsDate-div'),
+    ends_date = form.ends_date,
+    endsDateDiv = document.getElementById('endsDate-div'),
+    days = form.days,
+    daysDiv = document.getElementById('days-div'),
+    shifts = form.shifts,
+    shiftsDiv = document.getElementById('shifts-div'),
+    professor = form.professor,
+    professorDiv = document.getElementById('professor-div'),
+    vacancies = form.vacancies,
+    vacanciesDiv = document.getElementById('vacancies-div'),
+    outstanding = form.outstanding,
+    outstandingDiv = document.getElementById('outstanding-div'),
+    price = form.price,
+    priceDiv = document.getElementById('price-div'),
+    /* image = form.image, */
+    submit = form.submit,
+    /* ext = image.slice((image.length - 4)),
+    extName; */
+    /* if (ext === '.jpg' || ext === 'jpeg' || ext === '.png' || ext === '.gif') {
+        extName = true
+    } else {
+        extName = false
+    }; */
+    console.log(submit);
+    
     enable = () => {
-        if(category !='0' && name.length >= 3 && description_full.length >= 255 && description_short.length >= 50 && starts_date > new Date(now) && ends_date > starts_date && days !='0' && shifts !='0' && professor !='0' && vacancies >= 12 && vacancies <= 30 && (outstanding == '0' || outstanding == '1') && price >= 1 && extName){
+        if (category.value != '0' && name.value.length >= 3 && description_full.value.length >= 255 && description_short.value.length >= 50 && starts_date.value > new Date(now) && ends_date.value > starts_date.value && days.value != '0' && shifts.value != '0' && professor.value != '0' && vacancies.value >= 12 && vacancies.value <= 30 && (outstanding.value == '0' || outstanding.value == '1') && price.value >= 1/*  && extName */) {
             submit.classList.remove('disabled');
-        }else{
+        } else {
             submit.classList.add('disabled');
         };
     };
 
     valid_check = data => {
-        if(data.classList.contains('invalid')){
+        if (data.classList.contains('invalid')) {
             data.classList.replace('invalid', 'valid');
         } else {
             data.classList.add('valid');
@@ -41,7 +56,7 @@ window.addEventListener('load',() =>{
     }
 
     invalid_check = data => {
-        if(data.classList.contains('valid')){
+        if (data.classList.contains('valid')) {
             data.classList.replace('valid', 'invalid');
         } else {
             data.classList.add('invalid');
@@ -49,32 +64,32 @@ window.addEventListener('load',() =>{
     }
 
     //CATEGORY
-    category.addEventListener('select', event => {
-        if(category != '0'){
+    category.addEventListener('change', () => {
+        if (category.value == '0') {
             invalid_check(category);
-        }else {
+        } else {
             valid_check(category);
         };
-        
+
         enable();
     });
 
     //NAME
-    name.addEventListener('input', event => {
-        if(name.length >= 3){
-            invalid_check(name)
-        }else {
-            valid_check(name)
+    name.addEventListener('input', () => {
+        if (name.value.length >= 3) {
+            invalid_check(nameDiv)
+        } else {
+            valid_check(nameDiv)
         };
 
         enable();
     });
 
     //DESCRIPTION FULL
-    description_full.addEventListener('textarea', event => {
-        if(description_full.length >= 255){
+    description_full.addEventListener('input', () => {
+        if (description_full.value.length >= 255) {
             invalid_check(description_full)
-        }else {
+        } else {
             valid_check(description_full)
         };
 
@@ -82,10 +97,10 @@ window.addEventListener('load',() =>{
     });
 
     //DESCRIPTION SHORT
-    description_short.addEventListener('textarea', event => {
-        if(description_short.length >= 50){
+    description_short.addEventListener('input', () => {
+        if (description_short.value.length >= 50) {
             invalid_check(description_short)
-        }else {
+        } else {
             valid_check(description_short)
         };
 
@@ -93,10 +108,10 @@ window.addEventListener('load',() =>{
     });
 
     //STARTS DATE
-    starts_date.addEventListener('input', event => {
-        if(starts_date > new Date(now)){
+    starts_date.addEventListener('change', () => {
+        if (starts_date.value > new Date(now)) {
             invalid_check(starts_date)
-        }else {
+        } else {
             valid_check(starts_date)
         };
 
@@ -104,10 +119,10 @@ window.addEventListener('load',() =>{
     });
 
     //ENDS DATE
-    ends_date.addEventListener('input', event => {
-        if(ends_date > starts_date){
+    ends_date.addEventListener('change', () => {
+        if (ends_date.value > starts_date.value) {
             invalid_check(ends_date)
-        }else {
+        } else {
             valid_check(ends_date)
         };
 
@@ -115,10 +130,10 @@ window.addEventListener('load',() =>{
     });
 
     //DAYS
-    days.addEventListener('select', event => {
-        if(days !='0'){
+    days.addEventListener('change', () => {
+        if (days.value != '0') {
             invalid_check(days)
-        }else {
+        } else {
             valid_check(days)
         };
 
@@ -126,10 +141,10 @@ window.addEventListener('load',() =>{
     });
 
     //SHIFTS
-    shifts.addEventListener('select', event => {
-        if(shifts != '0'){
+    shifts.addEventListener('change', () => {
+        if (shifts.value != '0') {
             invalid_check(shifts)
-        }else {
+        } else {
             valid_check(shifts)
         };
 
@@ -137,10 +152,10 @@ window.addEventListener('load',() =>{
     });
 
     //PROFESSOR
-    professor.addEventListener('select', event => {
-        if(professor != '0'){
+    professor.addEventListener('change', () => {
+        if (professor.value != '0') {
             invalid_check(professor)
-        }else {
+        } else {
             valid_check(professor)
         };
 
@@ -148,10 +163,10 @@ window.addEventListener('load',() =>{
     });
 
     //VACANCIES
-    vacancies.addEventListener('input', event => {
-        if(vacancies >= 12 && vacancies <= 30){
+    vacancies.addEventListener('input', () => {
+        if (vacancies.value >= 12 && vacancies.value <= 30) {
             invalid_check(vacancies)
-        }else {
+        } else {
             valid_check(vacancies)
         };
 
@@ -159,10 +174,10 @@ window.addEventListener('load',() =>{
     });
 
     //OUTSTANDING
-    outstanding.addEventListener('input', event => {
-        if(outstanding == '0' || outstanding == '1'){
+    outstanding.addEventListener('change', () => {
+        if (outstanding.value == '0' || outstanding.value == '1') {
             invalid_check(outstanding)
-        }else {
+        } else {
             valid_check(outstanding)
         };
 
@@ -170,10 +185,10 @@ window.addEventListener('load',() =>{
     });
 
     //PRICE
-    price.addEventListener('input', event => {
-        if(price >= 1){
+    price.addEventListener('input', () => {
+        if (price.value >= 1) {
             invalid_check(price)
-        }else {
+        } else {
             valid_check(price)
         };
 
@@ -181,10 +196,10 @@ window.addEventListener('load',() =>{
     });
 
     //IMAGE
-    image.addEventListener('input', event => {
-        if(extName){
+    image.addEventListener('change', () => {
+        if (extName) {
             invalid_check()
-        }else {
+        } else {
             valid_check()
         };
 
@@ -193,7 +208,7 @@ window.addEventListener('load',() =>{
 
     // SUBMIT
     submit.addEventListener('click', event => {
-        if(submit.classList.contains('disabled')){
+        if (submit.classList.contains('disabled')) {
             event.preventDefault();
         };
     });
