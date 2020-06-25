@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('partials/head') %> 
-    <link rel="stylesheet" href="/css/productForm.css">    
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/productForm.css">
 </head>
+
 <body>
     <header>
-        <%- include('partials/header') %> 
+        <%- include('partials/header') %>
     </header>
 
     <!--Main-->
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12"><!--TITULO-->
+                <div class="col-md-12">
+                    <!--TITULO-->
                     <h1> <%= title  %> </h1>
                 </div>
                 <!--ERRORES-->
                 <% if (typeof errors != 'undefined') { %>
-                    ERRORS:
-                    <ul>
-                        <% for( let i = 0; i < errors.length; i++ ) { %>
-                            <li><%= errors[i].msg %> </li>
-                        <% } %>
-                    </ul>
+                ERRORS:
+                <ul>
+                    <% for( let i = 0; i < errors.length; i++ ) { %>
+                    <li><%= errors[i].msg %> </li>
+                    <% } %>
+                </ul>
                 <% } %>
                 <!--ERRORES-->
-                <form action="/products/create" method="POST" enctype="multipart/form-data" class="center">
+                <form action="/products/create" method="POST" enctype="multipart/form-data" id="validation"
+                    class="center">
                     <div class="row center">
                         <div class="col-md-6 border">
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
                                 <option value="">Selecciona una categoria</option>
-                                <% for (let i = 0; i < categories.length; i++) { %> 
+                                <% for (let i = 0; i < categories.length; i++) { %>
                                 <option name='category' value="<%= categories[i].id %> ">
-                                    <%= categories[i].title %> 
-                                 </option>
-                                 <% } %> 
+                                    <%= categories[i].title %>
+                                </option>
+                                <% } %>
                             </select>
                         </div>
                         <div class="col-md-6 border">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="name" placeholder="Nombre del Curso">
+                            <input class="input-mg" type="text" name="courseName" placeholder="Nombre del Curso">
                         </div>
                     </div>
-                    <div class="row"><!--Descripcion -->
+                    <div class="row">
+                        <!--Descripcion -->
                         <div class="col-md-12 center">
-                            <textarea name="description_full" cols="82%" rows="10" placeholder="Escriba una descripcion detallada del Curso"></textarea>
+                            <textarea name="description_full" cols="82%" rows="10"
+                                placeholder="Escriba una descripcion detallada del Curso"></textarea>
                         </div>
                     </div>
-                    <div class="row"><!--Descripcion Corta -->
+                    <div class="row">
+                        <!--Descripcion Corta -->
                         <div class="col-md-12 center">
-                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion breve del Curso"></textarea>
+                            <textarea name="description_short" cols="82%" rows="10"
+                                placeholder="Escriba una descripcion breve del Curso"></textarea>
                         </div>
                     </div>
-                    <div class="row center"><!--Calendario --> 
+                    <div class="row center">
+                        <!--Calendario -->
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Comienzo del Curso</label>
@@ -95,16 +104,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row center border space tamaño"><!--Logo -->
+                    <div class="row center border space tamaño">
+                        <!--Logo -->
                         <div class="col-md-12">
                             <label for="">Profesor</label>
                             <select class="input-mg" <%# chequear clase %> name="professor">
                                 <option value="">Selecciona el nombre del profesor</option>
-                                <% for (let j = 0; j < professor.length; j++) { %> 
+                                <% for (let j = 0; j < professor.length; j++) { %>
                                 <option name='professor' value="<%= professor[j].id %> ">
-                                    <%= professor[j].first_name + ' ' + professor[j].last_name %> 
-                                 </option>
-                                 <% } %> 
+                                    <%= professor[j].first_name + ' ' + professor[j].last_name %>
+                                </option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
@@ -112,13 +122,13 @@
                         <div class="col-md-4 border space">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
-                            <input class="input-mg" type="number" min="0" name="vacancies">                        
+                            <input class="input-mg" type="number" min="0" name="vacancies">
                         </div>
                         <div class="col-md-4 border space">
                             <!--Destacado -->
                             <label for="">Destacado</label>
-                            <input class="input-mg" type="radio" name="outstanding" value= 1>Si
-                            <input class="input-mg" type="radio" name="outstanding" value= 0>No
+                            <input class="input-mg" type="radio" name="outstanding" value=1>Si
+                            <input class="input-mg" type="radio" name="outstanding" checked value=0>No
                         </div>
                         <div class="col-md-4 border space">
                             <!--Precio -->
@@ -126,13 +136,22 @@
                             <input class="input-mg" type="number" min="0" name="price">
                         </div>
                     </div>
-                    <div class="row center border space tamaño"><!--Logo -->
+                    <div class="row center border space tamaño">
+                        <!--Logo -->
                         <div class="col-md-12">
                             <label for="">Imagen</label>
                             <input class="input-mg" type="file" name="image" id="">
                         </div>
                     </div>
-                    <div class="row center"><!--Boton de envio -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-danger hidden" role="alert" id="alert">
+                                Formatos válidos: JPG, JPEG, PNG o GIF.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <!--Boton de envio -->
                         <div class="col-md-12 space">
                             <button type="submit" name="submit" class="button disabled">Agregar Curso</button>
                         </div>
@@ -144,10 +163,11 @@
 
     <!-- footer -->
     <footer>
-        <%- include('partials/footer') %> 
+        <%- include('partials/footer') %>
     </footer>
     <%- include('partials/scripts') %>
 
     <script src="/js/formValidations.js"></script>
 </body>
+
 </html>

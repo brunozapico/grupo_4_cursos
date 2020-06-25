@@ -815,6 +815,13 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
     box-shadow: 0 0 2px red;
     border-radius: 4px;
 }
+.hidden {
+    display: none; 
+}
+
+.visible {
+    display: block;
+}
 
 /* ----------------------------------- */
 

@@ -50,7 +50,7 @@ const productsController = {
             }
 
             db.Course.create({
-                name: req.body.name,
+                name: req.body.courseName,
                 price: req.body.price,
                 starts_date: req.body.starts_date,
                 ends_date: req.body.ends_date,
@@ -148,7 +148,7 @@ const productsController = {
         }
         
             db.Course.update({
-                name: req.body.name,
+                name: req.body.courseName,
                 price: req.body.price,
                 starts_date: req.body.starts_date,
                 ends_date: req.body.ends_date,

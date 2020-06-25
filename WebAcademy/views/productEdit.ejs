@@ -47,7 +47,7 @@
                         <div class="col-md-6 border" id="name-div">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="name" placeholder="Nombre del Curso" value="<%= courses.name %>">
+                            <input class="input-mg" type="text" name="courseName" placeholder="Nombre del Curso" value="<%= courses.name %>">
                         </div>
                     </div>
                     <div class="row"><!--Descripcion completa -->
@@ -122,7 +122,7 @@
                             <!--Destacado -->
                             <label for="">Destacado</label>
                             <input class="input-mg" type="radio" name="outstanding" value= 1 >Si
-                            <input class="input-mg" type="radio" name="outstanding" value= 0 >No
+                            <input class="input-mg" type="radio" name="outstanding" checked value= 0 >No
                         </div>
                         <div class="col-md-4 border space" id="price-div">
                             <!--Precio -->
@@ -134,6 +134,13 @@
                         <div class="col-md-12">
                             <label for="">Logo</label>
                             <input class="input-mg" type="file" name="image" id="" value="<%= courses.image %> ">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger hidden" role="alert" id="alert">
+                                    Formatos válidos: JPG, JPEG, PNG o GIF.
+                                  </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row center"><!--Boton de envio -->
