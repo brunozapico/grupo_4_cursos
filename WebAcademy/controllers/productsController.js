@@ -29,7 +29,7 @@ const productsController = {
     store: (req, res, next) => {
         let errors = validationResult(req);
 
-        if (!errors.isEmpty() ) {
+        if (errors.isEmpty() ) {
                                 
             let days = req.body.days;
             let shift = req.body.shifts;
@@ -79,7 +79,7 @@ const productsController = {
                 Promise.all([courseEdit, categoryEdit, professor])
                 .then(([courses, categories, professor]) => {
                    
-                    res.render('products/create', {errors:errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn});
+                    res.render('productForm', {errors:errors.errors, title: 'Carga tu curso', courses, categories, professor, loggedInUser: req.session.loggedIn});
                 });
         }
     },

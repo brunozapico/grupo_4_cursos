@@ -18,16 +18,20 @@
                 <div class="col-md-12">
                     <!--TITULO-->
                     <h1> <%= title  %> </h1>
+                    <!--ERRORES-->
+                    <% if (typeof errors != 'undefined') { %> 
+                        
+                        <h2> <%='Pero, espera! Que hay algun error, cheque la siguiente lista.' %> </h2> 
+                        
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++) { %> 
+                                <li>
+                                    <%= errors[i].msg %> 
+                                </li>
+                                <% } %> 
+                            </ul>
+                            <% } %>
                 </div>
-                <!--ERRORES-->
-                <% if (typeof errors != 'undefined') { %>
-                ERRORS:
-                <ul>
-                    <% for( let i = 0; i < errors.length; i++ ) { %>
-                    <li><%= errors[i].msg %> </li>
-                    <% } %>
-                </ul>
-                <% } %>
                 <!--ERRORES-->
                 <form action="/products/create" method="POST" enctype="multipart/form-data" id="validation"
                     class="center">
@@ -36,7 +40,7 @@
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
-                                <option value="">Selecciona una categoria</option>
+                                <option value="0">Selecciona una categoria</option>
                                 <% for (let i = 0; i < categories.length; i++) { %>
                                 <option name='category' value="<%= categories[i].id %> ">
                                     <%= categories[i].title %>
@@ -81,7 +85,7 @@
                                 <label for="">Dias de Cursada</label>
                                 <div class="dias">
                                     <select name="days" id="" class="input-mg">
-                                        <option value="">Selecciona los dias de cursada</option>
+                                        <option value="0">Selecciona los dias de cursada</option>
                                         <option value="Lunes - Miercoles - Viernes">
                                             Lunes - Miercoles - Viernes
                                         </option>
@@ -95,7 +99,7 @@
                                 <label for="">Turnos</label>
                                 <div>
                                     <select name="shifts" id="" class="input-mg">
-                                        <option value="">Selecciona el Turno</option>
+                                        <option value="0">Selecciona el Turno</option>
                                         <option value="m">Mañana</option>
                                         <option value="t">Tarde</option>
                                         <option value="n">Noche</option>
@@ -109,7 +113,7 @@
                         <div class="col-md-12">
                             <label for="">Profesor</label>
                             <select class="input-mg" <%# chequear clase %> name="professor">
-                                <option value="">Selecciona el nombre del profesor</option>
+                                <option value="0">Selecciona el nombre del profesor</option>
                                 <% for (let j = 0; j < professor.length; j++) { %>
                                 <option name='professor' value="<%= professor[j].id %> ">
                                     <%= professor[j].first_name + ' ' + professor[j].last_name %>
