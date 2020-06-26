@@ -112,54 +112,100 @@ const usersController = {
         });
     },
     update: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}});
-        let previousUser;
+        let categories = db.Category.findAll({include: {association: 'courses'}}),
+        previousUser;
         
-        db.User.findOne({where: {id: req.params.id}}).then(user => {previousUser = user})
+        
+        db.User.findOne({where: {id: req.params.id}})
+        .then(user => {previousUser = user})
         .then(() => {
-            let user;
-
-        if(req.files[0] != undefined){
-            user = {
-                id: req.params.id,
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar: `/img/users/${req.files[0].filename}`,
-            };
-        } else {
-            if(previousUser.avatar != undefined){
-                user = {
-                    id: req.params.id,
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
-                    avatar: previousUser.avatar,
-                } 
+            let errors = validationResult(req);
+            if(!errors.isEmpty()) {
+                res.render('editProfile', {user:previousUser, errors: errors.errors, loggedInUser: req.session.loggedIn, categories});
             } else {
-                user = {
-                    id: req.params.id,
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
+                if(req.body.email != previousUser.email){
+                    res.render('editProfile', {user:previousUser, errors: [
+                        {msg: 'Actualmente no puedes cambiar tu dirección de correo electrónico.'}
+                    ], loggedInUser: req.session.loggedIn, categories});
+                } else {
+                    let user;
+                    
+                    if(req.body.password == '' && req.body.c_password == ''){
+                        if(req.files[0] != undefined){
+                            user = {
+                                id: req.params.id,
+                                name: req.body.name,
+                                email: req.body.email,
+                                password: previousUser.password,
+                                avatar: `/img/users/${req.files[0].filename}`,
+                            };
+                        } else {
+                            if(previousUser.avatar != undefined){
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: previousUser.password,
+                                    avatar: previousUser.avatar,
+                                };
+                            } else {
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: previousUser.password,
+                                };
+                            };
+                        };
+                    } else {
+                        if(req.body.password != req.body.c_password){
+                            res.render('editProfile', {user:previousUser, errors: [
+                                {msg: 'Las contraseñas deben coincidir.'}
+                            ], loggedInUser: req.session.loggedIn, categories});
+                        } else {
+                            if(req.files[0] != undefined){
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: bcrypt.hashSync(req.body.password, 10),
+                                    avatar: `/img/users/${req.files[0].filename}`,
+                                };
+                            } else {
+                                if(previousUser.avatar != undefined){
+                                    user = {
+                                        id: req.params.id,
+                                        name: req.body.name,
+                                        email: req.body.email,
+                                        password: bcrypt.hashSync(req.body.password, 10),
+                                        avatar: previousUser.avatar,
+                                    };
+                                } else {
+                                    user = {
+                                        id: req.params.id,
+                                        name: req.body.name,
+                                        email: req.body.email,
+                                        password: bcrypt.hashSync(req.body.password, 10),
+                                    };
+                                };
+                            };
+                        };
+                    };
+                    let update = db.User.update(user, {where: {id: req.params.id}});
+                    
+                    Promise.all([categories, update, user])
+                    .then(([categories, update, user]) => {
+                        update;
+                        res.clearCookie('remember');
+                        req.session.loggedIn = user;
+                        if(req.body.remember != undefined) {
+                            res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 })
+                        };
+                        res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                    });
                 };
-            }
-        }
-        let update = db.User.update(user, {where: {id: req.params.id}});
-        
-        Promise.all([categories, update, user])
-        .then(([categories, update, user]) => {
-            update;
-            res.clearCookie('remember');
-            req.session.loggedIn = user;
-            if(req.body.remember != undefined) {
-                res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 })
             };
-            res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
-        })
-
-        
     },
     destroy: (req, res) => {
         db.User.destroy({where: {id: req.params.id}})

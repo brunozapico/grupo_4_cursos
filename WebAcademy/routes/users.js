@@ -9,6 +9,7 @@ const loggedMiddleware = require('../middlewares/loggedMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const registerValidator = require('../middlewares/registerValidator');
 const loginValidator = require('../middlewares/loginValidator');
+const editProfileValidator = require('../middlewares/editProfileValidator')
 
 // ** MULTER **
 const storage = multer.diskStorage({
@@ -31,7 +32,7 @@ router.get('/login', loggedMiddleware, usersController.login);
 router.post('/login', loginValidator, usersController.processLogin);
 
 router.get('/editProfile/:id', /* MW */ usersController.edit);
-router.put('/editProfile/:id', upload.any(), usersController.update);
+router.put('/editProfile/:id', upload.any(), editProfileValidator, usersController.update);
 
 router.post('/delete/:id', guestMiddleware, usersController.destroy);
 router.post('/logout', guestMiddleware, usersController.logout);
