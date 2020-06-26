@@ -10,24 +10,25 @@
     </header>
     
     <div class="container">
-        <% if (typeof errors != 'undefined') { %>
-            <p>Atención, hubo un error.</p>
-            <ul>
-                <% for (let i = 0; i < errors.length; i++) { %>
-                    <li>
-                        <%= errors[i].msg %> 
-                    </li>
-                <% } %> 
-            </ul>
-        <% } %> 
-
         <form action="/users/login" method="POST" class="center" autocomplete="off" id="login-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Inicia Sesión</h2>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-12">
+                    <% if (typeof errors != 'undefined') { %>
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++) { %>
+                                <li class="back-error-log">
+                                    <%= errors[i].msg %> 
+                                </li>
+                            <% } %> 
+                        </ul>
+                    <% } %> 
+                </div>
+            </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
                     <div class="input-group mb-3" id="email-div">
