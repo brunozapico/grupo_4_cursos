@@ -11,7 +11,7 @@ const usersController = {
     },
     create: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            registerUser = db.User.findOne({where: {email: req.body.email}});
+        registerUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -45,7 +45,7 @@ const usersController = {
                     req.session.loggedIn = user;
                     res.cookie('remember', user.email, { maxAge: 6000000 });
                     
-                    res.redirect('/users');
+                    res.render('users', {categories, loggedInUser: req.session.loggedIn});
                 };
             });
         };
@@ -58,7 +58,7 @@ const usersController = {
     },
     processLogin: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            loginUser = db.User.findOne({where: {email: req.body.email}});
+        loginUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -100,7 +100,7 @@ const usersController = {
     },
     edit: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            user = db.User.findOne({where: {id: req.params.id}});
+        user = db.User.findOne({where: {id: req.params.id}});
         
         Promise.all([categories, user])
         .then(([categories, user]) => {
@@ -108,33 +108,35 @@ const usersController = {
         });
     },
     update: (req, res) => {
+        let categories = db.Category.findAll({include: {association: 'courses'}});
         let user;
-        if(req.files[0] != undefined){
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar: `/img/users/${req.files[0].filename}`,
-            };
-        } else {
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-            };
-        }
+            if(req.files[0] != undefined){
+                user = {
+                    id: req.params.id,
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: bcrypt.hashSync(req.body.password, 10),
+                    avatar: `/img/users/${req.files[0].filename}`,
+                };
+            } else {
+                user = {
+                    id: req.params.id,
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: bcrypt.hashSync(req.body.password, 10),
+                };
+            }
+        let update = db.User.update(user, {where: {id: req.params.id}});
         
-        db.User.update(user, {
-            where: {email: req.params.email}
-        })
-        .then(() => {
-            // primero limpio la cookie anterior por si se edito el mail, despues creo la nueva
+        Promise.all([categories, update, user])
+        .then(([categories, update, user]) => {
+            update;
             res.clearCookie('remember');
             req.session.loggedIn = user;
             if(req.body.remember != undefined) {
                 res.cookie('remember', req.session.loggedIn.email, { maxAge: 6000000 })
             };
-            res.redirect(`/users`);
+            res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     destroy: (req, res) => {
