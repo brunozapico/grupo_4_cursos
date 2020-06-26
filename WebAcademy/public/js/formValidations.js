@@ -46,12 +46,9 @@ window.addEventListener('load', () => {
     }
     
     /* Funcion para validar el atributo 'disabled' */
-    
-    // PROBLEMA: no puedo usar la variale extName dentro del if (linea33)
-    //extName surge dentro de un addEventListener y no logro capturarla, por mas que use var en vez de let.
-    
+        
     enable = () => {
-        if (category.value != '0' && courseName.value.length >= 3 && description_full.value.length >= 255 && description_short.value.length >= 50 && starts_date.value > newDate && ends_date.value > starts_date.value && days.value != '0' && shifts.value != '0' && professor.value != '0' && vacancies.value >= 12 && vacancies.value <= 30 && price.value >= 1 /* &&  extName */) {
+        if (category.value != '0' && courseName.value.length >= 3 && description_full.value.length >= 255 && description_short.value.length >= 50 && starts_date.value > newDate && ends_date.value > starts_date.value && days.value != '0' && shifts.value != '0' && professor.value != '0' && vacancies.value >= 12 && vacancies.value <= 50 && price.value >= 1 /* &&  extName */) {
             submit.removeAttribute('disabled');
         } else {
             submit.setAttribute('disabled', 'disabled');
@@ -182,7 +179,7 @@ window.addEventListener('load', () => {
     
     //VACANCIES
     vacancies.addEventListener('input', () => {
-        if (vacancies.value >= 12 && vacancies.value <= 30) {
+        if (vacancies.value >= 12 && vacancies.value <= 50) {
             valid_check(vacancies, vacancies_error)
         } else {
             invalid_check(vacancies, vacancies_error)
@@ -217,6 +214,7 @@ window.addEventListener('load', () => {
         if (extName) {
             valid_check(image, image_error)
         } else {
+            event.target.value = null;
             invalid_check(image, image_error)
         };
         
