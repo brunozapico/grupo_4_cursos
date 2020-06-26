@@ -804,6 +804,36 @@ footer .social-network ul .instagram-f-logo:hover {
 
 footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 
+/* VALIDATION */
+
+.valid {
+    box-shadow: 0 0 3px rgb(0, 78, 117);
+    border-radius: 4px;
+}
+
+.invalid {
+    box-shadow: 0 0 4px red;
+    border-radius: 4px;
+}
+.hidden {
+    display: none; 
+}
+
+.visible {
+    display: block;
+}
+
+.error-log, .back-error-log {
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.back-error-log {
+    font-size: 16px;
+    list-style-type: none;
+}
+
 /* ----------------------------------- */
 
 /* MEDIA QUERIES */

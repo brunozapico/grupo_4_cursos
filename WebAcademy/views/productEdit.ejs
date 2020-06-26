@@ -15,54 +15,74 @@
             <div class="row">
                 <div class="col-md-12"><!--TITULO-->
                     <h1>Estas editando el curso: <%= courses.name %> </h1>
+
+                    <% if (typeof errors != 'undefined') { %> 
+                        
+                         <h2> <%='Pero, espera! Que hay algun error, verifica la siguiente lista.' %> </h2> 
+                        
+                        <ul>
+                            <% for (let i = 0; i < errors.length; i++) { %> 
+                                <li class="back-error-log">
+                                    <%= errors[i].msg %> 
+                                </li>
+                                <% } %> 
+                        </ul>
+                    <% } %> 
+
                 </div>
-                <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="center">
+                <form action="/products/edit/<%= courses.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="validation" class="center">
                     <div class="row center">
-                        <div class="col-md-6 border">
+                        <div class="col-md-6 border" id="category-div">
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
-                                <option value="">Selecciona una categoria</option>
+                                <option value="0">Selecciona una categoria</option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
-                                <option name='category' value="<%= categories[i].id %> ">
+                                <option value="<%= categories[i].id %>">
                                     <%= categories[i].title %> 
                                  </option>
                                  <% } %> 
                             </select>
+                            <p class="hidden error-log" id="category-error-log">Selecciona una categoria</p>
                         </div>
-                        <div class="col-md-6 border">
+                        <div class="col-md-6 border" id="name-div">
                             <!--Nombre del curso-->
                             <label for="">Nombre Del Curso</label>
-                            <input class="input-mg" type="text" name="name" id="" placeholder="Nombre del Curso" value="<%= courses.name %> ">
+                            <input class="input-mg" type="text" name="courseName" placeholder="Nombre del Curso" value="<%= courses.name %>">
+                            <p class="hidden error-log" id="courseName-error-log">Elije un nombre de mas de 2 caracteres</p>
                         </div>
                     </div>
-                    <div class="row"><!--Descripcion -->
-                        <div class="col-md-12 center">
-                            <textarea name="description" id="" cols="82%" rows="10" placeholder="Escriba una breve Descripcion"><%= courses.description_full %></textarea>
+                    <div class="row"><!--Descripcion completa -->
+                        <div class="col-md-12 center" id="descFull-div">
+                            <textarea name="description_full" id="" cols="82%" rows="10" placeholder="Escriba una descripcion detallada del Curso"><%= courses.description_full %></textarea>
+                            <p class="hidden error-log" id="description-full-error-log">Debe tener un minimo de 255 caracteres</p>
                         </div>
                     </div>
                     <div class="row"><!--Descripcion Corta -->
-                        <div class="col-md-12 center">
-                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion corta"><%= courses.description_short %> </textarea>
+                        <div class="col-md-12 center" id="descShort-div">
+                            <textarea name="description_short" cols="82%" rows="10" placeholder="Escriba una descripcion breve del Curso"><%= courses.description_short %> </textarea>
+                            <p class="hidden error-log" id="description-short-error-log">Debe tener un minimo de 50 caracteres</p>
                         </div>
                     </div>
                     <div class="row center"><!--Calendario --> 
                         <div class="col-md-6 border space">
-                            <div>
+                            <div id="startsDate-div">
                                 <label for="">Comienzo del Curso</label>
-                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="" value="<%= courses.starts_date %> ">
+                                <input class="input-mg" type="date" name="starts_date" id="dateInicio" min="" value="<%= courses.starts_date %>">
+                                <p class="hidden error-log" id="starts-date-error-log">Selecciona una fecha valida</p>
                             </div>
-                            <div>
+                            <div id="endsDate-div">
                                 <label for="">Fin del Curso</label>
-                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="" value="<%= courses.ends_date %> ">
+                                <input class="input-mg" type="date" name="ends_date" id="dateFin" min="" value="<%= courses.ends_date %>">
+                                <p class="hidden error-log" id="ends-date-error-log">Selecciona una fecha valida</p>
                             </div>
                         </div>
                         <div class="col-md-6 border space">
                             <div>
                                 <label for="">Dias de Cursada</label>
-                                <div class="dias">
+                                <div class="dias" id="days-div">
                                     <select name="days" id="" class="input-mg">
-                                        <option value="">Selecciona los dias de cursada</option>
+                                        <option value="0">Selecciona los dias de cursada</option>
                                         <option value="Lunes - Miercoles - Viernes">
                                             Lunes - Miercoles - Viernes
                                         </option>
@@ -70,61 +90,67 @@
                                             Martes - Jueves - Sábado
                                         </option>
                                     </select>
+                                    <p class="hidden error-log" id="days-error-log">Selecciona los dias de cursada</p>
                                 </div>
                             </div>
                             <div>
                                 <label for="">Turnos</label>
-                                <div>
+                                <div id="shifts-div">
                                     <select name="shifts" id="" class="input-mg">
-                                        <option value="">Selecciona el Turno</option>
+                                        <option value="0">Selecciona el Turno</option>
                                         <option value="m">Mañana</option>
                                         <option value="t">Tarde</option>
                                         <option value="n">Noche</option>
                                     </select>
+                                    <p class="hidden error-log" id="shifts-error-log">Selecciona un turno</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row center border space tamaño"><!--Logo -->
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="professor-div">
                             <label for="">Profesor</label>
                             <select class="input-mg" <%# chequear clase %> name="professor">
-                                <option value="">Selecciona el nombre del profesor</option>
+                                <option value="0">Selecciona el nombre del profesor</option>
                                 <% for (let j = 0; j < professor.length; j++) { %> 
                                 <option name='professor' value="<%= professor[j].id %> ">
                                     <%= professor[j].first_name + ' ' + professor[j].last_name %> 
                                  </option>
                                  <% } %> 
                             </select>
+                            <p class="hidden error-log" id="professor-error-log">Selecciona un profesor</p>
                         </div>
                     </div>
                     <div class="row center">
-                        <div class="col-md-4 border space">
+                        <div class="col-md-4 border space" id="vacancies-div">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
-                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= courses.vacancies %> ">                        
+                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= courses.vacancies %>">
+                            <p class="hidden error-log" id="vacancies-error-log">Elije entre 12 y 50 vacantes</p>
                         </div>
-                        <div class="col-md-4 border space">
+                        <div class="col-md-4 border space" id="outstanding-div">
                             <!--Destacado -->
                             <label for="">Destacado</label>
                             <input class="input-mg" type="radio" name="outstanding" value= 1 >Si
-                            <input class="input-mg" type="radio" name="outstanding" value= 0 >No
+                            <input class="input-mg" type="radio" name="outstanding" checked value= 0 >No
                         </div>
-                        <div class="col-md-4 border space">
+                        <div class="col-md-4 border space" id="price-div">
                             <!--Precio -->
                             <label for="">Precio U$D</label>
                             <input class="input-mg" type="number" name="price" min="0" placeholder="<%= courses.price %> ">
+                            <p class="hidden error-log" id="price-error-log">Coloca un precio</p>
                         </div>
                     </div>
                     <div class="row center border space tamaño"><!--Logo -->
                         <div class="col-md-12">
                             <label for="">Logo</label>
                             <input class="input-mg" type="file" name="image" id="" value="<%= courses.image %> ">
+                            <p class="hidden error-log" id="image-error-log">Selecciona una imagen con extension: '.jpg', '.jpeg', '.png' o '.gif'</p>
                         </div>
                     </div>
                     <div class="row center"><!--Boton de envio -->
                         <div class="col-md-12 space">
-                            <button type="submit" class="button">Editar Curso</button>
+                            <button type="submit" name="submit" class="button">Editar Curso</button>
                         </div>
                         
                     </div>
@@ -141,5 +167,7 @@
         <%- include('partials/footer') %> 
     </footer>
     <%- include('partials/scripts') %>
+
+    <script src="/js/formValidations.js"></script>
 </body>
 </html>

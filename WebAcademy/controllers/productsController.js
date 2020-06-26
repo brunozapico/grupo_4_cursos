@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const {check, validationResult, body} = require('express-validator');
+
 
 const db = require('../database/models');
 const Op = db.Sequelize.Op;
@@ -25,40 +27,61 @@ const productsController = {
         });
     },
     store: (req, res, next) => {
-        let days = req.body.days;
-        let shift = req.body.shifts;
-        let programID;
+        let errors = validationResult(req);
 
-        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-            programID = 1;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-            programID = 2;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-            programID = 3;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-            programID = 4;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-            programID = 5;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-            programID = 6;
+        if (errors.isEmpty() ) {
+                                
+            let days = req.body.days;
+            let shift = req.body.shifts;
+            let programID;
+
+            if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
+                programID = 1;
+            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+                programID = 2;
+            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+                programID = 3;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
+                programID = 4;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
+                programID = 5;
+            } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
+                programID = 6;
+            }
+
+            db.Course.create({
+                name: req.body.courseName,
+                price: req.body.price,
+                starts_date: req.body.starts_date,
+                ends_date: req.body.ends_date,
+                image: `/img/cursos/${req.files[0].filename}`,
+                vacancies: req.body.vacancies,
+                outstanding: req.body.outstanding,
+                description_short: req.body.description_short,
+                description_full: req.body.description_full,
+                category_id: req.body.category,
+                professor_id: req.body.professor,
+                program_id: programID
+            }).then(() => {
+                res.redirect('/products')
+            });
+
+        }else{
+            let courseEdit = db.Course.findByPk(req.params.id, {
+                include: [{association: 'category'},{association: 'professor'}]
+            });
+            let categoryEdit = db.Category.findAll({
+                include: {association: 'courses'}
+            });
+    
+            let professor = db.Professor.findAll();
+    
+                Promise.all([courseEdit, categoryEdit, professor])
+                .then(([courses, categories, professor]) => {
+                   
+                    res.render('productForm', {errors:errors.errors, title: 'Carga tu curso', courses, categories, professor, loggedInUser: req.session.loggedIn});
+                });
         }
-
-        db.Course.create({
-            name: req.body.name,
-            price: req.body.price,
-            starts_date: req.body.starts_date,
-            ends_date: req.body.ends_date,
-            image: `/img/cursos/${req.files[0].filename}`,
-            vacancies: req.body.vacancies,
-            outstanding: req.body.outstanding,
-            description_short: req.body.description_short,
-            description_full: req.body.description_full,
-            category_id: req.body.category,
-            professor_id: req.body.professor,
-            program_id: programID
-        }).then(() => {
-            res.redirect('/products')
-        });
     },
     detail: (req, res) => { // falta que muestre el horario y los dias
         let categories = db.Category.findAll({
@@ -102,6 +125,10 @@ const productsController = {
             });
     },
     update: (req, res) => {
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()){
+            
         let days = req.body.days;
         let shift = req.body.shifts;
         let programID;
@@ -121,7 +148,7 @@ const productsController = {
         }
         
             db.Course.update({
-                name: req.body.name,
+                name: req.body.courseName,
                 price: req.body.price,
                 starts_date: req.body.starts_date,
                 ends_date: req.body.ends_date,
@@ -140,6 +167,23 @@ const productsController = {
             .then( () =>{
                 res.redirect(`/products/detail/${req.params.id}`)
             });
+        } else {
+            let courseEdit = db.Course.findByPk(req.params.id, {
+                include: [{association: 'category'},{association: 'professor'}]
+            });
+            let categoryEdit = db.Category.findAll({
+                include: {association: 'courses'}
+            });
+    
+            let professor = db.Professor.findAll();
+    
+                Promise.all([courseEdit, categoryEdit, professor])
+                .then(([courses, categories, professor]) => {
+                   
+                    res.render('productEdit', {errors:errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn});
+                });
+        }
+
     },
     destroy : (req, res) => {
         db.UserCourse.destroy({

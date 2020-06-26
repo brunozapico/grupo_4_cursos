@@ -10,39 +10,54 @@
     </header>
     
     <div class="container">
-        <form action="/users/editProfile/<%= user.email %>?_method=PUT" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off">
+        <form action="/users/editProfile/<%= user.id %>?_method=PUT" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off" id="edit-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Edita tus datos personales.</h2>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <%- include('partials/backEndErrorLogs') %>
+                </div>
+            </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="name-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Nombre completo" aria-label="Username" aria-describedby="basic-addon1" name="name" required value="<%= user.name %> ">
+                        <input type="text" class="form-control" placeholder="Nombre completo" aria-label="Username" aria-describedby="basic-addon1" name="name" value="<%= user.name %> ">
                     </div>
                 </div>
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="email-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" required value="<%= user.email %> ">
+                        <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Username" aria-describedby="basic-addon1" name="email" value="<%= user.email %> ">
                     </div>
                 </div>
             </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="password-div">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Nueva contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password" required>
+                        <input type="password" class="form-control" placeholder="Nueva contraseña" aria-label="Username" aria-describedby="basic-addon1" name="password">
+                    </div>
+                </div>
+            </div>
+            <div class="row register-input-row">
+                <div class="col-12 register-input">
+                    <div class="input-group mb-3" id="c-password-div">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Repetir contraseña" aria-label="Username" aria-describedby="basic-addon1" name="c_password">
                     </div>
                 </div>
             </div>
@@ -58,12 +73,36 @@
             </div>
             <div class="row">
                 <div class="col-12">
+                    <div class="alert alert-danger hidden" role="alert" id="alert">
+                        Formatos válidos: JPG, JPEG, PNG o GIF.
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <input type="checkbox" name="remember" class="remember"> Recordarme
                 </div>
             </div>
             <div class="row">
+                <div class="col-12">
+                    <ul>
+                        <li class="hidden error-log" id="name-error-log">El nombre debe tener al menos 2 caracteres.</li>
+                        <li class="hidden error-log" id="email-error-log">Actualmente no puedes cambiar tu dirección de correo electrónico.</li>
+                        <li class="hidden error-log" id="password-error-log">La contraseña debe tener al menos 8 caracteres.</li>
+                        <li class="hidden error-log" id="c-password-error-log">Las contraseñas deben coincidir.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-11 register-btn-col">
-                    <button type="submit" class="register-btn">Editar</button>
+                    <button type="submit" class="register-btn disabled" name="submit">Editar</button>
+                </div>
+            </div>
+        </form>
+        <form action="/users/delete/<%= user.id %> " method="POST">
+            <div class="row">
+                <div class="col-12 delete-div">
+                    <button type="submit" class="delete-btn">Eliminar esta cuenta.</button>
                 </div>
             </div>
         </form>
@@ -74,5 +113,7 @@
     </footer>
     
     <%- include('partials/scripts') %>
+
+    <script src="/js/editProfileValidator.js"></script>
 </body>
 </html>

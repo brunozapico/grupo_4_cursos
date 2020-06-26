@@ -173,3 +173,23 @@
 .remember {
     margin: 20px auto 0 auto;
 }
+
+/* DELETE PROFILE */
+
+.delete-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn{
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.delete-btn:hover{
+    color: red;
+    text-decoration: none;
+    font-weight: 500;
+}
