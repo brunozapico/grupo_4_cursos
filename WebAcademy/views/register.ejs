@@ -18,15 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <% if (typeof errors != 'undefined') { %>
-                        <ul>
-                            <% for (let i = 0; i < errors.length; i++) { %>
-                                <li class="back-error-log">
-                                    <%= errors[i].msg %> 
-                                </li>
-                            <% } %> 
-                        </ul>
-                    <% } %> 
+                    <%- include('partials/backEndErrorLogs') %>
                 </div>
             </div>
             <div class="row register-input-row">

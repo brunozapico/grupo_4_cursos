@@ -1,0 +1,9 @@
+<% if (typeof errors != 'undefined') { %>
+    <ul>
+        <% for (let i = 0; i < errors.length; i++) { %>
+            <li class="back-error-log">
+                <%= errors[i].msg %> 
+            </li>
+        <% } %> 
+    </ul>
+<% } %> 
