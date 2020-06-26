@@ -33,8 +33,8 @@ router.post('/login', loginValidator, usersController.processLogin);
 router.get('/editProfile/:email', usersController.edit);
 router.put('/editProfile/:email', upload.any(), usersController.update);
 
-router.get('/logout', guestMiddleware, usersController.logout);
+router.post('/delete', guestMiddleware, usersController.destroy);
 
-router.get('/delete', guestMiddleware, usersController.destroy);
+router.get('/logout', guestMiddleware, usersController.logout);
 
 module.exports = router;
