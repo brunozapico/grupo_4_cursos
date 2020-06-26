@@ -807,12 +807,12 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 /* VALIDATION */
 
 .valid {
-    box-shadow: 0 0 2px rgb(0, 78, 117);
+    box-shadow: 0 0 3px rgb(0, 78, 117);
     border-radius: 4px;
 }
 
 .invalid {
-    box-shadow: 0 0 2px red;
+    box-shadow: 0 0 4px red;
     border-radius: 4px;
 }
 .hidden {
@@ -821,6 +821,12 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 
 .visible {
     display: block;
+}
+
+.error-log {
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 /* ----------------------------------- */
