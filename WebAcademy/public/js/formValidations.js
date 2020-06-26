@@ -14,7 +14,11 @@ window.addEventListener('load', () => {
     vacancies = form.vacancies,
     price = form.price,
     submit = form.submit,
-    image = form.image,
+    image = form.image;
+
+    /* agregar atributo disabled al boton */
+
+    submit.setAttribute('disabled', 'disabled')
     
     /* Formateo de fecha para comparar */
     date = new Date(),
