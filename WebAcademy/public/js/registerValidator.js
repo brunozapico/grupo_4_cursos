@@ -30,41 +30,36 @@ window.addEventListener('load', () => {
         };
     };
 
-    valid_check = (div, error_log) => {
-        if(div.classList.contains('invalid')){
-            div.classList.replace('invalid', 'valid');
+    const validator_params = ['valid', 'invalid', 'visible', 'hidden'];
+    validator = (a, b, c) => {
+        if(a.classList.contains(b)){
+            a.classList.replace(b, c);
         } else {
-            div.classList.add('valid');
-        };
-
-        if(error_log.classList.contains('visible')){
-            error_log.classList.replace('visible', 'hidden');
-        } else {
-            error_log.classList.add('hidden');
+            a.classList.add(c);
         };
     };
 
-    invalid_check = (div, error_log) => {
-        if(div.classList.contains('valid')){
-            div.classList.replace('valid', 'invalid');
-        } else {
-            div.classList.add('invalid');
-        };
-
-        if(error_log.classList.contains('hidden')){
-            error_log.classList.replace('hidden', 'visible');
-        } else {
-            error_log.classList.add('visible');
+    valid_check = (div, error_log, params) => {
+        validator(div, params[1], params[0]);
+        validator(error_log, params[2], params[3]);
+    };
+    invalid_check = (div, error_log, params) => {
+        validator(div, params[0], params[1]);
+        validator(error_log, params[3], params[2]);
+    };
+    submit_check = () => {
+        if(submit.classList.contains('disabled')){
+            event.preventDefault();
         };
     };
 
     password_check = () => {
         if(password.value.length >= 8 && password.value === confirmPassword.value){
-            valid_check(password_div, password_error_log);
-            valid_check(c_password_div, c_password_error_log);
+            valid_check(password_div, password_error_log, validator_params);
+            valid_check(c_password_div, c_password_error_log, validator_params);
         } else {
-            invalid_check(password_div, password_error_log);
-            invalid_check(c_password_div, c_password_error_log);
+            invalid_check(password_div, password_error_log, validator_params);
+            invalid_check(c_password_div, c_password_error_log, validator_params);
         };
 
         enable();
@@ -72,11 +67,10 @@ window.addEventListener('load', () => {
 
     // NAME
     name.addEventListener('input', event => {
-                
         if(name.value.length >= 2){
-            valid_check(name_div, name_error_log);
+            valid_check(name_div, name_error_log, validator_params);
         } else {
-            invalid_check(name_div, name_error_log);
+            invalid_check(name_div, name_error_log, validator_params);
         };
 
         enable();
@@ -85,9 +79,9 @@ window.addEventListener('load', () => {
     // EMAIL
     email.addEventListener('input', event => {
         if (email.validity.typeMismatch || email.value.length == 0) {
-            invalid_check(email_div, email_error_log);
+            invalid_check(email_div, email_error_log, validator_params);
         } else {
-            valid_check(email_div, email_error_log);
+            valid_check(email_div, email_error_log, validator_params);
         };
 
         enable();
@@ -109,14 +103,10 @@ window.addEventListener('load', () => {
         let ext = string.slice((string.length - 4),);
         
         if(ext === '.jpg' || ext === 'jpeg' || ext === '.png' || ext === '.gif'){
-            if(alert.classList.contains('visible')){
-                alert.classList.replace('visible', 'hidden');
-            };
+            validator(alert, 'visible', 'hidden');
         } else {
             event.target.value = null;
-            if(alert.classList.contains('hidden')){
-                alert.classList.replace('hidden', 'visible');
-            };
+            validator(alert, 'hidden', 'visible');
         };
 
         enable();
@@ -124,8 +114,6 @@ window.addEventListener('load', () => {
 
     // SUBMIT
     submit.addEventListener('click', event => {
-        if(submit.classList.contains('disabled')){
-            event.preventDefault();
-        };
+        submit_check();
     });
 });
