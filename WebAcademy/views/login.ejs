@@ -10,24 +10,17 @@
     </header>
     
     <div class="container">
-        <% if (typeof errors != 'undefined') { %>
-            <p>Atención, hubo un error.</p>
-            <ul>
-                <% for (let i = 0; i < errors.length; i++) { %>
-                    <li>
-                        <%= errors[i].msg %> 
-                    </li>
-                <% } %> 
-            </ul>
-        <% } %> 
-
         <form action="/users/login" method="POST" class="center" autocomplete="off" id="login-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Inicia Sesión</h2>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-12">
+                    <%- include('partials/backEndErrorLogs') %>
+                </div>
+            </div>
             <div class="row register-input-row">
                 <div class="col-12 register-input">
                     <div class="input-group mb-3" id="email-div">
@@ -58,14 +51,12 @@
                     <button name="submit" type="submit" class="register-btn disabled">Iniciar Sesión</button>
                 </div>
             </div>
-            <div class="row hidden" id="email-error-log">
+            <div class="row">
                 <div class="col-12">
-                    <p>Debe ser un email válido.</p>
-                </div>
-            </div>
-            <div class="row hidden" id="password-error-log">
-                <div class="col-12">
-                    <p>La contraseña debe tener al menos 8 caracteres.</p>
+                    <ul>
+                        <li class="hidden error-log" id="email-error-log">Debe ser un email válido.</li>
+                        <li class="hidden error-log" id="password-error-log">La contraseña debe tener al menos 8 caracteres.</li>
+                    </ul>
                 </div>
             </div>
             <div class="row">

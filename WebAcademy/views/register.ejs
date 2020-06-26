@@ -10,18 +10,15 @@
     </header>
     
     <div class="container">
-        <% if (typeof errors != 'undefined') { %>
-            <p>Atención, hubo un error.</p>
-            <ul>
-                <% for( let i = 0; i < errors.length; i++ ) { %>
-                    <li><%= errors[i].msg %> </li>
-                <% } %>
-            </ul>
-        <% } %>
         <form action="/users/register" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off" id="register-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Inscribite y comenza a aprender.</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <%- include('partials/backEndErrorLogs') %>
                 </div>
             </div>
             <div class="row register-input-row">
@@ -90,24 +87,14 @@
                     <button type="submit" class="register-btn disabled" name="submit">Registrate</button>
                 </div>
             </div>
-            <div class="row hidden" id="name-error-log">
+            <div class="row">
                 <div class="col-12">
-                    <p>El nombre debe tener al menos 2 caracteres.</p>
-                </div>
-            </div>
-            <div class="row hidden" id="email-error-log">
-                <div class="col-12">
-                    <p>Debe ser un email válido.</p>
-                </div>
-            </div>
-            <div class="row hidden" id="password-error-log">
-                <div class="col-12">
-                    <p>La contraseña debe tener al menos 8 caracteres.</p>
-                </div>
-            </div>
-            <div class="row hidden" id="c-password-error-log">
-                <div class="col-12">
-                    <p>Las contraseñas deben coincidir.</p>
+                    <ul>
+                        <li class="hidden error-log" id="name-error-log">El nombre debe tener al menos 2 caracteres.</li>
+                        <li class="hidden error-log" id="email-error-log">Debe ser un email válido.</li>
+                        <li class="hidden error-log" id="password-error-log">La contraseña debe tener al menos 8 caracteres.</li>
+                        <li class="hidden error-log" id="c-password-error-log">Las contraseñas deben coincidir.</li>
+                    </ul>
                 </div>
             </div>
             <div class="row">

@@ -35,4 +35,6 @@ router.put('/editProfile/:email', upload.any(), usersController.update);
 
 router.get('/logout', guestMiddleware, usersController.logout);
 
+router.get('/delete', guestMiddleware, usersController.destroy);
+
 module.exports = router;
