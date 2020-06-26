@@ -14,7 +14,20 @@ window.addEventListener('load', () => {
     vacancies = form.vacancies,
     price = form.price,
     submit = form.submit,
-    image = form.image;
+    image = form.image,
+    
+    category_error = document.getElementById('category-error-log'),
+    course_name_error = document.getElementById('courseName-error-log'),
+    description_full_error = document.getElementById('description-full-error-log'),
+    description_short_error = document.getElementById('description-short-error-log'),
+    starts_date_erorr = document.getElementById('starts-date-error-log'),
+    ends_date_error = document.getElementById('ends-date-error-log'),
+    days_error = document.getElementById('days-error-log'),
+    shifts_error = document.getElementById('shifts-error-log'),
+    professor_error = document.getElementById('professor-error-log'),
+    vacancies_error = document.getElementById('vacancies-error-log'),
+    price_error = document.getElementById('price-error-log'),
+    image_error = document.getElementById('image-error-log');
 
     /* agregar atributo disabled al boton */
 
@@ -46,19 +59,23 @@ window.addEventListener('load', () => {
     };
     
     /* Funciones para darle color a los input y select*/
-    valid_check = data => {
+    valid_check = (data, error) => {
         if (data.classList.contains('invalid')) {
-            data.classList.replace('invalid', 'valid');
+            data.classList.replace('invalid', 'valid')
+            error.classList.replace('visible', 'hidden');
         } else {
-            data.classList.add('valid');
+            data.classList.add('valid')
+            error.classList.add('hidden');
         };
     }
     
-    invalid_check = data => {
+    invalid_check = (data, error) => {
         if (data.classList.contains('valid')) {
-            data.classList.replace('valid', 'invalid');
+            data.classList.replace('valid', 'invalid')
+            error.classList.replace('hidden', 'visible');
         } else {
-            data.classList.add('invalid');
+            data.classList.add('invalid')
+            error.classList.add('visible');
         };
     }
     
@@ -67,9 +84,9 @@ window.addEventListener('load', () => {
     //CATEGORY
     category.addEventListener('input', () => {
         if (category.value != '0') {
-            valid_check(category);
+            valid_check(category, category_error);
         } else {
-            invalid_check(category);
+            invalid_check(category, category_error);
         };
         
         enable();
@@ -78,9 +95,9 @@ window.addEventListener('load', () => {
     //NAME
     courseName.addEventListener('input', (e) => {
         if (courseName.value.length >= 3) {
-            valid_check(courseName)
+            valid_check(courseName, course_name_error)
         } else {
-            invalid_check(courseName)
+            invalid_check(courseName,course_name_error)
         };
         
         enable();
@@ -89,9 +106,9 @@ window.addEventListener('load', () => {
     //DESCRIPTION FULL
     description_full.addEventListener('input', () => {
         if (description_full.value.length >= 255) {
-            valid_check(description_full)
+            valid_check(description_full, description_full_error)
         } else {
-            invalid_check(description_full)
+            invalid_check(description_full, description_full_error)
         };
         
         enable();
@@ -100,9 +117,9 @@ window.addEventListener('load', () => {
     //DESCRIPTION SHORT
     description_short.addEventListener('input', () => {
         if (description_short.value.length >= 50) {
-            valid_check(description_short)
+            valid_check(description_short, description_short_error)
         } else {
-            invalid_check(description_short)
+            invalid_check(description_short, description_short_error)
         };
         
         enable();
@@ -111,9 +128,9 @@ window.addEventListener('load', () => {
     //STARTS DATE
     starts_date.addEventListener('input', () => {
         if (starts_date.value > newDate) {
-            valid_check(starts_date)
+            valid_check(starts_date, starts_date_erorr)
         } else {
-            invalid_check(starts_date)
+            invalid_check(starts_date, starts_date_erorr)
         };
         
         enable();
@@ -122,9 +139,9 @@ window.addEventListener('load', () => {
     //ENDS DATE
     ends_date.addEventListener('input', () => {
         if (ends_date.value > starts_date.value) {
-            valid_check(ends_date)
+            valid_check(ends_date, ends_date_error)
         } else {
-            invalid_check(ends_date)
+            invalid_check(ends_date, ends_date_error)
         };
         
         enable();
@@ -133,9 +150,9 @@ window.addEventListener('load', () => {
     //DAYS
     days.addEventListener('input', () => {
         if (days.value != '0') {
-            valid_check(days)
+            valid_check(days, days_error)
         } else {
-            invalid_check(days)
+            invalid_check(days, days_error)
         };
         
         enable();
@@ -144,9 +161,9 @@ window.addEventListener('load', () => {
     //SHIFTS
     shifts.addEventListener('input', () => {
         if (shifts.value != '0') {
-            valid_check(shifts)
+            valid_check(shifts, shifts_error)
         } else {
-            invalid_check(shifts)
+            invalid_check(shifts, shifts_error)
         };
         
         enable();
@@ -155,9 +172,9 @@ window.addEventListener('load', () => {
     //PROFESSOR
     professor.addEventListener('input', () => {
         if (professor.value != '0') {
-            valid_check(professor)
+            valid_check(professor, professor_error)
         } else {
-            invalid_check(professor)
+            invalid_check(professor, professor_error)
         };
         
         enable();
@@ -166,9 +183,9 @@ window.addEventListener('load', () => {
     //VACANCIES
     vacancies.addEventListener('input', () => {
         if (vacancies.value >= 12 && vacancies.value <= 30) {
-            valid_check(vacancies)
+            valid_check(vacancies, vacancies_error)
         } else {
-            invalid_check(vacancies)
+            invalid_check(vacancies, vacancies_error)
         };
         
         enable();
@@ -177,9 +194,9 @@ window.addEventListener('load', () => {
     //PRICE
     price.addEventListener('input', () => {
         if (price.value >= 1) {
-            valid_check(price)
+            valid_check(price, price_error)
         } else {
-            invalid_check(price)
+            invalid_check(price, price_error)
         };
         
         enable();
@@ -198,9 +215,9 @@ window.addEventListener('load', () => {
         };
         
         if (extName) {
-            valid_check(image)
+            valid_check(image, image_error)
         } else {
-            invalid_check(image)
+            invalid_check(image, image_error)
         };
         
         enable();
