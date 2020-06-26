@@ -823,10 +823,15 @@ footer .social-network ul .instagram-f-logo:hover > i { color: white; }
     display: block;
 }
 
-.error-log {
+.error-log, .back-error-log {
     color: red;
     font-size: 12px;
     font-weight: 500;
+}
+
+.back-error-log {
+    font-size: 16px;
+    list-style-type: none;
 }
 
 /* ----------------------------------- */
