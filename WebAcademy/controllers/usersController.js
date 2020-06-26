@@ -113,7 +113,12 @@ const usersController = {
     },
     update: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}});
-        let user;
+        let previousUser;
+        
+        db.User.findOne({where: {id: req.params.id}}).then(user => {previousUser = user})
+        .then(() => {
+            let user;
+
         if(req.files[0] != undefined){
             user = {
                 id: req.params.id,
@@ -123,12 +128,22 @@ const usersController = {
                 avatar: `/img/users/${req.files[0].filename}`,
             };
         } else {
-            user = {
-                id: req.params.id,
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-            };
+            if(previousUser.avatar != undefined){
+                user = {
+                    id: req.params.id,
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: bcrypt.hashSync(req.body.password, 10),
+                    avatar: previousUser.avatar,
+                } 
+            } else {
+                user = {
+                    id: req.params.id,
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: bcrypt.hashSync(req.body.password, 10),
+                };
+            }
         }
         let update = db.User.update(user, {where: {id: req.params.id}});
         
@@ -142,6 +157,9 @@ const usersController = {
             };
             res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
+        })
+
+        
     },
     destroy: (req, res) => {
         db.User.destroy({where: {id: req.params.id}})
