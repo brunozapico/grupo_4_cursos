@@ -100,7 +100,7 @@ const usersController = {
     },
     edit: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            user = db.User.findOne({where: {email: req.params.email}});
+            user = db.User.findOne({where: {id: req.params.id}});
         
         Promise.all([categories, user])
         .then(([categories, user]) => {
@@ -138,7 +138,13 @@ const usersController = {
         });
     },
     destroy: (req, res) => {
-        res.send('ELIMINADO');
+        db.User.destroy({where: {id: req.params.id}})
+        .then(user => {
+            req.session.destroy();
+            res.clearCookie('remember');
+            res.redirect('/users/login');
+        })
+        // FALTARIA CASCADE O ELIMINAR TODA TABLA RELACIONADA A ESE USER
     }
 };
 

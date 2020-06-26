@@ -30,10 +30,10 @@ router.post('/register', upload.any(), registerValidator, usersController.create
 router.get('/login', loggedMiddleware, usersController.login);
 router.post('/login', loginValidator, usersController.processLogin);
 
-router.get('/editProfile/:email', /* MW */ usersController.edit);
-router.put('/editProfile/:email', upload.any(), usersController.update);
+router.get('/editProfile/:id', /* MW */ usersController.edit);
+router.put('/editProfile/:id', upload.any(), usersController.update);
 
-router.post('/delete', guestMiddleware, usersController.destroy);
+router.post('/delete/:id', guestMiddleware, usersController.destroy);
 router.post('/logout', guestMiddleware, usersController.logout);
 
 module.exports = router;
