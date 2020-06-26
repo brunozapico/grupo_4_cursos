@@ -45,7 +45,7 @@ const usersController = {
                         db.User.findOne({where: {email: user.email}})
                         .then(newUser => {
                             req.session.loggedIn = newUser;
-                            res.cookie('remember', user.email, { maxAge: 6000000 });
+                            res.cookie('remember', user.id, { maxAge: 6000000 });
                             
                             res.render('users', {categories, loggedInUser: req.session.loggedIn});
                         });
@@ -77,7 +77,7 @@ const usersController = {
                     loggedInUser = req.session.loggedIn;
                     
                     if(req.body.remember != undefined) {
-                        res.cookie('remember', loginUser.email, { maxAge: 6000000 });
+                        res.cookie('remember', loginUser.id, { maxAge: 6000000 });
                     };
                     
                     res.render('users', {categories, loggedInUser: req.session.loggedIn});
@@ -138,7 +138,7 @@ const usersController = {
             res.clearCookie('remember');
             req.session.loggedIn = user;
             if(req.body.remember != undefined) {
-                res.cookie('remember', req.session.loggedIn.email, { maxAge: 6000000 })
+                res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 })
             };
             res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
