@@ -81,8 +81,6 @@ module.exports = [
                 default:
                     return false;
                 }
-            } else {
-                return false;
             }
     })
     .withMessage('Tenes que cargar un archivo y debe ser de formato: ".jpg", ".jpeg", ".png" o ".gif".')
