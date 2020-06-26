@@ -136,6 +136,9 @@ const usersController = {
             };
             res.redirect(`/users`);
         });
+    },
+    destroy: (req, res) => {
+        res.send('ELIMINADO');
     }
 };
 

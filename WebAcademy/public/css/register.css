@@ -174,3 +174,20 @@
     margin: 20px auto 0 auto;
 }
 
+/* DELETE PROFILE */
+
+.delete-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-a{
+    color: black;
+}
+
+.delete-a:hover{
+    color: red;
+    text-decoration: none;
+    font-weight: 500;
+}
