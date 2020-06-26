@@ -40,12 +40,16 @@ const usersController = {
                         };
                     };
                     
-                    db.User.create(user);
-                    
-                    req.session.loggedIn = user;
-                    res.cookie('remember', user.email, { maxAge: 6000000 });
-                    
-                    res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                    db.User.create(user)
+                    .then(() => {
+                        db.User.findOne({where: {email: user.email}})
+                        .then(newUser => {
+                            req.session.loggedIn = newUser;
+                            res.cookie('remember', user.email, { maxAge: 6000000 });
+                            
+                            res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                        });
+                    })
                 };
             });
         };
@@ -110,22 +114,22 @@ const usersController = {
     update: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}});
         let user;
-            if(req.files[0] != undefined){
-                user = {
-                    id: req.params.id,
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
-                    avatar: `/img/users/${req.files[0].filename}`,
-                };
-            } else {
-                user = {
-                    id: req.params.id,
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, 10),
-                };
-            }
+        if(req.files[0] != undefined){
+            user = {
+                id: req.params.id,
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+                avatar: `/img/users/${req.files[0].filename}`,
+            };
+        } else {
+            user = {
+                id: req.params.id,
+                name: req.body.name,
+                email: req.body.email,
+                password: bcrypt.hashSync(req.body.password, 10),
+            };
+        }
         let update = db.User.update(user, {where: {id: req.params.id}});
         
         Promise.all([categories, update, user])
