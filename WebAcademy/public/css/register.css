@@ -182,11 +182,13 @@
     align-items: center;
 }
 
-.delete-a{
+.delete-btn{
     color: black;
+    background-color: white;
+    border: none;
 }
 
-.delete-a:hover{
+.delete-btn:hover{
     color: red;
     text-decoration: none;
     font-weight: 500;

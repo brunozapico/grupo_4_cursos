@@ -11,7 +11,7 @@ const usersController = {
     },
     create: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            registerUser = db.User.findOne({where: {email: req.body.email}});
+        registerUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -40,12 +40,16 @@ const usersController = {
                         };
                     };
                     
-                    db.User.create(user);
-                    
-                    req.session.loggedIn = user;
-                    res.cookie('remember', user.email, { maxAge: 6000000 });
-                    
-                    res.redirect('/users');
+                    db.User.create(user)
+                    .then(() => {
+                        db.User.findOne({where: {email: user.email}})
+                        .then(newUser => {
+                            req.session.loggedIn = newUser;
+                            res.cookie('remember', user.id, { maxAge: 6000000 });
+                            
+                            res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                        });
+                    })
                 };
             });
         };
@@ -58,7 +62,7 @@ const usersController = {
     },
     processLogin: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            loginUser = db.User.findOne({where: {email: req.body.email}});
+        loginUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
@@ -73,7 +77,7 @@ const usersController = {
                     loggedInUser = req.session.loggedIn;
                     
                     if(req.body.remember != undefined) {
-                        res.cookie('remember', loginUser.email, { maxAge: 6000000 });
+                        res.cookie('remember', loginUser.id, { maxAge: 6000000 });
                     };
                     
                     res.render('users', {categories, loggedInUser: req.session.loggedIn});
@@ -100,7 +104,7 @@ const usersController = {
     },
     edit: (req, res) => {
         let categories = db.Category.findAll({include: {association: 'courses'}}),
-            user = db.User.findOne({where: {email: req.params.email}});
+        user = db.User.findOne({where: {id: req.params.id}});
         
         Promise.all([categories, user])
         .then(([categories, user]) => {
@@ -108,37 +112,109 @@ const usersController = {
         });
     },
     update: (req, res) => {
-        let user;
-        if(req.files[0] != undefined){
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-                avatar: `/img/users/${req.files[0].filename}`,
-            };
-        } else {
-            user = {
-                name: req.body.name,
-                email: req.body.email,
-                password: bcrypt.hashSync(req.body.password, 10),
-            };
-        }
+        let categories = db.Category.findAll({include: {association: 'courses'}}),
+        previousUser;
         
-        db.User.update(user, {
-            where: {email: req.params.email}
-        })
+        
+        db.User.findOne({where: {id: req.params.id}})
+        .then(user => {previousUser = user})
         .then(() => {
-            // primero limpio la cookie anterior por si se edito el mail, despues creo la nueva
-            res.clearCookie('remember');
-            req.session.loggedIn = user;
-            if(req.body.remember != undefined) {
-                res.cookie('remember', req.session.loggedIn.email, { maxAge: 6000000 })
+            let errors = validationResult(req);
+            if(!errors.isEmpty()) {
+                res.render('editProfile', {user:previousUser, errors: errors.errors, loggedInUser: req.session.loggedIn, categories});
+            } else {
+                if(req.body.email != previousUser.email){
+                    res.render('editProfile', {user:previousUser, errors: [
+                        {msg: 'Actualmente no puedes cambiar tu dirección de correo electrónico.'}
+                    ], loggedInUser: req.session.loggedIn, categories});
+                } else {
+                    let user;
+                    
+                    if(req.body.password == '' && req.body.c_password == ''){
+                        if(req.files[0] != undefined){
+                            user = {
+                                id: req.params.id,
+                                name: req.body.name,
+                                email: req.body.email,
+                                password: previousUser.password,
+                                avatar: `/img/users/${req.files[0].filename}`,
+                            };
+                        } else {
+                            if(previousUser.avatar != undefined){
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: previousUser.password,
+                                    avatar: previousUser.avatar,
+                                };
+                            } else {
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: previousUser.password,
+                                };
+                            };
+                        };
+                    } else {
+                        if(req.body.password != req.body.c_password){
+                            res.render('editProfile', {user:previousUser, errors: [
+                                {msg: 'Las contraseñas deben coincidir.'}
+                            ], loggedInUser: req.session.loggedIn, categories});
+                        } else {
+                            if(req.files[0] != undefined){
+                                user = {
+                                    id: req.params.id,
+                                    name: req.body.name,
+                                    email: req.body.email,
+                                    password: bcrypt.hashSync(req.body.password, 10),
+                                    avatar: `/img/users/${req.files[0].filename}`,
+                                };
+                            } else {
+                                if(previousUser.avatar != undefined){
+                                    user = {
+                                        id: req.params.id,
+                                        name: req.body.name,
+                                        email: req.body.email,
+                                        password: bcrypt.hashSync(req.body.password, 10),
+                                        avatar: previousUser.avatar,
+                                    };
+                                } else {
+                                    user = {
+                                        id: req.params.id,
+                                        name: req.body.name,
+                                        email: req.body.email,
+                                        password: bcrypt.hashSync(req.body.password, 10),
+                                    };
+                                };
+                            };
+                        };
+                    };
+                    let update = db.User.update(user, {where: {id: req.params.id}});
+                    
+                    Promise.all([categories, update, user])
+                    .then(([categories, update, user]) => {
+                        update;
+                        res.clearCookie('remember');
+                        req.session.loggedIn = user;
+                        if(req.body.remember != undefined) {
+                            res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 })
+                        };
+                        res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                    });
+                };
             };
-            res.redirect(`/users`);
         });
     },
     destroy: (req, res) => {
-        res.send('ELIMINADO');
+        db.User.destroy({where: {id: req.params.id}})
+        .then(user => {
+            req.session.destroy();
+            res.clearCookie('remember');
+            res.redirect('/users/login');
+        })
+        // FALTARIA CASCADE O ELIMINAR TODA TABLA RELACIONADA A ESE USER
     }
 };
 

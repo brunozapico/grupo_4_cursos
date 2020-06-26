@@ -1,29 +1,17 @@
-const fs = require('fs')
-const path = require('path');
+const db = require('../database/models');
 
 module.exports = (req, res, next) => {
     
-    if (req.cookies.remember != undefined && req.session.loggedIn == undefined) {
-        let usersDataBase = fs.readFileSync(path.join(__dirname, "..", "data", "users.json"), {encoding:'UTF-8'});
-
-        let users;
-        if (usersDataBase == ""){
-            users = [];
-        } else {
-            users = JSON.parse(usersDataBase);
-        }
-        
+    if(req.cookies.remember != undefined && req.session.loggedIn == undefined) {
         let loginUser;
-        for(let i = 0; i < users.length; i++) {
-            if(users[i].email == req.cookies.remember) {
-                loginUser = users[i];
-                break;
-            }
-        }
-
-        req.session.loggedIn = loginUser;
-    }
+        db.User.findOne({where: {id: req.cookies.remember}})
+        .then(user => {
+            if(user != null){
+                loginUser = user;
+            };
+        });
+    };
 
     return next();
 
-}
+};
