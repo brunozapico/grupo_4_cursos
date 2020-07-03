@@ -10,6 +10,7 @@ const rememberMiddleware = require('./middlewares/rememberMiddleware');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const apiProductsRouter = require ('./routes/api/products');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(rememberMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/api/products', apiProductsRouter);
 
 // locals
 app.locals.webacademy = 'Web Academy';
