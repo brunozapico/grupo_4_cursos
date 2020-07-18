@@ -43,7 +43,7 @@ const usersController = {
                     
                     db.User.create(user)
                     .then(() => {
-                        mailing.sendWelcomeEmail(user.email);
+                        mailing.sendWelcomeEmail(user.email, user.name);
                         db.User.findOne({where: {email: user.email}})
                         .then(newUser => {
                             req.session.loggedIn = newUser;
