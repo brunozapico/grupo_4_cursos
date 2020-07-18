@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const db = require('../database/models');
+const mailing = require('./helpers/mailerHelper');
 
 const usersController = {
     register: (req, res) => {
@@ -42,6 +43,7 @@ const usersController = {
                     
                     db.User.create(user)
                     .then(() => {
+                        mailing.sendWelcomeEmail(user.email);
                         db.User.findOne({where: {email: user.email}})
                         .then(newUser => {
                             req.session.loggedIn = newUser;
@@ -49,7 +51,7 @@ const usersController = {
                             
                             res.render('users', {categories, loggedInUser: req.session.loggedIn});
                         });
-                    })
+                    });
                 };
             });
         };
