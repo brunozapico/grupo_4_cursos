@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
 
 module.exports = transporter;
 
+// https://ethereal.email/
 // Name: Herman Klein
 // Username: herman31@ethereal.email
 // Password: 1X48PwjrdKhh2aaErU
