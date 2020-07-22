@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const {check, validationResult, body} = require('express-validator');
+const programIdBuild = require('./helpers/programIdBuild');
 
 
 const db = require('../database/models');
@@ -31,23 +32,27 @@ const productsController = {
 
         if (errors.isEmpty() ) {
                                 
-            let days = req.body.days;
-            let shift = req.body.shifts;
-            let programID;
+            let days = req.body.days,
+                shift = req.body.shifts,
+                programID;
 
-            if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-                programID = 1;
-            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-                programID = 2;
-            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-                programID = 3;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-                programID = 4;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-                programID = 5;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-                programID = 6;
-            }
+                if (days == 'Lunes - Miercoles - Viernes' && shift == 'm') {
+                    programID = 1;
+                } else if (days == 'Lunes - Miercoles - Viernes' && shift == 't') {
+                    programID = 2;
+                } else if (days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
+                    programID = 3;
+                } else if (days == 'Martes - Jueves - Sábado' && shift == 'm') {
+                    programID = 4;
+                } else if (days == 'Martes - Jueves - Sábado' && shift == 't') {
+                    programID = 5;
+                } else if (days == 'Martes - Jueves - Sábado' && shift == 'n') {
+                    programID = 6;
+                }
+            
+
+
+           // programIdBuild();
 
             db.Course.create({
                 name: req.body.courseName,
