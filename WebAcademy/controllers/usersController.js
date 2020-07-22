@@ -1,17 +1,18 @@
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const db = require('../database/models');
+
+// Helpers
 const mailing = require('./helpers/mailerHelper');
+const userHelper = require('./helpers/userHelper');
+
+const categories = db.Category.findAll({include: {association: 'courses'}});
 
 const usersController = {
     register: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
-            res.render('register', {categories, loggedInUser: req.session.loggedIn});
-        });
+        categories.then(categories => res.render('register', {categories, loggedInUser: req.session.loggedIn}));
     },
     create: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         registerUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
@@ -27,18 +28,9 @@ const usersController = {
                 } else {
                     let user;
                     if(req.files[0] != undefined){ // si hay avatar
-                        user = {
-                            name: req.body.name,
-                            email: req.body.email,
-                            password: bcrypt.hashSync(req.body.password, 10),
-                            avatar: `/img/users/${req.files[0].filename}`,
-                        }
-                    } else { // si no hay avatar
-                        user = {
-                            name: req.body.name,
-                            email: req.body.email,
-                            password: bcrypt.hashSync(req.body.password, 10),
-                        };
+                        user = userHelper.create_fullUser(req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/${req.files[0].filename}`);
+                    } else {
+                        user = userHelper.create_noAvatarUser(req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10));
                     };
                     
                     db.User.create(user)
@@ -47,7 +39,7 @@ const usersController = {
                         db.User.findOne({where: {email: user.email}})
                         .then(newUser => {
                             req.session.loggedIn = newUser;
-                            res.cookie('remember', user.id, { maxAge: 6000000 });
+                            res.cookie('remember', newUser.id, { maxAge: 6000000 });
                             
                             res.render('users', {categories, loggedInUser: req.session.loggedIn});
                         });
@@ -57,13 +49,11 @@ const usersController = {
         };
     },
     login: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
+        categories.then(categories => {
             res.render('login', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     processLogin: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         loginUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
@@ -99,13 +89,11 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
+        categories.then(categories => {
             res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     edit: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         user = db.User.findOne({where: {id: req.params.id}});
         
         Promise.all([categories, user])
@@ -114,13 +102,9 @@ const usersController = {
         });
     },
     update: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
-        previousUser;
-        
-        
         db.User.findOne({where: {id: req.params.id}})
-        .then(user => {previousUser = user})
-        .then(() => {
+        .then(user => { return user})
+        .then((previousUser) => {
             let errors = validationResult(req);
             if(!errors.isEmpty()) {
                 res.render('editProfile', {user:previousUser, errors: errors.errors, loggedInUser: req.session.loggedIn, categories});
@@ -131,32 +115,14 @@ const usersController = {
                     ], loggedInUser: req.session.loggedIn, categories});
                 } else {
                     let user;
-                    
                     if(req.body.password == '' && req.body.c_password == ''){
                         if(req.files[0] != undefined){
-                            user = {
-                                id: req.params.id,
-                                name: req.body.name,
-                                email: req.body.email,
-                                password: previousUser.password,
-                                avatar: `/img/users/${req.files[0].filename}`,
-                            };
+                            user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, previousUser.password, `/img/users/${req.files[0].filename}`);
                         } else {
                             if(previousUser.avatar != undefined){
-                                user = {
-                                    id: req.params.id,
-                                    name: req.body.name,
-                                    email: req.body.email,
-                                    password: previousUser.password,
-                                    avatar: previousUser.avatar,
-                                };
+                                user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, previousUser.password, previousUser.avatar);
                             } else {
-                                user = {
-                                    id: req.params.id,
-                                    name: req.body.name,
-                                    email: req.body.email,
-                                    password: previousUser.password,
-                                };
+                                user = userHelper.update_noAvatarUser(req.params.id, req.body.name, req.body.email, previousUser.password);
                             };
                         };
                     } else {
@@ -166,29 +132,12 @@ const usersController = {
                             ], loggedInUser: req.session.loggedIn, categories});
                         } else {
                             if(req.files[0] != undefined){
-                                user = {
-                                    id: req.params.id,
-                                    name: req.body.name,
-                                    email: req.body.email,
-                                    password: bcrypt.hashSync(req.body.password, 10),
-                                    avatar: `/img/users/${req.files[0].filename}`,
-                                };
+                                user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/${req.files[0].filename}`);
                             } else {
                                 if(previousUser.avatar != undefined){
-                                    user = {
-                                        id: req.params.id,
-                                        name: req.body.name,
-                                        email: req.body.email,
-                                        password: bcrypt.hashSync(req.body.password, 10),
-                                        avatar: previousUser.avatar,
-                                    };
+                                    user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), previousUser.avatar);
                                 } else {
-                                    user = {
-                                        id: req.params.id,
-                                        name: req.body.name,
-                                        email: req.body.email,
-                                        password: bcrypt.hashSync(req.body.password, 10),
-                                    };
+                                    user = userHelper.update_noAvatarUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10));
                                 };
                             };
                         };
@@ -201,7 +150,7 @@ const usersController = {
                         res.clearCookie('remember');
                         req.session.loggedIn = user;
                         if(req.body.remember != undefined) {
-                            res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 })
+                            res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 });
                         };
                         res.render('users', {categories, loggedInUser: req.session.loggedIn});
                     });
@@ -215,9 +164,9 @@ const usersController = {
             req.session.destroy();
             res.clearCookie('remember');
             res.redirect('/users/login');
-        })
+        });
         // FALTARIA CASCADE O ELIMINAR TODA TABLA RELACIONADA A ESE USER
-    }
+    },
 };
 
 module.exports = usersController;
