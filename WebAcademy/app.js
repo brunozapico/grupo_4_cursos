@@ -6,6 +6,8 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const rememberMiddleware = require('./middlewares/rememberMiddleware');
+const cors = require('cors');
+
 
 // routes
 const indexRouter = require('./routes/index');
@@ -30,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 app.use(session( {secret: 'Mensaje secreto'}));
 app.use(rememberMiddleware);
+app.use(cors())
 
 // routes
 app.use('/', indexRouter);
