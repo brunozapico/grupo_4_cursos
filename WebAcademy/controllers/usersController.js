@@ -3,15 +3,15 @@ const { validationResult } = require('express-validator');
 const db = require('../database/models');
 const mailing = require('./helpers/mailerHelper');
 
+const categories = db.Category.findAll({include: {association: 'courses'}});
+
 const usersController = {
     register: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
+        categories.then(categories => {
             res.render('register', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     create: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         registerUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
@@ -57,13 +57,11 @@ const usersController = {
         };
     },
     login: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
+        categories.then(categories => {
             res.render('login', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     processLogin: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         loginUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
@@ -99,13 +97,11 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        db.Category.findAll({include: {association: 'courses'}})
-        .then(categories => {
+        categories.then(categories => {
             res.render('users', {categories, loggedInUser: req.session.loggedIn});
         });
     },
     edit: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
         user = db.User.findOne({where: {id: req.params.id}});
         
         Promise.all([categories, user])
@@ -114,9 +110,7 @@ const usersController = {
         });
     },
     update: (req, res) => {
-        let categories = db.Category.findAll({include: {association: 'courses'}}),
-        previousUser;
-        
+        let previousUser;
         
         db.User.findOne({where: {id: req.params.id}})
         .then(user => {previousUser = user})
