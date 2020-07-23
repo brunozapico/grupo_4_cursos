@@ -8,10 +8,11 @@ module.exports = (req, res, next) => {
         .then(user => {
             if(user != null){
                 loginUser = user;
+                req.session.loggedIn = loginUser;
             };
         });
     };
-
+    
     return next();
-
+    
 };
