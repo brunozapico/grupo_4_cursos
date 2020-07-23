@@ -1,21 +1,6 @@
 const db = require('../../database/models');
-const programIdBuild = require('../helpers/programIdBuild');
+const { courseGenerator, programIdBuild } = require('../helpers/courseHelpers');
 
-/* let dataCreateUpdeta = {
-    name: req.body.courseName,
-    price: req.body.price,
-    starts_date: req.body.starts_date,
-    ends_date: req.body.ends_date,
-    image: `/img/cursos/${req.files[0].filename}`,
-    vacancies: req.body.vacancies,
-    outstanding: req.body.outstanding,
-    description_short: req.body.description_short,
-    description_full: req.body.description_full,
-    category_id: req.body.category,
-    professor_id: req.body.professor,
-    program_id: programID
-}
- */
 module.exports = {
     list: (req, res) => {
         let pageQty = req.query.pageQty ? Number(req.query.pageQty) : 10,
@@ -89,37 +74,10 @@ module.exports = {
         } else {
             let days = req.body.days;
             let shift = req.body.shifts;
-            let programID;
+            let programID = programIdBuild(days, shift),
+            courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
             
-            if (days == 'Lunes - Miercoles - Viernes' && shift == 'm') {
-                programID = 1;
-            } else if (days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-                programID = 2;
-            } else if (days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-                programID = 3;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 'm') {
-                programID = 4;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 't') {
-                programID = 5;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 'n') {
-                programID = 6;
-            }
-            
-            
-            db.Course.create({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            }).then(() => {
+            db.Course.create(courseData).then(() => {
                 res.status(200).json({
                     status: "Curso creado"
                 }).end()
@@ -134,38 +92,13 @@ module.exports = {
             res.status(422).json(errors).end()
         } else {
             
-            let days = req.body.days;
-            let shift = req.body.shifts;
-            let programID;
-            
-            if (days == 'Lunes - Miercoles - Viernes' && shift == 'm') {
-                programID = 1;
-            } else if (days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-                programID = 2;
-            } else if (days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-                programID = 3;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 'm') {
-                programID = 4;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 't') {
-                programID = 5;
-            } else if (days == 'Martes - Jueves - Sábado' && shift == 'n') {
-                programID = 6;
-            }
-            
-            db.Course.update({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            }, {
+            let days = req.body.days,
+                shift = req.body.shifts,
+                programID = programIdBuild(days, shift),
+            courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
+
+
+            db.Course.update(courseData, {
                 where: {
                     id: req.params.id
                 }

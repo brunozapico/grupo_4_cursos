@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const {check, validationResult, body} = require('express-validator');
-const programIdBuild = require('./helpers/programIdBuild');
+const { programIdBuild, courseGenerator } = require('./helpers/courseHelpers');
 
 
 const db = require('../database/models');
@@ -34,40 +34,11 @@ const productsController = {
                                 
             let days = req.body.days,
                 shift = req.body.shifts,
-                programID;
-
-                if (days == 'Lunes - Miercoles - Viernes' && shift == 'm') {
-                    programID = 1;
-                } else if (days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-                    programID = 2;
-                } else if (days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-                    programID = 3;
-                } else if (days == 'Martes - Jueves - Sábado' && shift == 'm') {
-                    programID = 4;
-                } else if (days == 'Martes - Jueves - Sábado' && shift == 't') {
-                    programID = 5;
-                } else if (days == 'Martes - Jueves - Sábado' && shift == 'n') {
-                    programID = 6;
-                }
-            
+                programID = programIdBuild(days, shift),
+                courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
 
 
-           // programIdBuild();
-
-            db.Course.create({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            }).then(() => {
+            db.Course.create(courseData).then(() => {
                 res.redirect('/products')
             });
 
@@ -135,37 +106,12 @@ const productsController = {
         if (errors.isEmpty()){
             
         let days = req.body.days;
-        let shift = req.body.shifts;
-        let programID;
+            shift = req.body.shifts,
+            programID = programIdBuild(days, shift),
+            courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
 
-        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-            programID = 1;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-            programID = 2;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-            programID = 3;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-            programID = 4;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-            programID = 5;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-            programID = 6;
-        }
-        
-            db.Course.update({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            },{
+
+            db.Course.update(courseData,{
                 where :{
                     id : req.params.id}
             })
