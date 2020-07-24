@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "name": "Leanne Graham",
+        "description": "alguna descripcion",
+        "price": 135,
+        "stock": 73,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Ervin Howell",
+        "description": "alguna descripcion",
+        "price": 118,
+        "stock": 575,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Clementine Bauch",
+        "description": "alguna descripcion",
+        "price": 57,
+        "stock": 757,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Patricia Lebsack",
+        "description": "alguna descripcion",
+        "price": 135,
+        "stock": 757,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Chelsey Dietrich",
+        "description": "alguna descripcion",
+        "price": 135,
+        "stock": 751,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Mrs. Dennis Schulist",
+        "description": "alguna descripcion",
+        "price": 135,
+        "stock": 12318,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Kurtis Weissnat",
+        "description": "alguna descripcion",
+        "price": 135,
+        "stock": 63485,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Nicholas Runolfsdottir V",
+        "description": "alguna descripcion",
+        "price": 564,
+        "stock": 123,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Glenna Reichert",
+        "description": "alguna descripcion",
+        "price": 789,
+        "stock": 357,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Clementina DuBuque",
+        "description": "alguna descripcion",
+        "price": 698,
+        "stock": 354,
+        "categories": [
+            "Category 1",
+            "Category 2",
+            "Category 3"
+        ],
+        "colors": [
+            {
+                "className": "danger",
+                "color": "Red"
+            },
+            {
+                "className": "primary",
+                "color": "Blue"
+            },
+            {
+                "className": "success",
+                "color": "Green"
+            }
+        ]
+    }
+]
