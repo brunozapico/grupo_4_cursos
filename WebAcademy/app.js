@@ -17,6 +17,7 @@ const productsRouter = require('./routes/products');
 // API routers
 const apiUsersRouter = require('./routes/api/users');
 const apiProductsRouter = require ('./routes/api/products');
+const apiCategoriesRouter = require ('./routes/api/categories');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/products', productsRouter);
 // API routes
 app.use('/api/users', apiUsersRouter);
 app.use('/api/products', apiProductsRouter);
+app.use('/api/categories', apiCategoriesRouter);
 
 // locals
 app.locals.webacademy = 'Web Academy';
