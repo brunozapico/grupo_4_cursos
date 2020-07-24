@@ -1,6 +1,6 @@
 import React from 'react';
-import LastProdInDB from './LastProdInDB';
-import CategoriesInDB from './CategoriesInDB';
+import LastProdInDB from './lastProdInDB/LastProdInDB';
+import CategoriesInDB from './categoriesInDB/CategoriesInDB';
 import DataTales from './dataTales/DataTales';
 
 function ContentRow2() {

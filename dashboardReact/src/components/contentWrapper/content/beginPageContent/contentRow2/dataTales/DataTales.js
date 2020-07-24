@@ -1,7 +1,7 @@
 import React from 'react';
 import ColNames from './ColNames';
 import RowData   from './RowData';
-import staff from '../../staff.json'
+import staff from '../../../../../../staff.json';
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Topbar from './Topbar';
-import BeginPageContent from './BeginPageContent';
+import Topbar from './topBar/TopBar';
+import BeginPageContent from './beginPageContent/BeginPageContent';
 
 function Content(){
     return(

@@ -1,5 +1,5 @@
 import React from 'react';
-import MainCard from './MainCard';
+import MainCard from './mainCard/MainCard';
 
 class ContentRow1 extends React.Component {
     constructor() {

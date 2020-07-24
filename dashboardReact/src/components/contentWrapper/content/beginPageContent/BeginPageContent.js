@@ -1,7 +1,7 @@
 import React from 'react';
-import PageHeadeing from './PageHeading';
-import ContentRow1 from './ContentRow1';
-import ContentRow2 from './ContentRow2';
+import PageHeading from './pageHeading/PageHeading';
+import ContentRow1 from './contentRow1/ContentRow1';
+import ContentRow2 from './contentRow2/ContentRow2';
 
 function BeginPageContent() {
     let data = [{
@@ -25,7 +25,7 @@ function BeginPageContent() {
     ]
     return (
         <div className="container-fluid">
-            <PageHeadeing />
+            <PageHeading />
             <ContentRow1 data={data} />
             <ContentRow2 />
         </div>

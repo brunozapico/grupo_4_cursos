@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
-import ContentWrapper from './components/ContentWrapper';
+import Sidebar from './components/sideBar/SideBar';
+import ContentWrapper from './components/contentWrapper/ContentWrapper';
 
 function App() {
   return (
