@@ -32,7 +32,8 @@ module.exports = {
                     let courses = {
                         meta: {
                             status: 200,
-                            total: total_qty.length
+                            total: total_qty.length,
+                            total_courses: total_qty
                         },
                         pagination: {
                             next_page,
