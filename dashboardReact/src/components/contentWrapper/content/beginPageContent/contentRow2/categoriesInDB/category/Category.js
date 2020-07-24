@@ -5,7 +5,10 @@ function Category(props) {
         <div className="col-lg-6 mb-4">
             <div className="card bg-info text-white shadow">
                 <div className="card-body">
-                    Category {props.number}
+                    {props.title}
+                </div>
+                <div>
+                    <i className={props.icon}></i>
                 </div>
             </div>
         </div>
