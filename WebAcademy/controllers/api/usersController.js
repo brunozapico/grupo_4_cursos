@@ -2,16 +2,20 @@ const db = require('../../database/models');
 
 module.exports = {
     list: (req, res) => {
+        let total_qty = db.User.findAll()
+
         let start = req.query.start ? Number(req.query.start) : 0,
             rpp = 10,
             users_list;
 
-        db.User.findAndCountAll({
+        let users = db.User.findAndCountAll({
                 attributes: ['id', 'name', 'email'],
                 limit: rpp,
                 offset: start,
             })
-            .then(users => {
+
+        Promise.all([total_qty, users])
+            .then(([total_qty, users]) => {
                 let next = null,
                     previous = null,
                     first = 'http://localhost:3000/api/users?start=0';
@@ -32,7 +36,7 @@ module.exports = {
                     meta: {
                         status: 200,
                         url: '/api/users',
-                        count: users.rows.length,
+                        count: total_qty.length,
                         pagination: {
                             first,
                             next,

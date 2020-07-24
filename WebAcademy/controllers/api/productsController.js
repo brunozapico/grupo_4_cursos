@@ -3,46 +3,55 @@ const { courseGenerator, programIdBuild } = require('../helpers/courseHelpers');
 
 module.exports = {
     list: (req, res) => {
+        let total_qty = db.Course.findAll()
+
         let pageQty = req.query.pageQty ? Number(req.query.pageQty) : 10,
         start = req.query.start ? Number(req.query.start) : 0
-        db.Course.findAll({
+        
+        
+        let result = db.Course.findAll({
             include: [{ association: 'category' }, { association: 'professor' }, { association: 'program' }],
             offset: start,
             limit: pageQty,
-        }).then(result => {
-            let next_page = null,
-            prev_page = null,
-            first_page = `http://localhost:3000/api/products?start=0&pageQty=${pageQty}`;
-            
-            result.length == pageQty ? next_page = `http://localhost:3000/api/products?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
-            
-            start >= pageQty ? prev_page = `http://localhost:3000/api/products?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
-            
-            
-            for (let course of result) {
-                course.setDataValue('endpoint', '/api/products/' + course.id);
-            }
-            let courses = {
-                meta: {
-                    status: 200,
-                    total: result.length
-                },
-                pagination: {
-                    next_page,
-                    prev_page,
-                    first_page,
-                },
-                data: result
-            }
-            res.json(courses);
-        }).catch(() =>
-        res.status(404).json({
-            status: 'error',
-            code: '404',
-            info: 'Product not found',
-            messege: 'Bad request'
-            
-        }));
+        })
+        
+        Promise.all([total_qty, result])
+            .then(([total_qty, result]) => {
+                    let next_page = null,
+                    prev_page = null,
+                    first_page = `http://localhost:3000/api/products?start=0&pageQty=${pageQty}`;
+                    
+                    result.length == pageQty ? next_page = `http://localhost:3000/api/products?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
+                    
+                    start >= pageQty ? prev_page = `http://localhost:3000/api/products?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
+                    
+                    
+                    for (let course of result) {
+                        course.setDataValue('endpoint', '/api/products/' + course.id);
+                    }
+                    let courses = {
+                        meta: {
+                            status: 200,
+                            total: total_qty.length
+                        },
+                        pagination: {
+                            next_page,
+                            prev_page,
+                            first_page,
+                        },
+                        data: result
+                    }
+                    res.json(courses);
+                }
+            )
+            .catch(() =>
+            res.status(404).json({
+                status: 'error',
+                code: '404',
+                info: 'Product not found',
+                messege: 'Bad request'
+                
+            }));
     },
     
     detail: (req, res) => {
