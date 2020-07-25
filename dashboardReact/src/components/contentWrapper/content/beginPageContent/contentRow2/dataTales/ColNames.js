@@ -6,10 +6,11 @@ function ColNames() {
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Category</th>
+            <th>Professor</th>
+            <th>Start & ends date</th>
             <th>Price</th>
-            <th>Categories</th>
-            <th>Colors</th>
-            <th>Stock</th>
+            <th>Vacancies</th>
         </tr>
     )
 };
