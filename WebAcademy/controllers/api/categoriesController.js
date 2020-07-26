@@ -2,8 +2,25 @@ const db = require('../../database/models');
 
 module.exports = {
     list: (req, res) => {
-        db.Category.findAll()
-            .then(categories => res.status(200).json(categories))
+        
+        let result = db.Category.findAll({
+            include: [{ association: 'courses' }]
+        })
+
+        let totalCourses = result
+
+        Promise.all([totalCourses, result])
+            .then(([totalCourses, result]) => {
+                let categories = {
+                    meta: {
+                        status: 200,
+                        total: totalCourses.length
+                    },
+                    data: result
+                }
+                res.json(categories)
+            }
+            )
             .catch(err => res.json(err));
     },
 };

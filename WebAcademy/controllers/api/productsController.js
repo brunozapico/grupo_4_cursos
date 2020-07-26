@@ -1,13 +1,16 @@
 const db = require('../../database/models');
 const { courseGenerator, programIdBuild } = require('../helpers/courseHelpers');
 
+let ruta = "http://localhost:3000/api/products"
+
 module.exports = {
     list: (req, res) => {
-        let total_qty = db.Course.findAll()
+        let totalQty = db.Course.findAll({
+            attributes: ['id', 'name', 'price', 'image', 'vacancies', 'description_short']
+        })
 
         let pageQty = req.query.pageQty ? Number(req.query.pageQty) : 10,
         start = req.query.start ? Number(req.query.start) : 0
-        
         
         let result = db.Course.findAll({
             include: [{ association: 'category' }, { association: 'professor' }, { association: 'program' }],
@@ -15,25 +18,24 @@ module.exports = {
             limit: pageQty,
         })
         
-        Promise.all([total_qty, result])
-            .then(([total_qty, result]) => {
+        Promise.all([totalQty, result])
+            .then(([totalQty, result]) => {
                     let next_page = null,
                     prev_page = null,
-                    first_page = `http://localhost:3000/api/products?start=0&pageQty=${pageQty}`;
+                    first_page = `${ruta}?start=0&pageQty=${pageQty}`;
                     
-                    result.length == pageQty ? next_page = `http://localhost:3000/api/products?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
+                    result.length == pageQty ? next_page = `${ruta}?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
                     
-                    start >= pageQty ? prev_page = `http://localhost:3000/api/products?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
-                    
+                    start >= pageQty ? prev_page = `${ruta}?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
                     
                     for (let course of result) {
-                        course.setDataValue('endpoint', '/api/products/' + course.id);
+                        course.setDataValue('endpoint', ruta + "/" +course.id);
                     }
                     let courses = {
                         meta: {
                             status: 200,
-                            total: total_qty.length,
-                            total_courses: total_qty
+                            total: totalQty.length,
+                            lastProduct: totalQty[totalQty.length-1]
                         },
                         pagination: {
                             next_page,
@@ -62,7 +64,7 @@ module.exports = {
             let course = {
                 meta: {
                     status: 200,
-                    url: '/api/products/' + result.id
+                    url: ruta + "/" + result.id
                 },
                 data: result
             }
