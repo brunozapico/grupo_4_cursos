@@ -103,7 +103,7 @@ export default class DataTales extends React.Component {
                 </div>
                 {firstPage}
                 {prevButton}
-                {nextButton}
+                {nextButton} 
             </div>
         )
     }
