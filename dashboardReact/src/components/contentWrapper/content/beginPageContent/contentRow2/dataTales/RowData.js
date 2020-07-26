@@ -1,7 +1,6 @@
 import React from 'react';
 
 function RowData(props) {
-console.log(props);
     return (
         <tr>
             <td>{props.name}</td>

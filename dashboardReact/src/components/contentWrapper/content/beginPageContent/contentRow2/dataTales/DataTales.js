@@ -1,53 +1,102 @@
 import React from 'react';
 import ColNames from './ColNames';
-import RowData   from './RowData';
-import staff from '../../../../../../staff.json';
+import RowData from './RowData';
 
 
 
-class DataTales extends React.Component {
+
+export default class DataTales extends React.Component {
     constructor() {
         super();
         this.state = {
-            courses: []
+            courses: [],
+            total: '',
+            first_page: '',
+            next_page: '',
+            prev_page: ''
         };
     };
 
-    componentDidMount() {
-        fetch('http://localhost:3000/api/products')
-        .then(response => response.json())
-        .then(data => this.setState({courses: data.data}))
+
+    apiCall(url, action) {
+        fetch(url)
+            .then(response => response.json())
+            .then(action)
+    };
+    goFirstPage() {
+        this.apiCall('http://localhost:3000/api/products', data => {
+            let { first_page, next_page, prev_page } = data.pagination;
+            this.setState({
+                courses: data.data,
+                first_page,
+                next_page,
+                prev_page,
+                total: data.meta.total
+            })
+        });
     }
-    
+
+    goNextPage() {
+        this.apiCall(this.state.next_page, data => {
+            let { next_page, prev_page } = data.pagination;
+            this.setState({
+                courses: data.data,
+                next_page,
+                prev_page,
+            })
+        });
+    }
+    componentDidMount() {
+        this.goFirstPage();
+    }
+   
+
+    /* componentDidUpdate(prevProps, prevState) {
+        this.apiCall(prevState.next_page, data => this.setState({courses: data.data, first_page: data.pagination.first_page, next_page: data.pagination.next_page, prev_page: data.pagination.prev_page}));
+        console.log('me actualizé');
+    } */
+
     render() {
-        console.log(this.state.courses);
+        let rowData = this.state.courses.map((course, i) => {
+            return <RowData key={i + course.name} name={course.name} price={course.price} description={course.description_short} professor={[course.professor.first_name, course.professor.last_name, course.professor.profession]}
+                category={course.category.title}
+                dates={[course.starts_date, course.ends_date]} vacancies={course.vacancies} />
+        })
+        let totalCourses = this.state.total;
+
+        let firstPage = <button onClick={() => this.goFirstPage()} >First Page</button>
+
+        let nextButton;
+        this.state.next_page != null ? nextButton = <button onClick={() => this.goToAPage()}> Next 10 courses </button> : nextButton = <button> You are in te last page </button>;
+
+        let prevButton;
+        this.state.prev_page != null ? prevButton = <button /* onClick={() => this.handleClick() } */> Prev 10 courses </button> : prevButton = <button> You are in the first page </button>;
 
         return (
-            <div className="card shadow mb-4">
-                <div className="card-body">
-                    <div className="table-responsive">
-                        <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <ColNames />
-                                
-                            </thead>
-                            <tfoot>
-                                <ColNames />
-                            </tfoot>
-                            <tbody>
-                                {this.state.courses.map((course, i) => {
-                                    return <RowData key={i + course.name} name= {course.name} price={course.price} description = {course.description_short} professor = {[course.professor.first_name, course.professor.last_name, course.professor.profession]}
-                                    category= {course.category.title}
-                                    dates= {[course.starts_date, course.ends_date]} vacancies = {course.vacancies}/>
-                                })}
-                                
-                            </tbody>
-                        </table>
+            <div>
+                <p>Total de Cursos: {` ${totalCourses}`}</p>
+                {firstPage}
+                {prevButton}
+                {nextButton}
+                <div className="card sha1dow mb-4">
+                    <div className="card-body">
+                        <div className="table-responsive">
+                            <table className="table table-bordered" id="dataTable" width="100%">
+                                <thead>
+                                    <ColNames />
+
+                                </thead>
+                                <tfoot>
+                                    <ColNames />
+                                </tfoot>
+                                <tbody>
+                                    {rowData}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         )
     }
 };
-
-export default DataTales;

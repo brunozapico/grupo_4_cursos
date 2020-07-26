@@ -10,7 +10,7 @@ function ContentRow2() {
             <CategoriesInDB />
             <div className="container">
                 <div className="row">
-            <h1 class="h3 mb-2 text-gray-800">All the products in the Database</h1>
+            <h1 className="h3 mb-2 text-gray-800">All the products in the Database</h1>
             <DataTales />
 
                 </div>
