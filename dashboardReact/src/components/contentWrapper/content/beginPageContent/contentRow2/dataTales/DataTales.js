@@ -33,6 +33,7 @@ export default class DataTales extends React.Component {
                 prev_page,
                 total: data.meta.total
             })
+            console.log(next_page);
         });
     }
 
@@ -46,15 +47,19 @@ export default class DataTales extends React.Component {
             })
         });
     }
+    goPrevPage() {
+        this.apiCall(this.state.prev_page, data => {
+            let { next_page, prev_page } = data.pagination;
+            this.setState({
+                courses: data.data,
+                next_page,
+                prev_page,
+            })
+        });
+    }
     componentDidMount() {
         this.goFirstPage();
     }
-   
-
-    /* componentDidUpdate(prevProps, prevState) {
-        this.apiCall(prevState.next_page, data => this.setState({courses: data.data, first_page: data.pagination.first_page, next_page: data.pagination.next_page, prev_page: data.pagination.prev_page}));
-        console.log('me actualizé');
-    } */
 
     render() {
         let rowData = this.state.courses.map((course, i) => {
@@ -67,10 +72,10 @@ export default class DataTales extends React.Component {
         let firstPage = <button onClick={() => this.goFirstPage()} >First Page</button>
 
         let nextButton;
-        this.state.next_page != null ? nextButton = <button onClick={() => this.goToAPage()}> Next 10 courses </button> : nextButton = <button> You are in te last page </button>;
+        this.state.next_page != null ? nextButton = <button onClick={() => this.goNextPage()}> Next 10 courses </button> : nextButton = <button> You are in te last page </button>;
 
         let prevButton;
-        this.state.prev_page != null ? prevButton = <button /* onClick={() => this.handleClick() } */> Prev 10 courses </button> : prevButton = <button> You are in the first page </button>;
+        this.state.prev_page != null ? prevButton = <button onClick={() => this.goPrevPage() }> Prev 10 courses </button> : prevButton = <button> You are in the first page </button>;
 
         return (
             <div>
@@ -96,6 +101,9 @@ export default class DataTales extends React.Component {
                         </div>
                     </div>
                 </div>
+                {firstPage}
+                {prevButton}
+                {nextButton}
             </div>
         )
     }
