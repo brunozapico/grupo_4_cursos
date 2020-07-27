@@ -1,13 +1,21 @@
+body {
+    background-image: linear-gradient(to right, #00547e, #009ceb, #00547e);;
+}
+
 .container {
     margin: 20px auto 400px auto;
+}
+
+.info {
+    color: white;
 }
 
 .data-row {
     margin: 10px auto;
     padding: 20px 0;
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     border-radius: 2px;
-    box-shadow: 0px 0px 5px rgba(177, 177, 177, 0.7);
+    box-shadow: 0px 0px 10px rgba(80, 80, 80, 0.5);
 }
 
 .avatar {
@@ -35,7 +43,7 @@
 /* LOGOUT */
 
 .logout-btn {
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     border: none;
 }
 
