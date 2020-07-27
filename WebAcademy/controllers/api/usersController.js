@@ -25,7 +25,7 @@ module.exports = {
                 start > 9 ? previous = `http://localhost:3000/api/users?start=${(start - rpp)}` : previous;
 
                 for (let i = 0; i < users.rows.length; i++) {
-                    users.rows[i].setDataValue('detail', `/api/users/${users.rows[i].id}`);
+                    users.rows[i].setDataValue('detail', `http://localhost:3000/api/users/${users.rows[i].id}`);
                 };
 
                 users.rows.length == 0 ?
@@ -35,7 +35,7 @@ module.exports = {
                 let answer = {
                     meta: {
                         status: 200,
-                        url: '/api/users',
+                        url: 'http://localhost:3000/api/users',
                         count: total_qty.length,
                         pagination: {
                             first,
@@ -63,12 +63,12 @@ module.exports = {
                 attributes: ['id', 'name', 'email', 'avatar'],
             })
             .then(user => {
-                user.setDataValue('url', `/api/users/${req.params.id}`);
+                user.setDataValue('url', `http://localhost:3000/api/users/${req.params.id}`);
 
                 let answer = {
                     meta: {
                         status: 200,
-                        users_url: '/api/users',
+                        users_url: 'http://localhost:3000/api/users',
                     },
                     user,
                 };
