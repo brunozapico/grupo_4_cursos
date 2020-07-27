@@ -28,4 +28,31 @@ module.exports = {
                 });
             });
     },
+    detail: (req, res) => {
+        db.Category.findOne({
+                where: {id: req.params.id},
+                include: [{ association: 'courses' }]
+            })
+            .then(category => {
+                category.setDataValue('url', `http://localhost:3000/api/categories/${req.params.id}`);
+
+                let answer = {
+                    meta: {
+                        status: 200,
+                        categories_url: 'http://localhost:3000/api/categories',
+                    },
+                    category: category,
+                };
+                res.status(200).json(answer);
+            })
+            .catch(error => {
+                res.status(404).json({
+                    status: "error",
+                    code: "404",
+                    message: "Not Found",
+                    info: "Category out of range or not found.",
+                    error: error
+                });
+            });
+    },
 };
