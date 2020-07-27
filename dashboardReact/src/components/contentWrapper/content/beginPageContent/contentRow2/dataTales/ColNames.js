@@ -4,13 +4,13 @@ function ColNames() {
 
     return (
         <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Professor</th>
-            <th>Start & ends date</th>
-            <th>Price</th>
-            <th>Vacancies</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Categoría</th>
+            <th>Profesor</th>
+            <th>Inicio / Fin</th>
+            <th>Precio</th>
+            <th>Vacantes</th>
         </tr>
     )
 };

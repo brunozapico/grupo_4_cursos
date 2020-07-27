@@ -35,9 +35,9 @@ class ContentRow1 extends React.Component {
     render() {
         return (
             <div className="row">
-                <MainCard color="primary" title="Products in Data Base" quantity={this.state.amount_products} icon="fa-clipboard-list"/>
-                <MainCard color="success" title="Amount in products" quantity={`$${(this.state.amount_total_price).toFixed(2)}`} icon="fa-dollar-sign"/>
-                <MainCard color="warning" title="Users quantity" quantity={this.state.amount_total_users} icon="fa-user-check"/>
+                <MainCard color="primary" title="Productos totales" quantity={this.state.amount_products} icon="fa-clipboard-list"/>
+                <MainCard color="success" title="Precio de venta total" quantity={`$${(this.state.amount_total_price).toFixed(2)}`} icon="fa-dollar-sign"/>
+                <MainCard color="warning" title="Usuarios totales" quantity={this.state.amount_total_users} icon="fa-user-check"/>
             </div>
         );
     };

@@ -67,15 +67,15 @@ export default class DataTales extends React.Component {
         })
         let totalCourses = this.state.total,
 
-        firstPage = <button className="btn shadow bg-white border-left-primary" onClick={() => this.goFirstPage()} >First Page</button>,
+        firstPage = <button className="btn shadow bg-white border-left-primary" onClick={() => this.goFirstPage()} >Primer página</button>,
 
         prevButton;
-        this.state.prev_page != null ? prevButton = <button className="btn shadow bg-white border-left-success" onClick={() => this.goPrevPage()}> Prev 10 courses </button>
-        : prevButton = <button className="btn shadow bg-white border-left-success"> You are in the first page </button>
+        this.state.prev_page != null ? prevButton = <button className="btn shadow bg-white border-left-success" onClick={() => this.goPrevPage()}> 10 cursos anteriores </button>
+        : prevButton = <button className="btn shadow bg-white border-left-success"> Estas en la primer página </button>
 
         let nextButton;
-        this.state.next_page != null ? nextButton = <button className="btn shadow bg-white border-left-warning" onClick={() => this.goNextPage()}> Next 10 courses </button>
-        : nextButton = <button className="btn shadow bg-white border-left-warning"> You are in te last page </button>
+        this.state.next_page != null ? nextButton = <button className="btn shadow bg-white border-left-warning" onClick={() => this.goNextPage()}> Próximos 10 cursos </button>
+        : nextButton = <button className="btn shadow bg-white border-left-warning"> Estas en la última página </button>
 
         return (
             <div>

@@ -4,7 +4,7 @@ function ActionItem(props) {
     console.log(props);
     return (
         <li className="nav-item">
-            <a className="nav-link collapsed" href="/">
+            <a className="nav-link collapsed" href={props.item.href}>
                 <i className={props.item.icon}></i>
                 <span>{props.item.title}</span>
             </a>

@@ -23,7 +23,7 @@ class CategoriesInDB extends Component{
             <div className="col-lg-6 mb-4">
                 <div className="card shadow mb-4">
                     <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary">Categories in Data Base</h6>
+        <h6 className="m-0 font-weight-bold text-primary" id="categories">Categorias</h6>
                     </div>
                     <div className="card-body">
                         <div className="row">

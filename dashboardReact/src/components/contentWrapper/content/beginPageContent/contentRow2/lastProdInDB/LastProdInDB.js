@@ -24,7 +24,7 @@ class LastProdInDB extends Component {
             <div className="col-lg-6 mb-4">
                 <div className="card shadow mb-4">
                     <div className="card-header py-3">
-                        <h6 className="m-0 font-weight-bold text-primary">Last product in Data Dase</h6>
+                        <h6 className="m-0 font-weight-bold text-primary" id="last-product">Último producto en la base de datos</h6>
                     </div>
                     <div className="card-body">
                         <div className="text-center">
@@ -32,7 +32,7 @@ class LastProdInDB extends Component {
                             <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: 25 + "rem" }} src={this.state.lastProduct.image} alt="last product" />
                         </div>
                         <p>{this.state.lastProduct.description_short}</p>
-                        <a target="_blank" rel="nofollow" href="/">View product detail</a>
+                        <a target="_blank" rel="nofollow" href="/">Ver detalle</a>
                     </div>
                 </div>
             </div>
