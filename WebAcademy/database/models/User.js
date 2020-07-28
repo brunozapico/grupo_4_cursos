@@ -26,13 +26,6 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             unique: true,
         },
-        // created_at: {
-        //     type: dataTypes.DATE,
-        // defaultValue: dataTypes.NOW
-        // },
-        // updated_ap: {
-        //     type: dataTypes.DATE
-        // }
     };
 
     let config = {
@@ -47,7 +40,7 @@ module.exports = (sequelize, dataTypes) => {
 
     User.associate = (models) => {
         User.belongsToMany(models.Course, {
-            as: 'courses', //plural porque tiene muchos
+            as: 'courses',
             through: 'user_course',
             foreignKey: 'user_id',
             otherKey: 'courses_id'
@@ -57,7 +50,12 @@ module.exports = (sequelize, dataTypes) => {
             as: 'shopping_carts',
             foreignKey: 'user_id'
         });
-    }
+
+        User.belongsTo(models.Rol, {
+            as: 'rol',
+            foreignKey: 'user_id_rol'
+        });
+    };
 
     return User;
 };

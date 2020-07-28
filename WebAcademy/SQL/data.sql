@@ -50,6 +50,14 @@ INSERT INTO users (id, name, email, password) VALUES (47, 'Holly Hefner', 'hhefn
 INSERT INTO users (id, name, email, password) VALUES (48, 'Thelma Sweeny', 'tsweeny1b@google.pl', 'rPYURoY3');
 INSERT INTO users (id, name, email, password) VALUES (49, 'Giles Govett', 'ggovett1c@deviantart.com', 'pZid0xbU');
 INSERT INTO users (id, name, email, password) VALUES (50, 'Delbert Brisley', 'dbrisley1d@acquirethisname.com', 'IaPga7FZ');
+INSERT INTO users (id, name, email, password) VALUES (51, 'Martin Rodriguez', 'martin@mail.com', '12345678');
+INSERT INTO users (id, name, email, password) VALUES (52, 'Lucas Castro', 'lucas@mail.com', '12345678');
+INSERT INTO users (id, name, email, password) VALUES (53, 'Bruno Zapico', 'bruno@mail.com', '12345678');
+
+-- INSERT ADMIN USERS
+INSERT INTO rols (id, user_id_rol) VALUES (1, 51);
+INSERT INTO rols (id, user_id_rol) VALUES (2, 52);
+INSERT INTO rols (id, user_id_rol) VALUES (3, 53);
 
 -- INSERT CATEGORIES
 

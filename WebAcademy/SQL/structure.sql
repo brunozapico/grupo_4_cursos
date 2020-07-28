@@ -195,6 +195,16 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE IF NOT EXISTS `web_academy`.`rols` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id_rol` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `user_id_rol_UNIQUE` (`user_id_rol` ASC),
+  CONSTRAINT `user_id_rol`
+    FOREIGN KEY (`user_id_rol`)
+    REFERENCES `web_academy`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
