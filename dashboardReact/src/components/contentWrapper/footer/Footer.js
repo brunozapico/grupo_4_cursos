@@ -8,7 +8,7 @@ function Footer(){
 			<footer className="sticky-footer bg-white">
 				<div className="container my-auto">
 					<div className="copyright text-center my-auto">
-					<span>Copyright &copy; Dashboard {year}</span>
+					<span>Copyright &copy; Web Academy {year}</span>
 					</div>
 				</div>
 			</footer>

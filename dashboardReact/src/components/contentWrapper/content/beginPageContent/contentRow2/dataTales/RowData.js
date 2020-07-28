@@ -7,16 +7,16 @@ function RowData(props) {
             <td>{props.description}</td>
             <td>{props.category}</td>
             <td>
-                <ul>
+                <ul className = "list-group list-group-flush">
                 {props.professor.map((value, i) => {
-                    return  <li key={i + value}>{value}</li>
+                    return  <li className = "list-group-item" key={i + value}>{value}</li>
                 })}
                 </ul>
             </td>
             <td>
-                <ul>
+                <ul className = "list-group list-group-flush">
                 {props.dates.map((value, i) => {
-                    return  <li key={i + value}>{value}</li>
+                    return  <li className = "list-group-item" key={i + value}>{value}</li>
                 })}
                 </ul>
             </td>

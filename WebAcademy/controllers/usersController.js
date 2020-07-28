@@ -94,7 +94,7 @@ const usersController = {
         });
     },
     edit: (req, res) => {
-        user = db.User.findOne({where: {id: req.params.id}});
+        user = db.User.findOne({where: {id: req.session.loggedIn.id}});
         
         Promise.all([categories, user])
         .then(([categories, user]) => {
@@ -102,8 +102,8 @@ const usersController = {
         });
     },
     update: (req, res) => {
-        db.User.findOne({where: {id: req.params.id}})
-        .then(user => { return user})
+        db.User.findOne({where: {id: req.session.loggedIn.id}})
+        .then(user => { return user })
         .then((previousUser) => {
             let errors = validationResult(req);
             if(!errors.isEmpty()) {
@@ -117,12 +117,12 @@ const usersController = {
                     let user;
                     if(req.body.password == '' && req.body.c_password == ''){
                         if(req.files[0] != undefined){
-                            user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, previousUser.password, `/img/users/${req.files[0].filename}`);
+                            user = userHelper.update_fullUser(req.session.loggedIn.id, req.body.name, req.body.email, previousUser.password, `/img/users/${req.files[0].filename}`);
                         } else {
                             if(previousUser.avatar != undefined){
-                                user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, previousUser.password, previousUser.avatar);
+                                user = userHelper.update_fullUser(req.session.loggedIn.id, req.body.name, req.body.email, previousUser.password, previousUser.avatar);
                             } else {
-                                user = userHelper.update_noAvatarUser(req.params.id, req.body.name, req.body.email, previousUser.password);
+                                user = userHelper.update_noAvatarUser(req.session.loggedIn.id, req.body.name, req.body.email, previousUser.password);
                             };
                         };
                     } else {
@@ -132,34 +132,34 @@ const usersController = {
                             ], loggedInUser: req.session.loggedIn, categories});
                         } else {
                             if(req.files[0] != undefined){
-                                user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/${req.files[0].filename}`);
+                                user = userHelper.update_fullUser(req.session.loggedIn.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/${req.files[0].filename}`);
                             } else {
                                 if(previousUser.avatar != undefined){
-                                    user = userHelper.update_fullUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), previousUser.avatar);
+                                    user = userHelper.update_fullUser(req.session.loggedIn.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), previousUser.avatar);
                                 } else {
-                                    user = userHelper.update_noAvatarUser(req.params.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10));
+                                    user = userHelper.update_noAvatarUser(req.session.loggedIn.id, req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10));
                                 };
                             };
                         };
                     };
-                    let update = db.User.update(user, {where: {id: req.params.id}});
+                    let update = db.User.update(user, {where: {id: req.session.loggedIn.id}});
                     
-                    Promise.all([categories, update, user])
-                    .then(([categories, update, user]) => {
+                    Promise.all([update, user])
+                    .then(([update, user]) => {
                         update;
                         res.clearCookie('remember');
                         req.session.loggedIn = user;
                         if(req.body.remember != undefined) {
                             res.cookie('remember', req.session.loggedIn.id, { maxAge: 6000000 });
                         };
-                        res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                        res.redirect('/users');
                     });
                 };
             };
         });
     },
     destroy: (req, res) => {
-        db.User.destroy({where: {id: req.params.id}})
+        db.User.destroy({where: {id: req.session.loggedIn.id}})
         .then(user => {
             req.session.destroy();
             res.clearCookie('remember');

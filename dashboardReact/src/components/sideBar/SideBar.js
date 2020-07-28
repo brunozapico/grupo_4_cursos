@@ -4,15 +4,18 @@ import ActionItem from './ActionItem';
 function Sidebar() {
 	let items = [{
 		icon: "fas fa-fw fa-folder",
-		title: "Pages"
+		title: "Categorias",
+		href: "#categories"
 	},
 	{
 		icon: "fas fa-fw fa-chart-area",
-		title: "Charts"
+		title: "Último producto",
+		href: "#last-product"
 	},
 	{
 		icon: "fas fa-fw fa-table",
-		title: "Tables"
+		title: "Productos",
+		href: "#all-products"
 	},]
 	return (
 		<ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -20,11 +23,11 @@ function Sidebar() {
 				<div className="sidebar-brand-icon">
 					<i className="fas fa-chart-line"></i>
 				</div>
-				<div className="sidebar-brand-text mx-3">Admin</div>
+				<div className="sidebar-brand-text mx-3">Admin.</div>
 			</a>
 			<hr className="sidebar-divider my-0" />
 			<li className="nav-item active">
-				<a className="nav-link" href="/">
+				<a className="nav-link" href="#dashboard">
 					<i className="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
 			</li>
