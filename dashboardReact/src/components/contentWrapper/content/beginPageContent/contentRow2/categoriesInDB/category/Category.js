@@ -6,7 +6,9 @@ function Category(props) {
             <div className="card bg-info text-white shadow">
                 <div className="card-body">
                     {props.title}
-                    {props.courses}
+                    <div className="text-center">
+                        <p>Existen {props.courses} cursos</p>                    
+                    </div>
                 </div>
                 <div>
                     <i className={props.icon}></i>

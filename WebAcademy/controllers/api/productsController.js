@@ -1,7 +1,8 @@
 const db = require('../../database/models');
 const { courseGenerator, programIdBuild } = require('../helpers/courseHelpers');
 
-let ruta = "http://localhost:3000/api/products"
+let rutaApi = "http://localhost:3000/api/products"
+    ruta = "http://localhost:3000/products/detail"
 
 module.exports = {
     list: (req, res) => {
@@ -22,20 +23,24 @@ module.exports = {
             .then(([totalQty, result]) => {
                     let next_page = null,
                     prev_page = null,
-                    first_page = `${ruta}?start=0&pageQty=${pageQty}`;
+                    first_page = `${rutaApi}?start=0&pageQty=${pageQty}`;
                     
-                    result.length == pageQty ? next_page = `${ruta}?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
+                    result.length == pageQty ? next_page = `${rutaApi}?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
                     
-                    start >= pageQty ? prev_page = `${ruta}?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
+                    start >= pageQty ? prev_page = `${rutaApi}?start=${start - pageQty}&pageQty=${pageQty}` : prev_page;
                     
                     for (let course of result) {
-                        course.setDataValue('endpoint', ruta + "/" +course.id);
+                        course.setDataValue('endpoint', rutaApi + "/" +course.id);
                     }
+                    
+                    let lastProduct = totalQty[totalQty.length-1]
+                        lastProduct.setDataValue('endpoint', ruta + "/" +lastProduct.id);
+
                     let courses = {
                         meta: {
                             status: 200,
                             total: totalQty.length,
-                            lastProduct: totalQty[totalQty.length-1]
+                            lastProduct
                         },
                         pagination: {
                             next_page,
@@ -64,7 +69,7 @@ module.exports = {
             let course = {
                 meta: {
                     status: 200,
-                    url: ruta + "/" + result.id
+                    url: rutaApi + "/" + result.id
                 },
                 data: result
             }

@@ -29,10 +29,10 @@ class LastProdInDB extends Component {
                     <div className="card-body">
                         <div className="text-center">
                             <h6>{this.state.lastProduct.name}</h6>
-                            <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: 25 + "rem" }} src={this.state.lastProduct.image} alt="last product" />
+                            <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: 25 + "rem" }} src={`http://localhost:3000${this.state.lastProduct.image}`} alt="last product" />
                         </div>
                         <p>{this.state.lastProduct.description_short}</p>
-                        <a target="_blank" rel="nofollow" href="/">View product detail</a>
+                        <a target="_blank" rel="nofollow" href={this.state.lastProduct.endpoint}>View product detail</a>
                     </div>
                 </div>
             </div>
