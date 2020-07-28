@@ -80,7 +80,7 @@ export default class DataTales extends React.Component {
         return (
             <div>
                 <div className="container">
-                    <p>Total de Cursos: {` ${totalCourses}`}</p>
+                    <p className="text-primary">Total de Cursos: {` ${totalCourses}`}</p>
                     <div className="row">
                         <div className="col mb-3">
                             {firstPage}

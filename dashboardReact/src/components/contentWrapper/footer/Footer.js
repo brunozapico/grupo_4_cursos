@@ -1,18 +1,18 @@
 import React from 'react';
 
-function Footer(){
+function Footer() {
 	let date = new Date();
 	let year = date.getFullYear()
 	console.log(year);
-    return(
-			<footer className="sticky-footer bg-white">
-				<div className="container my-auto">
-					<div className="copyright text-center my-auto">
+	return (
+		<footer className="sticky-footer bg-white">
+			<div className="container my-auto">
+				<div className="copyright text-center my-auto">
 					<span>Copyright &copy; Web Academy {year}</span>
-					</div>
 				</div>
-			</footer>
-    );
+			</div>
+		</footer>
+	);
 }
 
 export default Footer;

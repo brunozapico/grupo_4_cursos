@@ -1,29 +1,27 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Category from './category/Category';
 
-
-
-class CategoriesInDB extends Component{
-    constructor(){
+class CategoriesInDB extends Component {
+    constructor() {
         super()
-            this.state = {
-                categories : [],
-            }
+        this.state = {
+            categories: [],
+        }
     }
 
-     componentDidMount(){
-         fetch('http://localhost:3000/api/categories')
-         .then(res => res.json())
-         .then(categories => this.setState({categories: categories.data}))
-     }
+    componentDidMount() {
+        fetch('http://localhost:3000/api/categories')
+            .then(res => res.json())
+            .then(categories => this.setState({ categories: categories.data }))
+    }
 
-    render(){
-        return(
+    render() {
+        return (
 
             <div className="col-lg-6 mb-4">
                 <div className="card shadow mb-4">
                     <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary" id="categories">Categorias</h6>
+                        <h6 className="m-0 font-weight-bold text-primary" id="categories">Categorias</h6>
                     </div>
                     <div className="card-body">
                         <div className="row">
@@ -31,7 +29,7 @@ class CategoriesInDB extends Component{
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         );
     }
