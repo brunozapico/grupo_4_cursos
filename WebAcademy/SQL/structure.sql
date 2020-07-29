@@ -199,6 +199,8 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
 CREATE TABLE `web_academy`.`rols` (
 `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 `user_id_rol` INT NOT NULL,
+`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` TIMESTAMP NULL,
 PRIMARY KEY (`id`),
 INDEX `user_id_rol_idx` (`user_id_rol` ASC),
 CONSTRAINT `user_id_rol`
