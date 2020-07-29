@@ -21,19 +21,19 @@ router.get('/', productsController.list);
 
 //CREATE
 router.get('/create', adminMiddleware, productsController.create)
-router.post('/create', upload.any(), formValidator, productsController.store)
+router.post('/create', adminMiddleware, upload.any(), formValidator, productsController.store)
 
 //DETAIL
 router.get('/detail/:id', productsController.detail);
 
 //EDIT
 router.get('/edit/:id', adminMiddleware, productsController.edit);
-router.put('/edit/:id', upload.any(), formValidator, productsController.update);
+router.put('/edit/:id', adminMiddleware, upload.any(), formValidator, productsController.update);
 
 //SEARCH
 router.get('/search', productsController.search);
 
 //DELETE
-router.delete('/delete/:id', productsController.destroy);
+router.delete('/delete/:id', adminMiddleware, productsController.destroy);
 
 module.exports = router;
