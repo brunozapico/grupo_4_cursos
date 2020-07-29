@@ -23,7 +23,7 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         tableName: 'rols',
         underscored: true,
-        timestamps: true,
+        timestamps: false,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     };
@@ -31,7 +31,7 @@ module.exports = (sequelize, dataTypes) => {
     const Rol = sequelize.define(alias, cols, config);
 
     Rol.associate = (models) => {
-        Rol.hasOne(models.User, {
+        Rol.belongsTo(models.User, {
             as: 'user',
             foreignKey: 'user_id_rol'
         });
