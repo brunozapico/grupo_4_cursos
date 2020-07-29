@@ -1,8 +1,6 @@
 const db = require('../database/models');
 
 module.exports = (req, res, next) => {
-
-    console.log(req.session.loggedIn)
     
     if(req.cookies.remember != undefined && req.session.loggedIn == undefined) {
         let loginUser;
