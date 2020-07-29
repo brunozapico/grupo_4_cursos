@@ -27,7 +27,7 @@ router.post('/create', upload.any(), formValidator, productsController.store)
 router.get('/detail/:id', productsController.detail);
 
 //EDIT
-router.get('/edit/:id', productsController.edit);
+router.get('/edit/:id', adminMiddleware, productsController.edit);
 router.put('/edit/:id', upload.any(), formValidator, productsController.update);
 
 //SEARCH
