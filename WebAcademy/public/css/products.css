@@ -94,6 +94,21 @@ a:hover {
     flex-direction: column;
 }
 
+/* VER MAS BUTTON */
+
+#div_see_more_btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#main_div {
+    min-height: 800px;
+}
+
+.hidden_see {
+    display: none;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 1024px) {
