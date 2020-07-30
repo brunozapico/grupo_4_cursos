@@ -147,6 +147,6 @@ INSERT INTO user_course (users_id, courses_id) VALUES (10, 14);
 
 -- INSERT TIPS
 
-INSERT INTO tips (title, description, icon) VALUES ('TIP 1', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
-INSERT INTO tips (title, description, icon) VALUES ('TIP 2', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
-INSERT INTO tips (title, description, icon) VALUES ('TIP 3', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores, iure?', 'fas fa-clipboard-check');
+INSERT INTO tips (title, description, icon) VALUES ('Rutina de estudio', 'Proponerse un horario de estudio ayuda notablemente a mejorar el rendimiento del mismo.', 'fas fa-clipboard-check');
+INSERT INTO tips (title, description, icon) VALUES ('Practicá constantemente', 'La práctica hace al maestro, no lo olvides.', 'fas fa-clipboard-check');
+INSERT INTO tips (title, description, icon) VALUES ('Alejá las distracciones', 'Que tu espacio de estudio esté libre de distracciones para mejorar la concentración.', 'fas fa-clipboard-check');
