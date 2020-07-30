@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Raleway';
 }
-a, a:hover {text-decoration: none; color: black;}
+#category-link, #category-link:hover {text-decoration: none; color: black;}
 
 .main-container{
     background-color: rgb(245, 245, 245);
