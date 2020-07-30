@@ -12,7 +12,7 @@
     </header>
 
     <main>
-        <div>
+        <div id="main_div">
             <section class="products-section">
 
                 <article class="products-sec-title">
@@ -46,6 +46,10 @@
                         <a href="http://localhost:3000/categories/<%= category.id%>?limit=seeMore" id="see_more_btn" class="header-user-btn">Ver más...</a>
                 </div>
 
+                <div id="div_see_more_btn">
+                        <a href="http://localhost:3000/categories/<%= category.id%>" id="see_less_btn" class="header-user-btn hidden_see">Ver menos...</a>
+                </div>
+
             </section>
         </div>
     </main>
@@ -55,6 +59,8 @@
     </footer>
 
     <%- include('partials/scripts') %>
+
+    <script src="/js/categories.js"></script>
 </body>
 
 </html>

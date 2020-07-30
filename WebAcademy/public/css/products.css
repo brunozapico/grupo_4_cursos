@@ -101,6 +101,14 @@ a:hover {
     justify-content: flex-end;
 }
 
+#main_div {
+    min-height: 800px;
+}
+
+.hidden_see {
+    display: none;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 1024px) {
