@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './Logo';
 import './topbar.css'
 
 
@@ -11,6 +12,8 @@ function Topbar() {
 			<button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3 fondo">
 				<i className="fa fa-bars"></i>
 			</button>
+
+			<Logo />
 
 			{ /* Topbar Navbar */}
 			<ul className="navbar-nav ml-auto fondo">
