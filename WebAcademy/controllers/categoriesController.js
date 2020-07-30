@@ -5,10 +5,6 @@ const categories = db.Category.findAll({
 })
 
 module.exports = {
-    // list(req, res) {
-    // categories      
-    //     .then(categories => res.render('products', { categories, title: 'Todas las categorias', loggedInUser: req.session.loggedIn }))
-    // },
     detail(req, res) {
         let courseLimit = req.query.limit ? null : 3;
         const category = db.Category.findByPk(req.params.id, {
