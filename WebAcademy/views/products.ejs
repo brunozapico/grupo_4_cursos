@@ -22,9 +22,14 @@
                 <article class="products-sec-courses">
                     <% for (let i=0; i < categories.length; i++) { %>
                         
-                        <h4 class="products-sec-category" id="<%= categories[i].title %>">
-                            <%= categories[i].title %>
-                        </h4>
+                        <a class="products-sec-category" href="http://localhost:3000/categories/<%= categories[i].id %>">
+                            
+                            <h4 class="products-sec-category" id="<%= categories[i].title %>">
+                                <%= categories[i].title %>
+                            </h4>
+
+                        </a>
+                        
                         
                         <% for (let j = 0; j < categories[i].courses.length; j++) { 
                             let course = categories[i].courses[j] %>
