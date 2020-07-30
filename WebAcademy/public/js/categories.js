@@ -1,9 +1,9 @@
 window.addEventListener('load', () => {
     let see_more = document.getElementById('see_more_btn'),
         see_less = document.getElementById('see_less_btn'),
-        query = document.baseURI.slice(33, );
+        query = document.baseURI.slice(-14,);
 
-    if (query == '1?limit=seeMore') {
+    if (query == '?limit=seeMore') {
         see_more.classList.add('hidden_see');
         see_less.classList.remove('hidden_see');
     } else {
