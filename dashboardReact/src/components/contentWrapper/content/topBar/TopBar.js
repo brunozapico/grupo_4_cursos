@@ -1,18 +1,19 @@
 import React from 'react';
+import './topbar.css'
 
 
 function Topbar() {
 	let avatar = "/dummy-avatar.jpg";
 	return (
-		<nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+		<nav className="navbar navbar-expand topbar mb-4 static-top shadow">
 
 			{ /* Sidebar Toggle (Topbar) */}
-			<button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+			<button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3 fondo">
 				<i className="fa fa-bars"></i>
 			</button>
 
 			{ /* Topbar Navbar */}
-			<ul className="navbar-nav ml-auto">
+			<ul className="navbar-nav ml-auto fondo">
 
 				{ /* Nav Item - Alerts */}
 				<li className="nav-item dropdown no-arrow mx-1">
@@ -22,6 +23,8 @@ function Topbar() {
 						<span className="badge badge-danger badge-counter">3+</span>
 					</a>
 				</li>
+
+				<div className="topbar-divider d-none d-sm-block"></div>
 
 				{ /* Nav Item - Messages */}
 				<li className="nav-item dropdown no-arrow mx-1">
@@ -37,7 +40,7 @@ function Topbar() {
 				{ /* Nav Item - User Information */}
 				<li className="nav-item dropdown no-arrow">
 					<a className="nav-link dropdown-toggle" href="/" id="userDropdown">
-						<span className="mr-2 d-none d-lg-inline text-gray-600 small">Walter White</span>
+						<span className="mr-2 d-none d-lg-inline text-white small">Walter White</span>
 						<img className="img-profile rounded-circle" src={avatar} width="60" />
 					</a>
 				</li>

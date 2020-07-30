@@ -1,5 +1,6 @@
 import React from 'react';
 import ActionItem from './ActionItem';
+import './sidebar.css'
 
 function Sidebar() {
 	let items = [{
@@ -18,7 +19,7 @@ function Sidebar() {
 		href: "#all-products"
 	},]
 	return (
-		<ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+		<ul className="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 			<a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
 				<div className="sidebar-brand-icon">
 					<i className="fas fa-chart-line"></i>
