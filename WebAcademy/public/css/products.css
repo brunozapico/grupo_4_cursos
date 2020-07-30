@@ -94,6 +94,13 @@ a:hover {
     flex-direction: column;
 }
 
+/* VER MAS BUTTON */
+
+#div_see_more_btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
 /* MEDIA QUERIES */
 
 @media (max-width: 1024px) {
