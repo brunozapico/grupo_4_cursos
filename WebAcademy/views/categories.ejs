@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+
+<body>
+    <header>
+        <%- include('partials/header') %>
+    </header>
+    
+    <main>
+        <div>
+            <section class="products-section">
+                
+                <article class="products-sec-title">
+                    <h4> <%= title %></h4>
+                </article>
+                
+                <article class="products-sec-courses">
+                        
+                        <h4 class="products-sec-category" id="<%= category.title %>">
+                            <%= category.title %>
+                        </h4>
+                        
+                        <% for (let j = 0; j < category.courses.length; j++) { 
+                            let course = category.courses[j] %>
+                            
+                            <div class="course">
+                                <img src="<%= course.image %>" alt="">
+                                <h4><a href="/products/detail/<%= course.id %>"><%= course.name %></a></h4>
+                                <p><%= course.description_short %></p>
+
+                                <div class="hidden-course-info">
+                                    <p><span class="hidden-course-info-title">Precio:</span> USD <%= course.price %></p>
+                                    <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course.starts_date %></p>
+                                    <p><span class="hidden-course-info-title">Vacantes:</span> <%= course.vacancies %></p>
+                                    <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
+                                </div>
+
+                            </div>
+                        <% } %>
+                </article>
+
+            </section>
+        </div>
+    </main>
+            
+    <footer>
+        <%- include('partials/footer') %>
+    </footer>
+            
+    <%- include('partials/scripts') %>
+</body>
+        
+</html>
