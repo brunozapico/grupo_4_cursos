@@ -225,6 +225,7 @@ window.addEventListener('load', () => {
     submit.addEventListener('click', event => {
         if (submit.hasAttribute('disabled')) {
             event.preventDefault();
+            enable();
         };
     });
 });
