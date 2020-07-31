@@ -13,13 +13,13 @@ module.exports = {
                             db.CartCourse.findAll({where: {shopping_cart_id: cart.id}, include: [{ association: 'courses'}]})
                             .then(cart_courses => {
                                 if(cart_courses.length == 0){
-                                    res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: true})
+                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: true})
                                 } else {
-                                    res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: false});
+                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: false});
                                 };
                             });
                         } else {
-                            res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true})
+                            res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true})
                         };
                     });
             })
