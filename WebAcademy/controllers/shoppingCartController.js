@@ -49,4 +49,7 @@ module.exports = {
         })
         .catch(err => res.json({msg: 'ERROR', err}));
     },
+    destroy: (req, res, next) => {
+        
+    },
 };
