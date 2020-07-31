@@ -49,8 +49,10 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Añadir al
-                        carrito</a>
+                    <form action="/shoppingCart/<%= loggedInUser.id %>" method="POST">
+                        <button class="btn btn-outline-secondary mgn-btm-15px" type="submit" role="button">Añadir al
+                        carrito</button>
+                    </form>
                 </div>
             </div>
         </div>
