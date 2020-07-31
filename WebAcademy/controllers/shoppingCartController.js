@@ -7,8 +7,23 @@ module.exports = {
             include: [{ association: 'courses' }]
         })
             .then(categories => {
-                res.render('CART', {categories, loggedInUser: req.session.loggedIn})
-            });
+                db.ShoppingCart.findOne({where: {user_id: req.session.loggedIn.id, status: 1}})
+                    .then(cart => {
+                        if(cart) {
+                            db.CartCourse.findAll({where: {shopping_cart_id: cart.id}, include: [{ association: 'courses'}]})
+                            .then(cart_courses => {
+                                if(cart_courses.length == 0){
+                                    res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: true})
+                                } else {
+                                    res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: false});
+                                };
+                            });
+                        } else {
+                            res.render('CART', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true})
+                        };
+                    });
+            })
+            .catch(err => res.json({msg: 'ESTE ERROR', err}));
     },
     create: (req, res, next) => {
         // BUSCO EL CARRITO ACTIVO DEL USUARIO
