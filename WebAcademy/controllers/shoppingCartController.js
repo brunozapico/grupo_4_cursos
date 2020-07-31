@@ -2,6 +2,14 @@ const db = require('../database/models');
 const helper = require('./helpers/shoppingCartHelper');
 
 module.exports = {
+    list: (req, res, next) => {
+        db.Category.findAll({
+            include: [{ association: 'courses' }]
+        })
+            .then(categories => {
+                res.render('CART', {categories, loggedInUser: req.session.loggedIn})
+            });
+    },
     create: (req, res, next) => {
         // BUSCO EL CARRITO ACTIVO DEL USUARIO
         db.ShoppingCart.findOne({where: {user_id: req.params.userId, status: 1}})
