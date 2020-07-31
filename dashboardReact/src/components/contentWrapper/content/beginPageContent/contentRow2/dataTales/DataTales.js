@@ -70,25 +70,25 @@ export default class DataTales extends React.Component {
         firstPage = <button className="btn shadow bg-white border-left-primary" onClick={() => this.goFirstPage()} >Primer página</button>,
 
         prevButton;
-        this.state.prev_page != null ? prevButton = <button className="btn shadow bg-white border-left-primary" onClick={() => this.goPrevPage()}> 10 cursos anteriores </button>
-        : prevButton = <button className="btn shadow bg-white border-left-primary"> Estas en la primer página </button>
+        this.state.prev_page != null ? prevButton = <button className="btn shadow bg-white border-left-success" onClick={() => this.goPrevPage()}> 10 cursos anteriores </button>
+        : prevButton = <button className="btn shadow bg-white border-left-success"> Estas en la primer página </button>
 
         let nextButton;
-        this.state.next_page != null ? nextButton = <button className="btn shadow bg-white border-left-primary" onClick={() => this.goNextPage()}> Próximos 10 cursos </button>
-        : nextButton = <button className="btn shadow bg-white border-left-primary"> Estas en la última página </button>
+        this.state.next_page != null ? nextButton = <button className="btn shadow bg-white border-left-warning" onClick={() => this.goNextPage()}> Próximos 10 cursos </button>
+        : nextButton = <button className="btn shadow bg-white border-left-warning"> Estas en la última página </button>
 
         return (
             <div>
                 <div className="container">
                     <p className="text-primary">Total de Cursos: {` ${totalCourses}`}</p>
                     <div className="row">
-                        <div className="col mb-2" style={{display: "flex", justifyContent: "flex-end"}}>
+                        <div className="col mb-3">
                             {firstPage}
                         </div>
-                        <div className="col mb-2" style={{display: "flex", justifyContent: "center"}}>
+                        <div className="col mb-3">
                             {prevButton}
                         </div>
-                        <div className="col mb-2" style={{display: "flex", justifyContent: "flex-start"}}>
+                        <div className="col mb-3">
                             {nextButton}
                         </div>
                     </div>
@@ -112,15 +112,16 @@ export default class DataTales extends React.Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                    <div className="col mb-2" style={{display: "flex", justifyContent: "flex-end"}}>
+                        <div className="col mb-3">
                             {firstPage}
                         </div>
-                        <div className="col mb-2" style={{display: "flex", justifyContent: "center"}}>
+                        <div className="col mb-3">
                             {prevButton}
                         </div>
-                        <div className="col mb-2" style={{display: "flex", justifyContent: "flex-start"}}>
+                        <div className="col mb-3">
                             {nextButton}
                         </div>
+
                     </div>
                 </div>
             </div>
