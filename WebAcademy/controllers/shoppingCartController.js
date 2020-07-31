@@ -25,7 +25,7 @@ module.exports = {
                                 };
                             });
                         } else {
-                            res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true, final_price})
+                            res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true, final_price: 0})
                         };
                     });
             })
