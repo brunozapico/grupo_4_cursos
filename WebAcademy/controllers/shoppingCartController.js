@@ -33,11 +33,11 @@ module.exports = {
     },
     create: (req, res, next) => {
         // BUSCO EL CARRITO ACTIVO DEL USUARIO
-        db.ShoppingCart.findOne({where: {user_id: req.params.userId, status: 1}})
+        db.ShoppingCart.findOne({where: {user_id: req.session.loggedIn.id, status: 1}})
         .then(cart => {
             if(!cart) {
                 // SI NO HAY CARRITO, LO CREO Y AGREGO EL CURSO
-                db.ShoppingCart.create({user_id: req.params.userId})
+                db.ShoppingCart.create({user_id: req.session.loggedIn.id})
                 .then(cart => {
                     helper.create_course(cart.id, req.body.course_id, res)
                 })
