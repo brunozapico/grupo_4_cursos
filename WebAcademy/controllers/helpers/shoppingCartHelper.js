@@ -6,7 +6,7 @@ module.exports = {
                 shopping_cart_id: cart_id,
                 course_id: course_id
             })
-            .then(course => res.redirect('/'))
+            .then(course => res.redirect('/shoppingCart'))
             .catch(err => res.json({
                 msg: 'ERROR',
                 err
