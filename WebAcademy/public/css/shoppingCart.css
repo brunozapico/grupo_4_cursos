@@ -241,6 +241,18 @@
     -webkit-text-fill-color:transparent;
 }
 
+/* DELETE BUTTON */
+#delete_btn {
+    font-size: 12px;
+    color: black;
+    background-color: white;
+    border-color: white;
+}
+
+#delete_btn:hover {
+    box-shadow: none;
+} 
+
 /* MEDIA QUERIES */
 
 @media (max-width: 577px) {

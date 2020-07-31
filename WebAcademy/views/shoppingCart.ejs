@@ -38,7 +38,11 @@
                     </div>
                     <div class="col-6 col-md-3 cart-course-options">
                         <ul>
-                            <li><a href="">Eliminar</a></li>
+                            <li>
+                                <form action="/shoppingCart/<%= courses[i].id %>?_method=DELETE" method="POST">
+                                    <button href="/shoppingCart/<%= courses[i].id %>" class="header-user-btn" id="delete_btn" type="submit">Eliminar</button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-6 col-md-2 cart-course-price">
