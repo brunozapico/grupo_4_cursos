@@ -50,6 +50,7 @@
                 </div>
                 <div class="card-body">
                     <form action="/shoppingCart/<%= loggedInUser.id %>" method="POST">
+                        <input type="text" value="<%= courses.id %> " style="display: none;" name="course_id">
                         <button class="btn btn-outline-secondary mgn-btm-15px" type="submit" role="button">Añadir al
                         carrito</button>
                     </form>
