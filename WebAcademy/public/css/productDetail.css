@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Raleway';
 }
-#category-link, #category-link:hover {text-decoration: none; color: black;}
+#category-link, a:hover {text-decoration: none; color: black;}
 
 .main-container{
     background-color: rgb(245, 245, 245);
@@ -73,7 +73,10 @@
     padding: 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
+    .course-img{
+        display: none;
+    }
  }
 
 /* TABLET 768px */
@@ -86,20 +89,4 @@
         margin-bottom: 1rem;
     }
  
-}
-
-/* 577px */
-
-@media (max-width: 577px) {
-    .course-img{
-        display: none;
-    }
-   
-}
-
-/* 490px */
-
-@media (max-width: 490px) {
-    
-    
 }
