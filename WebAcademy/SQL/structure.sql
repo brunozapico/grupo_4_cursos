@@ -123,7 +123,7 @@ CONSTRAINT `program_id`
 -- -----------------------------------------------------
 -- Table `web_academy`.`cart_courses`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `web_academy`.`cart_courses` (
+CREATE TABLE IF NOT EXISTS `web_academy`.`cart_course` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `course_id` INT NOT NULL,
   `shopping_cart_id` INT NOT NULL,
