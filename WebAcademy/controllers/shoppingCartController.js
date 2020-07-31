@@ -29,7 +29,7 @@ module.exports = {
                         };
                     });
             })
-            .catch(err => res.json({msg: 'ESTE ERROR', err}));
+            .catch(err => res.json({msg: 'ERROR', err}));
     },
     create: (req, res, next) => {
         // BUSCO EL CARRITO ACTIVO DEL USUARIO
@@ -50,6 +50,8 @@ module.exports = {
         .catch(err => res.json({msg: 'ERROR', err}));
     },
     destroy: (req, res, next) => {
-        
+        db.CartCourse.destroy({where: {id: req.params.cartCourseId}})
+            .then(() => res.redirect('/shoppingCart'))
+            .catch(err => res.json({msg: 'ERROR', err}))
     },
 };
