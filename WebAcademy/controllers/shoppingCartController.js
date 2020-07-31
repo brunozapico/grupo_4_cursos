@@ -12,14 +12,20 @@ module.exports = {
                         if(cart) {
                             db.CartCourse.findAll({where: {shopping_cart_id: cart.id}, include: [{ association: 'courses'}]})
                             .then(cart_courses => {
+                                let final_price = 0;
+                                
+                                cart_courses.forEach(course => {
+                                    final_price += Number(course.courses.price);
+                                });
+
                                 if(cart_courses.length == 0){
-                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: true})
+                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true, final_price})
                                 } else {
-                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: false});
+                                    res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: cart_courses, error: false, final_price});
                                 };
                             });
                         } else {
-                            res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true})
+                            res.render('shoppingCart', {categories, loggedInUser: req.session.loggedIn, courses: [], error: true, final_price})
                         };
                     });
             })
