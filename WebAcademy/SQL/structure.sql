@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`users` (
 CREATE TABLE IF NOT EXISTS `web_academy`.`shopping_cart` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `status` TINYINT NOT NULL DEFAULT 1,
-  `total` MEDIUMINT UNSIGNED NOT NULL,
   `user_id` INT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,

@@ -14,10 +14,6 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             defaultValue: 1,
         },
-        total: {
-            type: dataTypes.INTEGER.UNSIGNED, // MEDIUMINT NO HAY
-            allowNull: false,
-        },
         user_id: {
             type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
