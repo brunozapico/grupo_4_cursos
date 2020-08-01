@@ -36,7 +36,7 @@
                             <!--Categorias-->
                             <label for="">Categorias</label>
                             <select class="input-mg" <%# chequear clase %> name="category">
-                                <option value="0">Selecciona una categoria</option>
+                                <option value="<%= courses.category.id %>">Categoria actual: <%= courses.category.title %> </option>
                                 <% for (let i = 0; i < categories.length; i++) { %> 
                                 <option value="<%= categories[i].id %>">
                                     <%= categories[i].title %> 
@@ -82,7 +82,11 @@
                                 <label for="">Dias de Cursada</label>
                                 <div class="dias" id="days-div">
                                     <select name="days" id="" class="input-mg">
-                                        <option value="0">Selecciona los dias de cursada</option>
+                                        <% if (courses.program_id == 1 || courses.program_id == 2 || courses.program_id == 3) { %> 
+                                        <option value="<%= courses.program_id %> ">Cursada actual: Lunes - Miercoles - Viernes</option>
+                                        <% } else if (courses.program_id == 4 || courses.program_id == 5 || courses.program_id == 6) { %> 
+                                        <option value="<%= courses.program_id %> ">Cursada actual: Martes - Jueves - Sábado</option>
+                                        <% } %> 
                                         <option value="Lunes - Miercoles - Viernes">
                                             Lunes - Miercoles - Viernes
                                         </option>
@@ -97,7 +101,13 @@
                                 <label for="">Turnos</label>
                                 <div id="shifts-div">
                                     <select name="shifts" id="" class="input-mg">
-                                        <option value="0">Selecciona el Turno</option>
+                                        <% if (courses.program_id == 1 || courses.program_id == 4) { %> 
+                                        <option value="m">Turno actual: Mañana</option>
+                                        <% } else if (courses.program_id == 2 || courses.program_id == 5) { %> 
+                                        <option value="t">Turno actual: Tarde</option>
+                                        <% } else if (courses.program_id == 3 || courses.program_id == 6) { %>
+                                        <option value="n">Turno actual: Noche</option>
+                                        <% } %> 
                                         <option value="m">Mañana</option>
                                         <option value="t">Tarde</option>
                                         <option value="n">Noche</option>
@@ -111,7 +121,7 @@
                         <div class="col-md-12" id="professor-div">
                             <label for="">Profesor</label>
                             <select class="input-mg" <%# chequear clase %> name="professor">
-                                <option value="0">Selecciona el nombre del profesor</option>
+                                <option value="<%= courses.professor.id %>"> Dictado por <%= courses.professor.first_name %> <%= courses.professor.last_name %>  </option>
                                 <% for (let j = 0; j < professor.length; j++) { %> 
                                 <option name='professor' value="<%= professor[j].id %> ">
                                     <%= professor[j].first_name + ' ' + professor[j].last_name %> 
@@ -125,7 +135,7 @@
                         <div class="col-md-4 border space" id="vacancies-div">
                             <!--Vacantes -->
                             <label for="">Vacantes</label>
-                            <input class="input-mg" type="number" name="vacancies" min="0" placeholder="<%= courses.vacancies %>">
+                            <input class="input-mg" type="number" name="vacancies" min="0" value="<%= courses.vacancies %>">
                             <p class="hidden error-log" id="vacancies-error-log">Elije entre 12 y 50 vacantes</p>
                         </div>
                         <div class="col-md-4 border space" id="outstanding-div">
@@ -137,14 +147,17 @@
                         <div class="col-md-4 border space" id="price-div">
                             <!--Precio -->
                             <label for="">Precio U$D</label>
-                            <input class="input-mg" type="number" name="price" min="0" placeholder="<%= courses.price %> ">
+                            <input class="input-mg" type="number" name="price" min="0" value="<%= courses.price %> " placeholder="<%= courses.price %>">
                             <p class="hidden error-log" id="price-error-log">Coloca un precio</p>
                         </div>
                     </div>
                     <div class="row center border space tamaño"><!--Logo -->
                         <div class="col-md-12">
                             <label for="">Logo</label>
+                            <p>Selecciona una imagen nueva o quedará la actual</p>
                             <input class="input-mg" type="file" name="image" id="" value="<%= courses.image %> ">
+                            <img id="js-prev-img" src="<%= courses.image %>" alt="">
+                            <img id="js-load-img">
                             <p class="hidden error-log" id="image-error-log">Selecciona una imagen con extension: '.jpg', '.jpeg', '.png' o '.gif'</p>
                         </div>
                     </div>
