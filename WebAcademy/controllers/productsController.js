@@ -21,9 +21,20 @@ const productsController = {
     detail: (req, res) => {
         let courses = db.Course.findByPk(req.params.id, {
             include: [{ association: 'professor' }, { association: 'program' }, { association: 'category' }]
-        })
-        Promise.all([categories, courses])
-            .then(([categories, courses]) => {
+        });
+
+        let admin;
+
+        if (req.session.loggedIn){
+            admin = db.Rol.findOne({
+                where: {user_id_rol : req.session.loggedIn.id}
+                })
+        } else {
+            admin = null
+        };
+
+        Promise.all([categories, courses, admin])
+            .then(([categories, courses, admin]) => {
                 //BUSCAR UNA LIBRERIA PARA TRABAJAR CON FECHAS
                 let startsDate = String(courses.starts_date);
                 let start_date = `${startsDate.slice(-2)}/${startsDate.slice(5, 7)}/${startsDate.slice(0, 4)}`;
@@ -37,8 +48,9 @@ const productsController = {
                 let upToTime = String(courses.program.up_to_time);
                 let upTo = upToTime.slice(0, 5);
 
-                res.render('productDetail', { start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn });
-            });
+                res.render('productDetail', { start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn, admin});
+            })
+            .catch(error => console.log(error))
     },
     create: (req, res, next) => {
         let professor = db.Professor.findAll();
