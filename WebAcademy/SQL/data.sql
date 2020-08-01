@@ -51,7 +51,7 @@ INSERT INTO users (id, name, email, password) VALUES (48, 'Thelma Sweeny', 'tswe
 INSERT INTO users (id, name, email, password) VALUES (49, 'Giles Govett', 'ggovett1c@deviantart.com', 'pZid0xbU');
 INSERT INTO users (id, name, email, password) VALUES (50, 'Delbert Brisley', 'dbrisley1d@acquirethisname.com', 'IaPga7FZ');
 INSERT INTO users (id, name, email, password) VALUES (51, 'Martin Rodriguez', 'martin@mail.com', '12345678');
-INSERT INTO users (id, name, email, password) VALUES (52, 'Lucas Castro', 'lucas@mail.com', '12345678');
+INSERT INTO users (id, name, email, password, avatar) VALUES (52, 'Lucas Castro', 'lucas@mail.com', '12345678', '/img/users/lucasPerfil.jpg');
 INSERT INTO users (id, name, email, password) VALUES (53, 'Bruno Zapico', 'bruno@mail.com', '12345678');
 
 -- INSERT ADMIN USERS
