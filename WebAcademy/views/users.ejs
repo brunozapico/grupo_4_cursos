@@ -24,7 +24,10 @@
                 <div class="col-12 col-md-9">
                     <p> <span class="identifier">Nombre:</span> <%= loggedInUser.name %> </p>
                     <p> <span class="identifier">Email:</span> <%= loggedInUser.email%></p>
-                    <a href="/users/editProfile" class="edit-profile">Editar Perfil</a>
+                    <a href="/users/editProfile" class="edit-profile">Editar Perfil</a> <br>
+                    <% if(admin) { %> 
+                    <a href="/products/create" class="edit-profile">Crear Curso</a>
+                    <% } %> 
                     <br>
                     <form action="/users/logout" method="POST">
                         <button type="submit" class="logout-btn">Cerrar Sesión</button>

@@ -89,8 +89,19 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        categories.then(categories => {
-            res.render('users', {categories, loggedInUser: req.session.loggedIn});
+        let admin;
+
+        if (req.session.loggedIn){
+            admin = db.Rol.findOne({
+                where: {user_id_rol : req.session.loggedIn.id}
+                })
+        } else {
+            admin = null
+        };
+
+        Promise.all([categories, admin ])
+            .then(([categories,admin]) => {
+            res.render('users', {categories, loggedInUser: req.session.loggedIn, admin});
         });
     },
     edit: (req, res) => {
