@@ -23,7 +23,7 @@
                     </a>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
                         <%= courses.description_short %>
-                    </div>
+                    </div> 
                 </div>
                 <div class="course-img">
                     <!--Imagen Grande-->
@@ -51,9 +51,12 @@
                 <div class="card-body">
                     <form action="/shoppingCart" method="POST">
                         <input type="text" value="<%= courses.id %> " style="display: none;" name="course_id">
-                        <button class="btn btn-outline-secondary mgn-btm-15px" type="submit" role="button">Añadir al
+                        <button class="btn btn-outline-secondary mgn-btm-15px header-user-btn" type="submit" role="button">Añadir al
                         carrito</button>
                     </form>
+                    <% if(admin) { %>
+                        <a href="http://localhost:3000/products/edit/<%=courses.id%>"><button class="header-user-btn">Editar Curso</button></a>
+                    <% } %> 
                 </div>
             </div>
         </div>
