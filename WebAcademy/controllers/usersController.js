@@ -54,14 +54,24 @@ const usersController = {
         });
     },
     processLogin: (req, res) => {
+        let admin;
+
+        if (req.session.loggedIn){
+            admin = db.Rol.findOne({
+                where: {user_id_rol : req.session.loggedIn.id}
+                })
+        } else {
+            admin = null
+        };
+
         loginUser = db.User.findOne({where: {email: req.body.email}});
         
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
             res.render('login', {errors: errors.errors, loggedInUser: {name:'Iniciar Sesión'}, categories});
         } else {
-            Promise.all([categories, loginUser])
-            .then(([categories, loginUser]) => {
+            Promise.all([categories, loginUser, admin])
+            .then(([categories, loginUser, admin]) => {
                 if ((loginUser != null && bcrypt.compareSync(req.body.password, loginUser.password)) || (loginUser != null && req.body.password === loginUser.password)) { 
                     // en la database tenemos contraseñas no encriptadas, por eso tengo que verificar tambien sin el bcrypt, en un futuro seria solo con bcrypt.
                     
@@ -72,7 +82,7 @@ const usersController = {
                         res.cookie('remember', loginUser.id, { maxAge: 6000000 });
                     };
                     
-                    res.render('users', {categories, loggedInUser: req.session.loggedIn});
+                    res.render('users', {categories, loggedInUser: req.session.loggedIn, admin});
                 } else {
                     req.session.destroy();
                     res.clearCookie('remember');
