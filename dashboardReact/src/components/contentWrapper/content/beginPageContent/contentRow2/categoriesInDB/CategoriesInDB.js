@@ -25,7 +25,7 @@ class CategoriesInDB extends Component {
                     </div>
                     <div className="card-body">
                         <div className="row">
-                            {this.state.categories.map((category, i) => { return <Category key={i} title={category.title} icon={category.icon} courses={category.courses.length} /> })}
+                            {this.state.categories.map((category, i) => { return <Category key={i} title={category.title} icon={category.icon} courses={category.courses.length} link={category.url} /> })}
                         </div>
                     </div>
                 </div>

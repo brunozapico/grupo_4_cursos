@@ -10,12 +10,13 @@ module.exports = {
             .then(([totalCourses, result]) => {
                 for (let i = 0; i < result.length; i++) {
                     result[i].setDataValue('detail', `http://localhost:3000/api/categories/${result[i].id}`);
+                    result[i].setDataValue('url', `http://localhost:3000/categories/${result[i].id}`);
                 };
 
                 let categories = {
                     meta: {
                         status: 200,
-                        url: 'http://localhost:3000/api/categories',
+                        url_api: 'http://localhost:3000/api/categories',
                         total: totalCourses.length
                     },
                     data: result

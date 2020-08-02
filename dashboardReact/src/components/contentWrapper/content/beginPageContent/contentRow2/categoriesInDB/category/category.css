@@ -4,6 +4,11 @@
     background-color: #00679A;
     text-align: center;
 }
-i{
+i, a{
     color: whitesmoke;
+}
+a:hover{
+    display: none;
+    color: whitesmoke;
+    cursor: pointer;
 }

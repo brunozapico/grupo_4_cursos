@@ -4,7 +4,7 @@ import './topbar.css'
 
 
 function Topbar() {
-	let avatar = "/dummy-avatar.jpg";
+	let avatar = "/no_avatar.png";
 	return (
 		<nav className="navbar navbar-expand topbar mb-4 static-top shadow">
 
@@ -43,7 +43,7 @@ function Topbar() {
 				{ /* Nav Item - User Information */}
 				<li className="nav-item dropdown no-arrow">
 					<a className="nav-link dropdown-toggle" href="/" id="userDropdown">
-						<span className="mr-2 d-none d-lg-inline text-white small">Walter White</span>
+						<span className="mr-2 d-none d-lg-inline text-white small">Web Academy Admin</span>
 						<img className="img-profile rounded-circle" src={avatar} width="60" />
 					</a>
 				</li>
