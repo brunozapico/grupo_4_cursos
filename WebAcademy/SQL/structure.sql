@@ -26,12 +26,11 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`users` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `avatar` VARCHAR(255) NULL,
+  `avatar` VARCHAR(255) NULL DEFAULT "/img/users/no_avatar.png",
   `password` VARCHAR(255) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `avatar_UNIQUE` (`avatar` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC));
 
 
