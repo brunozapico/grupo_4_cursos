@@ -32,7 +32,7 @@ const usersController = {
                         if (req.files[0] != undefined) { // si hay avatar
                             user = userHelper.create_fullUser(req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/${req.files[0].filename}`);
                         } else {
-                            user = userHelper.create_noAvatarUser(req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10));
+                            user = userHelper.create_fullUser(req.body.name, req.body.email, bcrypt.hashSync(req.body.password, 10), `/img/users/no_avatar.png`);
                         };
 
                         db.User.create(user)
