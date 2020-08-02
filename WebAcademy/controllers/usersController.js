@@ -96,8 +96,10 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
-
+        categories
+        .then((categories) => {
+            let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
+        });
     },
     edit: (req, res) => {
         user = db.User.findOne({ where: { id: req.session.loggedIn.id } });
