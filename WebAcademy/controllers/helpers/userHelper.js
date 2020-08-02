@@ -1,3 +1,5 @@
+const db = require('../../database/models');
+
 module.exports = {
     create_fullUser: (name, email, password, avatar) => {
         let user = {
@@ -38,5 +40,14 @@ module.exports = {
         };
 
         return user;
+    },
+    admin_validator: (session) => {
+        let admin;
+        if (session) {
+            db.Rol.findOne({
+                where: { user_id_rol: session.id }
+            })
+            .then(user => user != null ? admin = user : admin = null)
+        };
     },
 };
