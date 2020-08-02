@@ -32,7 +32,7 @@ class LastProdInDB extends Component {
                             <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{ width: 25 + "rem" }} src={`http://localhost:3000${this.state.lastProduct.image}`} alt="last product" />
                         </div>
                         <p>{this.state.lastProduct.description_short}</p>
-                        <a target="_blank" rel="nofollow" href={this.state.lastProduct.endpoint}>View product detail</a>
+                        <a target="_blank" rel="nofollow" href={this.state.lastProduct.endpoint}>Ver detalle del Producto</a>
                     </div>
                 </div>
             </div>
