@@ -4,6 +4,7 @@ const shoppingCartController = require('../controllers/shoppingCartController');
 
 router.get('/', guestMiddleware, shoppingCartController.list);
 router.post('/', guestMiddleware,  shoppingCartController.create);
+router.get('/purchase', guestMiddleware, shoppingCartController.purchase);
 router.delete('/:cartCourseId', guestMiddleware,  shoppingCartController.destroy);
 
 module.exports = router;
