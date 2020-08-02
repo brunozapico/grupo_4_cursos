@@ -52,15 +52,20 @@ module.exports = {
     destroy: (req, res, next) => {
         db.CartCourse.destroy({where: {id: req.params.cartCourseId}})
             .then(() => res.redirect('/shoppingCart'))
-            .catch(err => res.json({msg: 'ERROR', err}))
+            .catch(err => res.json({msg: 'ERROR', err}));
     },
     purchase: (req, res, next) => {
         db.ShoppingCart.findOne({where: {user_id: req.session.loggedIn.id, status: 1}})
+        .then(cart => {
+            db.ShoppingCart.update({status: 0}, {where: {id: cart.id}})
+            return cart;
+        })
         .then(cart => {
             db.CartCourse.destroy({where: {shopping_cart_id: cart.id}})
             .then(() => {
                 res.redirect('/');
             });
-        });
+        })
+        .catch(err => res.json({msg: 'ERROR', err}));
     },
 };
