@@ -1,4 +1,5 @@
 const db = require('../database/models');
+const mailing = require('./helpers/mailerHelper');
 const helper = require('./helpers/shoppingCartHelper');
 
 module.exports = {
@@ -55,7 +56,9 @@ module.exports = {
             .catch(err => res.json({msg: 'ERROR', err}));
     },
     purchase: (req, res, next) => {
-        db.ShoppingCart.findOne({where: {user_id: req.session.loggedIn.id, status: 1}})
+        db.User.findByPk(req.session.loggedIn.id)
+        .then(user => {
+            db.ShoppingCart.findOne({where: {user_id: user.id, status: 1}})
         .then(cart => {
             db.ShoppingCart.update({status: 0}, {where: {id: cart.id}})
             return cart;
@@ -63,9 +66,11 @@ module.exports = {
         .then(cart => {
             db.CartCourse.destroy({where: {shopping_cart_id: cart.id}})
             .then(() => {
-                res.redirect('/');
+            mailing.sendPurchaseEmail(user.email);
+            res.redirect('/');
             });
         })
         .catch(err => res.json({msg: 'ERROR', err}));
+        });
     },
 };
