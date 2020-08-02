@@ -43,16 +43,8 @@ const usersController = {
                                         req.session.loggedIn = newUser;
                                         res.cookie('remember', newUser.id, { maxAge: 6000000 });
 
-                                        let admin;
-                                        if (req.session.loggedIn) {
-                                            admin = db.Rol.findOne({
-                                                where: { user_id_rol: req.session.loggedIn.id }
-                                            })
-                                        } else {
-                                            admin = null
-                                        };
-                
-                                        res.render('users', { categories, loggedInUser: req.session.loggedIn, admin });
+                                        let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
+
                                     });
                             });
                     };
@@ -84,15 +76,8 @@ const usersController = {
                             res.cookie('remember', loginUser.id, { maxAge: 6000000 });
                         };
 
-                        let admin;
-                        if (req.session.loggedIn) {
-                            admin = db.Rol.findOne({
-                                where: { user_id_rol: req.session.loggedIn.id }
-                            })
-                        } else {
-                            admin = null
-                        };
-                        res.render('users', { categories, loggedInUser: req.session.loggedIn, admin });
+                        let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
+
                     } else {
                         req.session.destroy();
                         res.clearCookie('remember');
@@ -111,20 +96,8 @@ const usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        let admin;
+        let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
 
-        if (req.session.loggedIn) {
-            admin = db.Rol.findOne({
-                where: { user_id_rol: req.session.loggedIn.id }
-            })
-        } else {
-            admin = null
-        };
-
-        Promise.all([categories, admin])
-            .then(([categories, admin]) => {
-                res.render('users', { categories, loggedInUser: req.session.loggedIn, admin });
-            });
     },
     edit: (req, res) => {
         user = db.User.findOne({ where: { id: req.session.loggedIn.id } });
