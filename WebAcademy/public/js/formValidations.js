@@ -47,9 +47,9 @@ window.addEventListener('load', () => {
     }
     
     if (month < 10) {
-        var newDate = `${day}-0${month}-${year}`
+        var newDate = `${year}-0${month}-${day}`
     } else {
-        var newDate = `${day}-${month}-${year}`
+        var newDate = `${year}-${month}-${day}`
     }
     
     /* Funcion para validar el atributo 'disabled' */
