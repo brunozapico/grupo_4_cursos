@@ -6,7 +6,7 @@ const db = require('../database/models');
 const mailing = require('./helpers/mailerHelper');
 const userHelper = require('./helpers/userHelper');
 
-const categories = db.Category.findAll({ include: { association: 'courses' } });
+let categories = db.Category.findAll({ include: { association: 'courses' } });
 
 const usersController = {
     register: (req, res) => {
