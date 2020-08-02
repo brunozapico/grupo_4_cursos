@@ -248,6 +248,8 @@
     color: black;
     background-color: white;
     border-color: white;
+    font-weight: bold;
+    border-radius: 2px;
 }
 
 #delete_btn:hover {
