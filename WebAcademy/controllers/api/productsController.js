@@ -26,7 +26,7 @@ module.exports = {
                     first_page = `${rutaApi}?start=0&pageQty=${pageQty}`;
 
                     
-                    result.length >= (pageQty-1) ? next_page = `${rutaApi}?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
+                    result.length == pageQty ? next_page = `${rutaApi}?start=${start + pageQty}&pageQty=${pageQty}` : next_page;
                     
                     if ((totalQty.length - result.length) == start) {
                         next_page = null;
