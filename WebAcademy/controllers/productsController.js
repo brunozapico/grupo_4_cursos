@@ -134,15 +134,22 @@ const productsController = {
             }
         })
             .then(() => {
-                db.Course.destroy({
+                db.CartCourse.destroy({
                     where: {
-                        id: req.params.id
+                        course_id: req.params.id
                     }
-                })
-                    .then(() => {
-                        res.redirect('/products')
-                    })
+                });
             })
+                .then(() => {
+                    db.Course.destroy({
+                        where: {
+                            id: req.params.id
+                        }
+                    })
+                        .then(() => {
+                            res.redirect('/products')
+                        })
+                })
 
     },
     search(req, res) { // si no se busca nada te envia a la pagina de todos los cursos.
