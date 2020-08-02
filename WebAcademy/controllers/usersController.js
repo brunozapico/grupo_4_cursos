@@ -43,7 +43,16 @@ const usersController = {
                                         req.session.loggedIn = newUser;
                                         res.cookie('remember', newUser.id, { maxAge: 6000000 });
 
-                                        res.render('users', { categories, loggedInUser: req.session.loggedIn });
+                                        let admin;
+                                        if (req.session.loggedIn) {
+                                            admin = db.Rol.findOne({
+                                                where: { user_id_rol: req.session.loggedIn.id }
+                                            })
+                                        } else {
+                                            admin = null
+                                        };
+                
+                                        res.render('users', { categories, loggedInUser: req.session.loggedIn, admin });
                                     });
                             });
                     };
@@ -83,7 +92,6 @@ const usersController = {
                         } else {
                             admin = null
                         };
-
                         res.render('users', { categories, loggedInUser: req.session.loggedIn, admin });
                     } else {
                         req.session.destroy();
