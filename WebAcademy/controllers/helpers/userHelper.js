@@ -41,13 +41,18 @@ module.exports = {
 
         return user;
     },
-    admin_validator: (session) => {
-        let admin;
+    admin_validator: (session, categories, res) => {
+        let admin = null;
         if (session) {
             db.Rol.findOne({
                 where: { user_id_rol: session.id }
             })
-            .then(user => user != null ? admin = user : admin = null)
+            .then(user => {
+                user != null ? admin = user : null;
+                res.render('users', { categories, loggedInUser: session, admin });
+            })
+        } else {
+            res.render('users', { categories, loggedInUser: session, admin });
         };
     },
 };
