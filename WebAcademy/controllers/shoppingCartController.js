@@ -54,4 +54,13 @@ module.exports = {
             .then(() => res.redirect('/shoppingCart'))
             .catch(err => res.json({msg: 'ERROR', err}))
     },
+    purchase: (req, res, next) => {
+        db.ShoppingCart.findOne({where: {user_id: req.session.loggedIn.id, status: 1}})
+        .then(cart => {
+            db.CartCourse.destroy({where: {shopping_cart_id: cart.id}})
+            .then(() => {
+                res.redirect('/');
+            });
+        });
+    },
 };
