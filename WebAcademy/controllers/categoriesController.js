@@ -1,8 +1,8 @@
 const db = require('../database/models');
 
-const categories = db.Category.findAll({
+let categories = db.Category.findAll({
     include: { association: 'courses'}
-})
+});
 
 module.exports = {
     detail(req, res) {

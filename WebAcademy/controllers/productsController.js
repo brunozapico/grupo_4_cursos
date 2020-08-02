@@ -5,10 +5,9 @@ const { programIdBuild, courseGenerator } = require('./helpers/courseHelpers');
 const db = require('../database/models');
 const Op = db.Sequelize.Op;
 
-const categories = db.Category.findAll({
+let categories = db.Category.findAll({
     include: { association: 'courses' },
-})
-const ruta = "http://localhost:3000/products"
+});
 
 const productsController = {
     list: (req, res) => {
