@@ -1,6 +1,6 @@
 const db = require('../database/models');
 
-const indexController = {
+let indexController = {
     index: (req, res) => {
         let categories = db.Category.findAll({
             include: [{ association: 'courses' }]

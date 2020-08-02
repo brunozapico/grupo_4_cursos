@@ -9,7 +9,7 @@ let categories = db.Category.findAll({
     include: { association: 'courses' },
 });
 
-const productsController = {
+let productsController = {
     list: (req, res) => {
         categories
         .then(categories => {

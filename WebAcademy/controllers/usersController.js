@@ -8,7 +8,7 @@ const userHelper = require('./helpers/userHelper');
 
 let categories = db.Category.findAll({ include: { association: 'courses' } });
 
-const usersController = {
+let usersController = {
     register: (req, res) => {
         categories.then(categories => res.render('register', { categories, loggedInUser: req.session.loggedIn }));
     },
