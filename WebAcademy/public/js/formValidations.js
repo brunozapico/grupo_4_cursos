@@ -54,7 +54,7 @@ window.addEventListener('load', () => {
     
     /* Funcion para validar el atributo 'disabled' */
         
-    enzable = () => {
+    enable = () => {
         if (category.value != '0' && courseName.value.length >= 3 && description_full.value.length >= 255 && description_short.value.length >= 50 && starts_date.value > newDate && ends_date.value > starts_date.value && days.value != '0' && shifts.value != '0' && professor.value != '0' && vacancies.value >= 12 && vacancies.value <= 50 && price.value >= 1 /* &&  extName */) {
             submit.removeAttribute('disabled');
         } else {
