@@ -3,31 +3,33 @@ const path = require('path');
 const { check, validationResult, body } = require('express-validator');
 const { programIdBuild, courseGenerator } = require('./helpers/courseHelpers');
 const db = require('../database/models');
-const Op = db.Sequelize.Op;
-
-let categories = db.Category.findAll({
-    include: { association: 'courses' },
-});
+let Op = db.Sequelize.Op;
 
 let productsController = {
     list: (req, res) => {
-        categories
-        .then(categories => {
+        db.Category.findAll({
+            include: { association: 'courses' },
+        })
+            .then(categories => {
                 res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
             })
             .catch(error => console.log(error));
     },
     detail: (req, res) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let courses = db.Course.findByPk(req.params.id, {
             include: [{ association: 'professor' }, { association: 'program' }, { association: 'category' }]
         });
 
         let admin;
 
-        if (req.session.loggedIn){
+        if (req.session.loggedIn) {
             admin = db.Rol.findOne({
-                where: {user_id_rol : req.session.loggedIn.id}
-                })
+                where: { user_id_rol: req.session.loggedIn.id }
+            })
         } else {
             admin = null
         };
@@ -47,11 +49,15 @@ let productsController = {
                 let upToTime = String(courses.program.up_to_time);
                 let upTo = upToTime.slice(0, 5);
 
-                res.render('productDetail', { start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn, admin});
+                res.render('productDetail', { start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn, admin });
             })
             .catch(error => console.log(error))
     },
     create: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let professor = db.Professor.findAll();
         Promise.all([professor, categories])
             .then(([professor, categories]) => {
@@ -59,6 +65,10 @@ let productsController = {
             });
     },
     store: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
@@ -86,6 +96,10 @@ let productsController = {
     },
 
     edit: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let courseEdit = db.Course.findByPk(req.params.id, {
             include: [{ association: 'category' }, { association: 'professor' }]
         }),
@@ -98,6 +112,10 @@ let productsController = {
             });
     },
     update: (req, res) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
@@ -140,19 +158,23 @@ let productsController = {
                     }
                 });
             })
-                .then(() => {
-                    db.Course.destroy({
-                        where: {
-                            id: req.params.id
-                        }
-                    })
-                        .then(() => {
-                            res.redirect('/products')
-                        })
+            .then(() => {
+                db.Course.destroy({
+                    where: {
+                        id: req.params.id
+                    }
                 })
+                    .then(() => {
+                        res.redirect('/products')
+                    })
+            })
 
     },
     search(req, res) { // si no se busca nada te envia a la pagina de todos los cursos.
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         if (req.query.q != '') {
             let course = db.Course.findAll({
                 where: {
