@@ -1,4 +1,4 @@
-const db = require('../database/models');
+let db = require('../database/models');
 const mailing = require('./helpers/mailerHelper');
 const helper = require('./helpers/shoppingCartHelper');
 

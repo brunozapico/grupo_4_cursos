@@ -1,19 +1,19 @@
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const db = require('../database/models');
+let db = require('../database/models');
 
 // Helpers
 const mailing = require('./helpers/mailerHelper');
 const userHelper = require('./helpers/userHelper');
 
-let categories = db.Category.findAll({ include: { association: 'courses' } });
-
 let usersController = {
     register: (req, res) => {
-        categories.then(categories => res.render('register', { categories, loggedInUser: req.session.loggedIn }));
+        db.Category.findAll({ include: { association: 'courses' } })
+        .then(categories => res.render('register', { categories, loggedInUser: req.session.loggedIn }));
     },
     create: (req, res) => {
-        registerUser = db.User.findOne({ where: { email: req.body.email } });
+        let categories = db.Category.findAll({ include: { association: 'courses' } }),
+            registerUser = db.User.findOne({ where: { email: req.body.email } });
 
         let errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -52,13 +52,14 @@ let usersController = {
         };
     },
     login: (req, res) => {
-        categories.then(categories => {
+        db.Category.findAll({ include: { association: 'courses' } })
+        .then(categories => {
             res.render('login', { categories, loggedInUser: req.session.loggedIn });
         });
     },
     processLogin: (req, res) => {
-
-        loginUser = db.User.findOne({ where: { email: req.body.email } });
+        let categories = db.Category.findAll({ include: { association: 'courses' } }),
+            loginUser = db.User.findOne({ where: { email: req.body.email } });
 
         let errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -96,13 +97,14 @@ let usersController = {
         res.redirect('/users/login');
     },
     users: (req, res) => {
-        categories
+        db.Category.findAll({ include: { association: 'courses' } })
         .then((categories) => {
             let admin = userHelper.admin_validator(req.session.loggedIn, categories, res);
         });
     },
     edit: (req, res) => {
-        user = db.User.findOne({ where: { id: req.session.loggedIn.id } });
+        let categories = db.Category.findAll({ include: { association: 'courses' } }),
+            user = db.User.findOne({ where: { id: req.session.loggedIn.id } });
 
         Promise.all([categories, user])
             .then(([categories, user]) => {

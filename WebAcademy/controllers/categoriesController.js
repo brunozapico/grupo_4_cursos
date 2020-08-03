@@ -1,13 +1,12 @@
-const db = require('../database/models');
-
-let categories = db.Category.findAll({
-    include: { association: 'courses'}
-});
+let db = require('../database/models');
 
 module.exports = {
     detail(req, res) {
         let courseLimit = req.query.limit ? null : 3;
-        const category = db.Category.findByPk(req.params.id, {
+        let categories = db.Category.findAll({
+            include: { association: 'courses'}
+        });
+        let category = db.Category.findByPk(req.params.id, {
             include: { association:'courses', 
         limit: courseLimit}
         })
