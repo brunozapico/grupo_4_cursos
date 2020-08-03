@@ -2,6 +2,10 @@
     color: rgb(17, 30, 35);
 }
 
+main {
+    min-height: 800px;
+}
+
 .container-fluid {
     margin-top: 50px;
     margin-bottom: 200px;
