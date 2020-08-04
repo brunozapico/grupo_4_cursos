@@ -20,7 +20,7 @@
                 <li><i class="fas fa-bars"></i>
                     <ul class="dropdown">
                     <% for(let i = 0; i < categories.length; i++) { %>   
-                        <li><a href="/products#<%= categories[i].title %>"><%= categories[i].title %></a>
+                        <li><a href="/categories/<%= categories[i].id %>"><%= categories[i].title %></a>
                             <ul class="dropdown-cat">
                             <% for(let j = 0; j < categories[i].courses.length; j++) { %>
                                 <li>

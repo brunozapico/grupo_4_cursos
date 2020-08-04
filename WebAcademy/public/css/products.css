@@ -1,3 +1,7 @@
+main {
+    min-height: 800px;
+}
+
 .products-section {
     display: flex;
     flex-wrap: wrap;
@@ -7,15 +11,19 @@
     width: 80%;
     color: rgb(17, 30, 35);
 }
+a {
+    color: black;
+}
 
 .products-sec-title {
     width: 100%;
     margin: 20px auto;
 }
 
-.products-sec-title > h4 {
+.products-sec-title >h4 {
     font-size: 28px;
     font-weight: 800;
+    
 }
 
 .products-sec-category {
@@ -67,6 +75,9 @@
 .products-sec-courses .course h4 a:hover {
     text-decoration: none;
 }
+a:hover {
+    text-decoration: none;
+}
 
 .products-sec-courses .course p {
     font-size: 1em;
@@ -85,6 +96,21 @@
 .products-sec-courses .course:hover .hidden-course-info {
     display: flex;
     flex-direction: column;
+}
+
+/* VER MAS BUTTON */
+
+#div_see_more_btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#main_div {
+    min-height: 800px;
+}
+
+.hidden_see {
+    display: none;
 }
 
 /* MEDIA QUERIES */

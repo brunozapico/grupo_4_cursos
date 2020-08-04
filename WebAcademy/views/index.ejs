@@ -17,25 +17,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
-                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
+                    <img src="img/slider/placeimg_1000_200_tech.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
-                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
+                    <img src="img/slider/placeimg_1000_200_tech (1).jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" data-interval="4000" data-keyboard=true data-pause="hover" data-touch=true>
-                    <img src="img/placeholder.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div>
+                    <img src="img/slider/placeimg_1000_200_tech (3).jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -65,7 +53,6 @@
                             <p><span class="hidden-course-info-title">Precio:</span> USD <%= course[i].price %></p>
                             <p><span class="hidden-course-info-title">Fecha Inicio:</span> <%= course[i].starts_date %></p>
                             <p><span class="hidden-course-info-title">Vacantes:</span> <%= course[i].vacancies %></p>
-                            <a class="btn-addtocart" href="/shoppingCart" role="button"><i class="fas fa-shopping-cart"></i></a>
                         </div>
                     </div>
                 <% } %>
@@ -96,7 +83,7 @@
                             <i class="<%= categories[i].icon %> "></i>
                         </div>
                         <div class="category-title">
-                            <a href="/products#<%= categories[i].title %>"><%= categories[i].title %></a>
+                            <a href="/categories/<%= categories[i].id %>"><%= categories[i].title %></a>
                         </div>
                     </div>
                 <% } %> 

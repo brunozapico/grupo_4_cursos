@@ -804,6 +804,14 @@ footer .social-network ul .instagram-f-logo:hover {
 
 footer .social-network ul .instagram-f-logo:hover > i { color: white; }
 
+footer .social-network ul li i:hover {
+    color: white;
+}
+
+footer .social-network ul li a:hover {
+    text-decoration: none;
+}
+
 /* VALIDATION */
 
 .valid {

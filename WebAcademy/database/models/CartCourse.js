@@ -3,11 +3,10 @@ module.exports = (sequelize, dataTypes) => {
 
     let cols = {
         id : {
-            type : dataTypes.INTEGER.UNSIGNED,
-            primaryKey: true,
-            autoIncremet: true,
+            type: dataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-            unique: true
+            primaryKey: true,
+            autoIncrement: true
         },
         course_id: {
             type : dataTypes.INTEGER.UNSIGNED,
@@ -25,13 +24,6 @@ module.exports = (sequelize, dataTypes) => {
                 key: 'id'
             }
         },
-        // created_at: {
-        //     type: dataTypes.DATE,
-        //     defaultValue: dataTypes.NOW
-        // },
-        // update_at: {
-        //     type: dataTypes.DATE
-        // }         
     };
 
     let config = {

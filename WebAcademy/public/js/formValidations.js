@@ -1,7 +1,10 @@
 window.addEventListener('load', () => {
     
     let form = document.getElementById('validation'),
-    
+
+    prevImg = document.getElementById('js-prev-img'),
+    loadImg = document.getElementById('js-load-img'),
+
     category = form.category,
     courseName = form.courseName,
     description_full = form.description_full,
@@ -38,6 +41,10 @@ window.addEventListener('load', () => {
     day = date.getDate(),
     month = date.getMonth() + 1,
     year = date.getFullYear();
+
+    if (day < 10) {
+        day = `0${day}`
+    }
     
     if (month < 10) {
         var newDate = `${year}-0${month}-${day}`
@@ -218,8 +225,16 @@ window.addEventListener('load', () => {
             invalid_check(image, image_error)
         };
         
+        prevImg.classList.add('hidden')
+
+        let imagenCargada = image.files[0]
+        let objetURL = URL.createObjectURL(imagenCargada);
+        loadImg.src = objetURL;     
+
         enable();
     });
+
+
     
     /* SUBMIT  */
     submit.addEventListener('click', event => {

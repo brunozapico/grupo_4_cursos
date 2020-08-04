@@ -21,13 +21,10 @@
                 
                 <article class="products-sec-courses">
                     <% for (let i=0; i < course.length; i++) { %>
-                        
-                        <h4 class="products-sec-category">
-                            <%= course[i].category.title %>
-                        </h4>
                             <div class="course">
                                 <img src="<%= course[i].image %>" alt="">
                                 <h4><a href="/products/detail/<%= course[i].id %>"><%= course[i].name %></a></h4>
+                                <h6><%= course[i].category.title %></h6>
                                 <p><%= course[i].description_short %></p>
 
                                 <div class="hidden-course-info">
@@ -46,7 +43,7 @@
     </main>
 
     <footer>
-        <% include('partials/footer') %>
+        <%- include('partials/footer') %>
     </footer>
 
     <%- include('partials/scripts') %>

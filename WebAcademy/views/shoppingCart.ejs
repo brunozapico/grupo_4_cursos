@@ -16,63 +16,61 @@
                     <h1 class="title">
                         CARRITO DE COMPRAS
                     </h1>
-                    <h2 class="quantity">
-                        <span class="q-number">2</span> cursos en el carrito
-                    </h2>
+                    <% if (error) { %>
+                        <h2 class="quantity">
+                            Lo sentimos, no existen cursos en tu carrito.
+                        </h2>
+                    <% } else { %>
+                        <h2 class="quantity">
+                            <span class="q-number"><%= courses.length %> </span> cursos en el carrito
+                        </h2>
+                    <% } %>
                 </div>
             </div>
-            <div class="row cart-info">
-                <div class="col-2 cart-course-logo">
-                    <img src="/img/placeholder2.png" alt="">
+            <% for( let i = 0; i < courses.length; i++ ) { %>
+                <div class="row cart-info">
+                    <div class="col-2 cart-course-logo">
+                        <img src=<%= courses[i].courses.image %> alt="">
+                    </div>
+                    <div class="col-10 col-md-5 cart-course-info">
+                        <h4><%= courses[i].courses.name %></h4>
+                        <p><%= courses[i].courses.starts_date %> - <%= courses[i].courses.ends_date %></p>
+                    </div>
+                    <div class="col-6 col-md-3 cart-course-options">
+                        <ul>
+                            <li>
+                                <form action="/shoppingCart/<%= courses[i].id %>?_method=DELETE" method="POST">
+                                    <button class="cart-payment-btn" id="delete_btn" type="submit">Eliminar</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-2 cart-course-price">
+                        <span>US$ <%= courses[i].courses.price %></span>
+                    </div>
                 </div>
-                <div class="col-10 col-md-5 cart-course-info">
-                    <h4>Curso X</h4>
-                    <p>01/01/2000 - 01/01-2000</p>
+            <% } %>
+
+            <% if (!error) { %>
+                <div class="row final-price">
+                    <div class="col-12 final-price-col">
+                        <h4>Total: <span>US$ <%= final_price %> </span> </h4>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 cart-course-options">
-                    <ul>
-                        <li><a href="">Eliminar</a></li>
-                        <li><a href="">Guardar para después</a></li>
-                    </ul>
+                <div class="row payment">
+                    <div class="col-4 payment-methods">
+                        <ul>
+                            <li><i class="fab fa-cc-visa visa"></i></li>
+                            <li><i class="fab fa-cc-mastercard mastercard"></i></li>
+                        </ul>
+                    </div>
+                    <div class="col-4 payment-btn-col">
+                        <a class="cart-payment-btn" href="/shoppingCart/purchase" role="button">Pagar</a>
+                    </div>
                 </div>
-                <div class="col-6 col-md-2 cart-course-price">
-                    <span>US$ 9,99</span>
-                </div>
-            </div>
-            <div class="row cart-info">
-                <div class="col-2 cart-course-logo">
-                    <img src="/img/placeholder2.png" alt="">
-                </div>
-                <div class="col-10 col-md-5 cart-course-info">
-                    <h4>Curso X</h4>
-                    <p>01/01/2000 - 01/01-2000</p>
-                </div>
-                <div class="col-6 col-md-3 cart-course-options">
-                    <ul>
-                        <li><a href="">Eliminar</a></li>
-                        <li><a href="">Guardar para después</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md-2 cart-course-price">
-                    <span>US$ 9,99</span>
-                </div>
-            </div>
-            <div class="row final-price">
-                <div class="col-12 final-price-col">
-                    <h4>Total: <span>US$ 19,98</span> </h4>
-                </div>
-            </div>
-            <div class="row payment">
-                <div class="col-4 payment-methods">
-                    <ul>
-                        <li><i class="fab fa-cc-visa visa"></i></li>
-                        <li><i class="fab fa-cc-mastercard mastercard"></i></li>
-                    </ul>
-                </div>
-                <div class="col-4 payment-btn-col">
-                    <a class="cart-payment-btn" href="" role="button">Pagar</a>
-                </div>
-            </div>
+            <% } %>
+
+            
         </div>
     </main>
     

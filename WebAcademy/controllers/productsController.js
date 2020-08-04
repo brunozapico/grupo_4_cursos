@@ -1,98 +1,42 @@
 const fs = require('fs');
 const path = require('path');
-const {check, validationResult, body} = require('express-validator');
-
-
+const { check, validationResult, body } = require('express-validator');
+const { programIdBuild, courseGenerator } = require('./helpers/courseHelpers');
 const db = require('../database/models');
-const Op = db.Sequelize.Op;
+let Op = db.Sequelize.Op;
 
-const productsController = {
-    list: (req, res) => { // funciona la logica, revisar vista
+let productsController = {
+    list: (req, res) => {
         db.Category.findAll({
-            include: [{ association: 'courses' }]
-        }).then(categories => {
-            //res.json(categories)
-            res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
-        });
+            include: { association: 'courses' },
+        })
+            .then(categories => {
+                res.render('products', { categories, title: 'Todos nuestros cursos', loggedInUser: req.session.loggedIn })
+            })
+            .catch(error => console.log(error));
     },
-    create: (req, res, next) => { // funciona la logica, revisar vista
-        let professor = db.Professor.findAll();
-
-        let categorie = db.Category.findAll({ //tengo que seguir pasandole todos los datos para la navegacion
-            include: [{ association: 'courses'}, /*{association: 'program' }*/]
-        });
-        Promise.all([professor, categorie])
-        .then(([professor, categories]) => {
-            res.render('productForm', { categories, professor, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
-        });
-    },
-    store: (req, res, next) => {
-        let errors = validationResult(req);
-
-        if (errors.isEmpty() ) {
-                                
-            let days = req.body.days;
-            let shift = req.body.shifts;
-            let programID;
-
-            if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-                programID = 1;
-            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-                programID = 2;
-            } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-                programID = 3;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-                programID = 4;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-                programID = 5;
-            } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-                programID = 6;
-            }
-
-            db.Course.create({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            }).then(() => {
-                res.redirect('/products')
-            });
-
-        }else{
-            let courseEdit = db.Course.findByPk(req.params.id, {
-                include: [{association: 'category'},{association: 'professor'}]
-            });
-            let categoryEdit = db.Category.findAll({
-                include: {association: 'courses'}
-            });
-    
-            let professor = db.Professor.findAll();
-    
-                Promise.all([courseEdit, categoryEdit, professor])
-                .then(([courses, categories, professor]) => {
-                   
-                    res.render('productForm', {errors:errors.errors, title: 'Carga tu curso', courses, categories, professor, loggedInUser: req.session.loggedIn});
-                });
-        }
-    },
-    detail: (req, res) => { // falta que muestre el horario y los dias
+    detail: (req, res) => {
         let categories = db.Category.findAll({
-            include: { association: 'courses' }
-        })
+            include: { association: 'courses' },
+        });
+
         let courses = db.Course.findByPk(req.params.id, {
-            include: [{association : 'professor'}, {association : 'program'}, {association : 'category'}]
-        })
-        Promise.all([categories, courses])
-            .then(([categories, courses]) =>{
-                
+            include: [{ association: 'professor' }, { association: 'program' }, { association: 'category' }]
+        });
+
+        let admin;
+
+        if (req.session.loggedIn) {
+            admin = db.Rol.findOne({
+                where: { user_id_rol: req.session.loggedIn.id }
+            })
+        } else {
+            admin = null
+        };
+
+        Promise.all([categories, courses, admin])
+            .then(([categories, courses, admin]) => {
+                //BUSCAR UNA LIBRERIA PARA TRABAJAR CON FECHAS
                 let startsDate = String(courses.starts_date);
                 let start_date = `${startsDate.slice(-2)}/${startsDate.slice(5, 7)}/${startsDate.slice(0, 4)}`;
 
@@ -100,133 +44,155 @@ const productsController = {
                 let end_date = `${endsDate.slice(-2)}/${endsDate.slice(5, 7)}/${endsDate.slice(0, 4)}`;
 
                 let sinceTime = String(courses.program.since_time);
-                let since = sinceTime.slice(0,5);
+                let since = sinceTime.slice(0, 5);
 
                 let upToTime = String(courses.program.up_to_time);
-                let upTo = upToTime.slice(0,5);
+                let upTo = upToTime.slice(0, 5);
 
-                res.render('productDetail', {start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn});
-            });
-        
+                res.render('productDetail', { start_date, end_date, since, upTo, courses, categories, loggedInUser: req.session.loggedIn, admin });
+            })
+            .catch(error => console.log(error))
     },
-    edit: (req, res, next) => { // funciona la logica, revisar vista. //falta traer fecha, dias y horario
-        let courseEdit = db.Course.findByPk(req.params.id, {
-            include: [{association: 'category'},{association: 'professor'}]
-        });
-        let categoryEdit = db.Category.findAll({
-            include: {association: 'courses'}
+    create: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
         });
 
         let professor = db.Professor.findAll();
-
-            Promise.all([courseEdit, categoryEdit, professor])
-            .then(([courses, categories, professor]) => {
-                res.render('productEdit', {courses, categories, professor, loggedInUser: req.session.loggedIn});
+        Promise.all([professor, categories])
+            .then(([professor, categories]) => {
+                res.render('productForm', { categories, professor, title: 'Carga tu curso', loggedInUser: req.session.loggedIn })
             });
     },
-    update: (req, res) => {
+    store: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
         let errors = validationResult(req);
 
-        if (errors.isEmpty()){
-            
-        let days = req.body.days;
-        let shift = req.body.shifts;
-        let programID;
+        if (errors.isEmpty()) {
+            let days = req.body.days,
+                shift = req.body.shifts,
+                programID = programIdBuild(days, shift),
+                courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
 
-        if(days == 'Lunes - Miercoles - Viernes' && shift == 'm'){
-            programID = 1;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 't') {
-            programID = 2;
-        } else if(days == 'Lunes - Miercoles - Viernes' && shift == 'n') {
-            programID = 3;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'm') {
-            programID = 4;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 't') {
-            programID = 5;
-        } else if(days == 'Martes - Jueves - Sábado' && shift == 'n') {
-            programID = 6;
-        }
-        
-            db.Course.update({
-                name: req.body.courseName,
-                price: req.body.price,
-                starts_date: req.body.starts_date,
-                ends_date: req.body.ends_date,
-                image: `/img/cursos/${req.files[0].filename}`,
-                vacancies: req.body.vacancies,
-                outstanding: req.body.outstanding,
-                description_short: req.body.description_short,
-                description_full: req.body.description_full,
-                category_id: req.body.category,
-                professor_id: req.body.professor,
-                program_id: programID
-            },{
-                where :{
-                    id : req.params.id}
-            })
-            .then( () =>{
-                res.redirect(`/products/detail/${req.params.id}`)
+            db.Course.create(courseData).then(() => {
+                res.redirect('/products')
             });
         } else {
             let courseEdit = db.Course.findByPk(req.params.id, {
-                include: [{association: 'category'},{association: 'professor'}]
-            });
-            let categoryEdit = db.Category.findAll({
-                include: {association: 'courses'}
-            });
-    
-            let professor = db.Professor.findAll();
-    
-                Promise.all([courseEdit, categoryEdit, professor])
+                include: [{ association: 'category' }, { association: 'professor' }]
+            }),
+
+                professor = db.Professor.findAll();
+
+            Promise.all([courseEdit, categories, professor])
                 .then(([courses, categories, professor]) => {
-                   
-                    res.render('productEdit', {errors:errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn});
+
+                    res.render('productForm', { errors: errors.errors, title: 'Carga tu curso', courses, categories, professor, loggedInUser: req.session.loggedIn });
+                });
+        };
+    },
+
+    edit: (req, res, next) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
+        let courseEdit = db.Course.findByPk(req.params.id, {
+            include: [{ association: 'category' }, { association: 'professor' }]
+        }),
+
+            professor = db.Professor.findAll();
+
+        Promise.all([courseEdit, categories, professor])
+            .then(([courses, categories, professor]) => {
+                res.render('productEdit', { courses, categories, professor, loggedInUser: req.session.loggedIn });
+            });
+    },
+    update: (req, res) => {
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()) {
+
+            let days = req.body.days;
+            shift = req.body.shifts,
+                programID = programIdBuild(days, shift),
+                courseData = courseGenerator(req.body.courseName, req.body.price, req.body.starts_date, req.body.ends_date, `/img/cursos/${req.files[0].filename}`, req.body.vacancies, req.body.outstanding, req.body.description_short, req.body.description_full, req.body.category, req.body.professor, programID);
+
+            db.Course.update(courseData, {
+                where: {
+                    id: req.params.id
+                }
+            })
+                .then(() => {
+                    res.redirect(`/products/detail/${req.params.id}`)
+                });
+        } else {
+            let courseEdit = db.Course.findByPk(req.params.id, {
+                include: [{ association: 'category' }, { association: 'professor' }]
+            }),
+                professor = db.Professor.findAll();
+
+            Promise.all([courseEdit, categories, professor])
+                .then(([courses, categories, professor]) => {
+                    res.render('productEdit', { errors: errors.errors, courses, categories, professor, loggedInUser: req.session.loggedIn });
                 });
         }
-
     },
-    destroy : (req, res) => {
+    destroy: (req, res) => {
         db.UserCourse.destroy({
-            where : {
-                courses_id : req.params.id
+            where: {
+                courses_id: req.params.id
             }
         })
-        .then(() => {
-            db.Course.destroy({
-                where : {
-                    id :req.params.id
+            .then(() => {
+                db.CartCourse.destroy({
+                    where: {
+                        course_id: req.params.id
+                    }
+                });
+            })
+            .then(() => {
+                db.Course.destroy({
+                    where: {
+                        id: req.params.id
                     }
                 })
-                .then(()=>{
-                    res.redirect('/products')
-                })
-        })
-            
+                    .then(() => {
+                        res.redirect('/products')
+                    })
+            })
+
     },
-    search(req,res) { // si no se busca nada te envia a la pagina de todos los cursos.
-        if(req.query.q != ''){
-            let course  = db.Course.findAll({
+    search(req, res) { // si no se busca nada te envia a la pagina de todos los cursos.
+        let categories = db.Category.findAll({
+            include: { association: 'courses' },
+        });
+
+        if (req.query.q != '') {
+            let course = db.Course.findAll({
                 where: {
                     name: {
                         [Op.substring]: req.query.q,
                     }
                 },
-                include: [{association: 'category'}]
+                include: [{ association: 'category' }]
             })
-            let categories = db.Category.findAll({
-                include: { association: 'courses' }
-            })
-    
+
             Promise.all([course, categories])
-    
-            .then(([course, categories]) => {
-                res.render('search', {course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn})
-             })
+                .then(([course, categories]) => {
+                    res.render('search', { course, categories, title: 'Este es el resultado de tu busqueda', loggedInUser: req.session.loggedIn })
+                })
         } else {
             res.redirect('/products');
         }
     }
 }
 
-
-module.exports = productsController
+module.exports = productsController;

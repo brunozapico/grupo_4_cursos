@@ -26,12 +26,11 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`users` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `avatar` VARCHAR(255) NULL,
+  `avatar` VARCHAR(255) NULL DEFAULT "/img/users/no_avatar.png",
   `password` VARCHAR(255) NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `avatar_UNIQUE` (`avatar` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC));
 
 
@@ -41,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`users` (
 CREATE TABLE IF NOT EXISTS `web_academy`.`shopping_cart` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `status` TINYINT NOT NULL DEFAULT 1,
-  `total` MEDIUMINT UNSIGNED NOT NULL,
   `user_id` INT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
@@ -124,7 +122,7 @@ CONSTRAINT `program_id`
 -- -----------------------------------------------------
 -- Table `web_academy`.`cart_courses`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `web_academy`.`cart_courses` (
+CREATE TABLE IF NOT EXISTS `web_academy`.`cart_course` (
   `id` INT UNIQUE NOT NULL AUTO_INCREMENT,
   `course_id` INT NOT NULL,
   `shopping_cart_id` INT NOT NULL,
@@ -194,6 +192,20 @@ CREATE TABLE IF NOT EXISTS `web_academy`.`programs` (
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
+
+
+CREATE TABLE `web_academy`.`rols` (
+`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+`user_id_rol` INT NOT NULL,
+`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` TIMESTAMP NULL,
+PRIMARY KEY (`id`),
+INDEX `user_id_rol_idx` (`user_id_rol` ASC),
+CONSTRAINT `user_id_rol`
+  FOREIGN KEY (`user_id_rol`)
+  REFERENCES `web_academy`.`users` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

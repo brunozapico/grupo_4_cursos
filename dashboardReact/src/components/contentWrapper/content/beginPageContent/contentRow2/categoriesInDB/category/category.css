@@ -1,0 +1,14 @@
+.categorias{
+    color: whitesmoke;
+    border-radius: 12px;
+    background-color: #00679A;
+    text-align: center;
+}
+i, a{
+    color: whitesmoke;
+}
+a:hover{
+    display: none;
+    color: whitesmoke;
+    cursor: pointer;
+}

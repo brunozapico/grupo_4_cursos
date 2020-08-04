@@ -16,12 +16,14 @@
         <div class="row course-container col-12">
             <div class="col-lg-8 col-md-12 col-sm-12">
                 <div class="course-description">
-                    <!--Descripcion Larga-->
+                    <!--Descripcion Corta-->
                     <h2 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.name %> </h2>
-                    <h3 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.category.title %> </h3>
+                    <a id="category-link"href="http://localhost:3000/categories/<%=courses.category.id%>">
+                        <h3 class="bkgn-white-mrgn-black mgn-btm-15px"><%= courses.category.title %> </h3>
+                    </a>
                     <div class="bkgn-white-mrgn-black mgn-btm-15px">
                         <%= courses.description_short %>
-                    </div>
+                    </div> 
                 </div>
                 <div class="course-img">
                     <!--Imagen Grande-->
@@ -47,16 +49,20 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Añadir al
-                        carrito</a><br>
-                        <a class="btn btn-outline-secondary mgn-btm-15px" href="/shoppingCart" role="button">Comprar
-                            ahora</a>
+                    <form action="/shoppingCart" method="POST">
+                        <input type="text" value="<%= courses.id %> " style="display: none;" name="course_id">
+                        <button class="btn btn-outline-secondary mgn-btm-15px cart-btn" type="submit" role="button">Añadir al
+                        carrito</button>
+                    </form>
+                    <% if(admin) { %>
+                        <a href="http://localhost:3000/products/edit/<%=courses.id%>"><button class="cart-btn">Editar Curso</button></a>
+                    <% } %> 
                 </div>
             </div>
         </div>
                 <div class="second-container col-12">
                     <div class="course col-lg-12 col-md-12 col-sm-12">
-                        <!--Descripcion Corta-->
+                        <!--Descripcion Larga-->
                         <div class="mgn-btm-5px">
                             <h2 class="course-title bkgn-white-mrgn-black mgn-btm-5px"><%= courses.name %></h2>
                         </div>

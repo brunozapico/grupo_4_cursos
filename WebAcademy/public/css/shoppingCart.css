@@ -2,9 +2,14 @@
     color: rgb(17, 30, 35);
 }
 
+main {
+    min-height: 800px;
+}
+
 .container-fluid {
     margin-top: 50px;
     margin-bottom: 200px;
+    min-height: 300px;
 }
 
 /* TITULO */
@@ -240,6 +245,20 @@
     background-clip: text;
     -webkit-text-fill-color:transparent;
 }
+
+/* DELETE BUTTON */
+#delete_btn {
+    font-size: 12px;
+    color: black;
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+#delete_btn:hover {
+    box-shadow: none;
+} 
 
 /* MEDIA QUERIES */
 

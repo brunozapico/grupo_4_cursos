@@ -10,7 +10,7 @@
     </header>
     
     <div class="container">
-        <form action="/users/editProfile/<%= user.id %>?_method=PUT" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off" id="edit-form">
+        <form action="/users/editProfile?_method=PUT" method="POST" class="center" enctype="multipart/form-data"  autocomplete="off" id="edit-form">
             <div class="row">
                 <div class="col-12 register-title">
                     <h2>Edita tus datos personales.</h2>
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </form>
-        <form action="/users/delete/<%= user.id %> " method="POST">
+        <form action="/users/delete" method="POST">
             <div class="row">
                 <div class="col-12 delete-div">
                     <button type="submit" class="delete-btn">Eliminar esta cuenta.</button>
