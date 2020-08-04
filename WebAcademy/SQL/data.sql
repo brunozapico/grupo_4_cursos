@@ -53,6 +53,7 @@ INSERT INTO users (id, name, email, password) VALUES (50, 'Delbert Brisley', 'db
 INSERT INTO users (id, name, email, password, avatar) VALUES (51, 'Martin Rodriguez', 'martin@mail.com', '12345678', '/img/users/martinPerfil.jpg');
 INSERT INTO users (id, name, email, password, avatar) VALUES (52, 'Lucas Castro', 'lucas@mail.com', '12345678', '/img/users/lucasPerfil.jpg');
 INSERT INTO users (id, name, email, password, avatar) VALUES (53, 'Bruno Zapico', 'bruno@mail.com', '12345678', '/img/users/brunoPerfil.jpg');
+INSERT INTO users (id, name, email, password) VALUES (54, 'Pedro Gomez', 'pedro@mail.com', '12345678');
 
 -- INSERT ADMIN USERS
 INSERT INTO rols (id, user_id_rol) VALUES (1, 51);
