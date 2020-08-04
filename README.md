@@ -24,17 +24,38 @@ Tengo 23 años y entre mis mayores intereses se encuentran las finanzas, la econ
 
 ```git clone https://github.com/brunozapico/grupo_4_cursos.git```
 
-
-## Utilización
-
 Instalar requerimientos:
 ```npm install``` 
+
+
+
+## Utilización de la aplicación web:
+
+Instalar base de datos de MySQL:
+Correr archivos **structure.sql** y **data.sql**
+
+Ingresar a la carpeta de Web Academy:
+```cd ./WebAcademy/```
 
 Correr el servidor:
 ```npm start``` 
 
 Visitar:
 ```http://localhost:3000/```
+
+
+
+## Utilización del dashboard de React:
+
+Ingresar a la carpeta de dashboard:
+```cd ./dashboardReact/```
+
+Correr el servidor:
+```npm start``` 
+
+Visitar:
+```http://localhost:5000/```
+
 
 
 ## Recursos
@@ -49,7 +70,8 @@ Visitar:
 - MySQL Workbench.
 - XAMPP, servidor local de PHP y MySQL.
 - [Zoom](https://zoom.us/) para reuniones grupales.
-- [Trello](https://trello.com/b/BGfRL22W/desarrollo-web) Tablero de trabajo
+- [Trello](https://trello.com/b/BGfRL22W/desarrollo-web) Tablero de trabajo.
+- [Nodemailer](https://nodemailer.com/about/) para envio de emails.
 
 #### Guías
 
