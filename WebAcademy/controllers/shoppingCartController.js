@@ -1,6 +1,12 @@
 let db = require('../database/models');
 const mailing = require('./helpers/mailerHelper');
 const helper = require('./helpers/shoppingCartHelper');
+const mp = require('mercadopago');
+
+mp.configure({
+    sandbox: true,
+    access_token: process.env.MP_ACCESS_TOKEN
+});
 
 module.exports = {
     list: (req, res, next) => {
@@ -73,4 +79,37 @@ module.exports = {
         .catch(err => res.json({msg: 'ERROR', err}));
         });
     },
+    mercadopago: (req, res, next) => {
+        let preferences = {
+            back_urls: {
+                success: 'http://localhost:3000/',
+                failure: 'http://localhost:3000/users',
+                pending: 'http://localhost:3000/products'
+            },
+            payment_methods: {
+                installments: 6,
+                default_installments: 1
+            },
+            payer: {
+                identification: {
+                    type: 'DNI',
+                    number: '111111111'
+                }
+            },
+            items: [{
+                title: 'Mi producto',
+                unit_price: 100,
+                quantity: 1,
+            }]
+        };
+
+        mp.preferences.create(preferences)
+        .then(function (response){
+            // global.id = response.body.id;
+            res.redirect(response.body.sandbox_init_point)
+            // console.log(response)
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
 };
